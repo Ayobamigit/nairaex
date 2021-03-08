@@ -323,7 +323,7 @@ export const en = {
 
     'page.body.profile.header.account': 'Profile',
 
-    'page.body.profile.header.account.username': 'Username',
+    'page.body.profile.header.account.username': 'Nickname',
     'page.body.profile.header.account.content.password': 'Password',
     'page.body.profile.header.account.content.password.button.change': 'Change',
     'page.body.profile.header.account.content.password.old': 'Old password',
@@ -563,7 +563,7 @@ export const en = {
     'page.header.signUp': 'Sign Up',
     'page.header.signUp.username.minLength.error': 'Please, enter more characters. Min number of characters is 4',
     'page.header.signUp.username.maxLength.error': 'Please, enter fewer characters. Maximum number of characters is 12',
-    'page.header.signUp.username.uniqueness.error': 'This username is already taken',
+    'page.header.signUp.username.uniqueness.error': 'This nickname is already taken',
     'page.header.signUp.email': 'Email',
     'page.header.signUp.email.message.error': 'Email is invalid',
     'page.header.signUp.password': 'Password',
@@ -762,7 +762,7 @@ export const en = {
     'identity.session.missing_otp': 'The account has enabled 2FA but OTP code is missing',
     'identity.session.invalid_otp': 'OTP code is invalid',
 
-    'username.taken': 'This username is already taken',
+    'username.taken': 'This nickname is already taken',
     'first_name.invalid': 'First name is invalid',
     'last_name.invalid': 'Last name is invalid',
     'city.invalid': 'City is invalid',

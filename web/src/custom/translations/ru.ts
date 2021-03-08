@@ -572,7 +572,7 @@ export const ru: LangType = {
     'page.header.signUp': 'Регистрация',
     'page.header.signUp.username.minLength.error': 'Пожалуйста, введите больше символов. Минимальное колисчество символов - 4',
     'page.header.signUp.username.maxLength.error': 'Пожалуйста, введите меньше символов. Максимальное колисчество символов - 12',
-    'page.header.signUp.username.uniqueness.error': 'This username is already taken',
+    'page.header.signUp.username.uniqueness.error': 'This nickname is already taken',
     'page.header.signUp.email': 'Почта',
     'page.header.signUp.email.message.error': 'Почта недействительная',
     'page.header.signUp.password': 'Пароль',
