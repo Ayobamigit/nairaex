@@ -64,6 +64,8 @@ const DEFAULT_MARKET_PRICE = {
     price: 0,
 }
 
+const sides = ['buy', 'sell'];
+
 interface QuickExchangeContainerProps {
     side: string;
     sideIndex: number;
@@ -88,7 +90,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     const updatemarketPrices = () => {
         if (exchange.wallet?.currency && receive.wallet?.currency) {
             const market = exchange.wallet?.currency + receive.wallet?.currency;
-            dispatch(marketPriceFetch({ market, side: props.side }));
+            dispatch(marketPriceFetch({ market, side: sides[props.sideIndex] }));
         }
     }
 
