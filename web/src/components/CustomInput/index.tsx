@@ -20,6 +20,7 @@ export interface CustomInputProps {
     labelVisible?: boolean;
     autoComplete?: string;
     name?: string;
+    inputSize?: number;
 }
 
 interface OnChangeEvent {
@@ -47,6 +48,7 @@ class CustomInput extends React.Component<Props> {
             onKeyPress,
             autoComplete,
             name,
+            inputSize,
         } = this.props;
 
         return (
@@ -72,6 +74,7 @@ class CustomInput extends React.Component<Props> {
                             onKeyPress={onKeyPress}
                             autoComplete={autoComplete}
                             name={name}
+                            htmlSize={inputSize}
                         />
                     </InputGroup>
                 </div>

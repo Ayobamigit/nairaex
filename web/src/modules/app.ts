@@ -28,6 +28,7 @@ import {
     labelReducer,
     phoneReducer,
 } from './user/kyc';
+import { quickExchangeReducer } from './user/quickExchange';
 import { openOrdersReducer } from './user/openOrders';
 import { ordersReducer  } from './user/orders';
 import { ordersHistoryReducer  } from './user/ordersHistory';
@@ -79,6 +80,7 @@ export const userReducer = combineReducers({
     wallets: walletsReducer,
     withdrawLimit: withdrawLimitReducer,
     internalTransfers: internalTransfersReducer,
+    quickExchange: quickExchangeReducer, 
 });
 
 export const adminReducer = combineReducers({

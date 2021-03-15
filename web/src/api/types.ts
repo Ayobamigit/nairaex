@@ -22,6 +22,7 @@ declare global {
         sessionCheckInterval: string;
         balancesFetchInterval: string;
         passwordEntropyStep: string | number;
+        msPricesUpdates: string | number;
         storage: {
             defaultStorageLimit: string | number;
             orderBookSideLimit: string | number;

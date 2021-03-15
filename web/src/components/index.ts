@@ -46,3 +46,6 @@ export * from './TwoFactorAuth';
 export * from './UploadFile';
 export * from './WalletItem';
 export * from './WalletList';
+export * from './QuickExchangeForm';
+export * from './Timer';
+export * from './Slider';

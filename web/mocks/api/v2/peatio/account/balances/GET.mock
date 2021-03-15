@@ -8,7 +8,7 @@ Access-Control-Allow-Credentials: true
 [
     {
         "currency":"bch",
-        "balance":"0",
+        "balance":"1",
         "locked":"0",
         "deposit_address": {
             "currencies": ["bch"],
@@ -75,5 +75,15 @@ Access-Control-Allow-Credentials: true
         "currency":"eur",
         "balance":"1000.0",
         "locked":"0.0"
+    },
+    {
+        "currency":"ngn",
+        "balance":"1000.0",
+        "locked":"0.0",
+            "deposit_address": {
+            "currencies": ["ngn"],
+            "address": "XpESxaUmonkq8RaLLp46Brx2K39ggQe226",
+            "state": "active"
+        }
     }
 ]

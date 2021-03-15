@@ -24,6 +24,7 @@ import { DocumentationState, rootDocumentationSaga } from './user/documentation'
 import { EmailVerificationState, rootEmailVerificationSaga } from './user/emailVerification';
 import { HistoryState, rootHistorySaga } from './user/history';
 import { InternalTransfersState, rootInternalTransfersSaga } from './user/internalTransfers';
+import { QuickExchangeState, rootQuickExchangeSaga } from './user/quickExchange';
 import { AddressesState, rootSendAddressesSaga } from './user/kyc/addresses';
 import { DocumentsState, rootSendDocumentsSaga } from './user/kyc/documents';
 import { IdentityState, rootSendIdentitySaga } from './user/kyc/identity';
@@ -70,6 +71,7 @@ export * from './user/profile';
 export * from './user/userActivity';
 export * from './user/wallets';
 export * from './user/withdrawLimit';
+export * from './user/quickExchange';
 
 export interface RootState {
     public: {
@@ -111,6 +113,7 @@ export interface RootState {
         userActivity: UserActivityState;
         wallets: WalletsState;
         withdrawLimit: WithdrawLimitState;
+        quickExchange: QuickExchangeState;
     };
     admin: {
         configUpdate: ConfigUpdateState;
@@ -127,6 +130,7 @@ export const rootReducer = combineReducers({
 
 export function* rootSaga() {
     yield all([
+        call(rootQuickExchangeSaga),
         call(rootApiKeysSaga),
         call(rootAuthSaga),
         call(rootBeneficiariesSaga),

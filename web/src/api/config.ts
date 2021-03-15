@@ -25,6 +25,7 @@ export const defaultConfig: Config = {
     sessionCheckInterval: '15000',
     balancesFetchInterval: '3000',
     passwordEntropyStep: '14',
+    msPricesUpdates: '30000',
     storage: {
         defaultStorageLimit: '50',
         orderBookSideLimit: '25'
@@ -81,3 +82,4 @@ export const captchaType = () => Cryptobase.config.captcha_type;
 export const captchaId = () => Cryptobase.config.captcha_id;
 export const passwordMinEntropy = () => Number(Cryptobase.config.password_min_entropy);
 export const wizardStep = () => String(Cryptobase.config.wizard_step || '1');
+export const msPricesUpdates = () => Number(Cryptobase.config.msPricesUpdates);

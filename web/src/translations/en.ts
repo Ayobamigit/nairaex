@@ -4,6 +4,7 @@ import { nationalitiesNames } from './nationalities';
 
 export const en = {
     'page.header.navbar.signIn': 'Sign In',
+    'page.header.navbar.quick.exchange': 'Quick exchange',
     'page.header.navbar.trade': 'Trade',
     'page.header.navbar.wallets': 'Wallets',
     'page.header.navbar.openOrders': 'Orders',
@@ -1002,6 +1003,27 @@ export const en = {
     'account.internal_transfer.insufficient_balance': 'Insufficient_balance',
     'account.internal_transfer.can_not_tranfer_to_yourself': 'Can not tranfer to yourself',
     'success.internal.transfer.created': 'Internal transfer was created',
+
+    // quick exchange
+    'page.body.quick.exchange.header': 'Quick exchange',
+
+    'page.body.quick.exchange.label.exchange': 'You exchange',
+    'page.body.quick.exchange.label.receive': 'You receive',
+
+    'page.body.quick.exchange.placeholder.exchange': '0.00',
+    'page.body.quick.exchange.placeholder.receive': '0.00',
+
+    'page.body.quick.exchange.quotes': 'New quotes in',
+    'page.body.quick.exchange.buy': 'Buy',
+    'page.body.quick.exchange.sell': 'Sell',
+    'page.body.quick.exchange.get': 'Get',
+    'page.body.quick.exchange.pay': 'Pay',
+    'page.body.quick.exchange.balance': 'Balance',
+    'page.body.quick.exchange.spend': 'You are going to spend',
+    'page.body.quick.exchange.receive': 'You are going to receive ',
+    'page.body.quick.exchange.confirm': 'Confirm Exchange',
+
+    'page.body.quick.exchange.preview': 'Preview',
 
     ...nationalitiesNames,
     ...customTranslations,

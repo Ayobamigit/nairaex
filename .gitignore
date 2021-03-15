@@ -6,6 +6,7 @@ go.mod
 go.sum
 bin/
 .vscode
+.env
 
 # baseapp
 web/.DS_Store

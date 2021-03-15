@@ -30,6 +30,7 @@ const mockConfig: Config = {
     sessionCheckInterval: '15000',
     balancesFetchInterval: '3000',
     passwordEntropyStep: '14',
+    msPricesUpdates: '30000',
     storage: {
         defaultStorageLimit: '50',
         orderBookSideLimit: '25'
