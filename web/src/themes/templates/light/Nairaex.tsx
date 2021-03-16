@@ -1,0 +1,27 @@
+import { ThemeColorInterface } from '../../types';
+
+export const NairaexTheme: ThemeColorInterface[] = [
+    { key: '--rgb-primary-cta-color', value: '75, 123, 166' },
+    { key: '--rgb-cta-layer-color', value: '255, 255, 255' },
+    { key: '--rgb-main-background-color', value: '203, 218, 228' },
+    { key: '--rgb-header-background-color', value: '255, 255, 255' },
+    { key: '--rgb-body-background-color', value: '255, 255, 255' },
+    { key: '--rgb-subheader-background-color', value: '255, 255, 255' },
+    { key: '--rgb-input-background-color', value: '236, 240, 247' },
+    { key: '--rgb-dropdown-background-color', value: '236, 240, 247' },
+    { key: '--rgb-secondary-contrast-cta-color', value: '117, 117, 117' },
+    { key: '--rgb-icons', value: '81, 133, 166' },
+    { key: '--rgb-divider-color', value: '23, 25, 38' },
+    { key: '--rgb-contrast-cta-color', value: '255, 255, 255' },
+    { key: '--rgb-primary-text-color', value: '23, 25, 38' },
+    { key: '--rgb-system-green', value: '0, 171, 105' },
+    { key: '--rgb-system-red', value: '190, 78, 74' },
+    { key: '--rgb-asks', value: '232, 94, 89' },
+    { key: '--rgb-bids', value: '0, 171, 105' },
+    { key: '--rgb-system-yellow', value: '255, 195, 109' },
+    { key: '--rgb-text-contrast-color', value: '23, 28, 41' },
+    { key: '--rgb-shadow-color', value: '23, 25, 38' },
+    { key: '--rgb-landing-background-color', value: '251, 251, 251' },
+    { key: '--rgb-strength-meter-very-strong', value: '108, 239, 239' },
+    { key: '--rgb-background-image-color', value: '203, 218, 228' },
+];

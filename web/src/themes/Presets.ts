@@ -5,6 +5,7 @@ import { GreenTheme as GreenThemeDark } from './templates/dark/Green';
 import { RedTheme as RedThemeDark } from './templates/dark/Red';
 import { VioletTheme as VioletThemeDark } from './templates/dark/Violet';
 import { YellowTheme as YellowThemeDark } from './templates/dark/Yellow';
+import { NairaexTheme as NairaexThemeDark } from './templates/dark/Nairaex';
 
 /* Light mode theme presets */
 import { BasicNewTheme as BasicNewThemeLight } from './templates/light/BasicNew';
@@ -13,6 +14,7 @@ import { GreenTheme as GreenThemeLight } from './templates/light/Green';
 import { RedTheme as RedThemeLight } from './templates/light/Red';
 import { VioletTheme as VioletThemeLight } from './templates/light/Violet';
 import { YellowTheme as YellowThemeLight } from './templates/light/Yellow';
+import { NairaexTheme as NairaexThemeLight } from './templates/light/Nairaex';
 
 import { ThemePresetInterface } from './types';
 
@@ -63,6 +65,14 @@ export const AVAILABLE_THEME_PRESETS: ThemePresetInterface[] = [
         theme_colors: {
             light: VioletThemeLight,
             dark: VioletThemeDark,
+        },
+    },
+    {
+        theme_id: 6,
+        title: 'Default nairaex',
+        theme_colors: {
+            light: NairaexThemeLight,
+            dark: NairaexThemeDark,
         },
     },
 ];
