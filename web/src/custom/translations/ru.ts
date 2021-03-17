@@ -1029,6 +1029,8 @@ export const ru: LangType = {
 
     'page.body.quick.exchange.preview': 'Preview',
 
+    'success.quick.exchange.order.created': 'Order was created',
+
     ...nationalitiesNames,
     ...mobileTranslationsRu,
 };

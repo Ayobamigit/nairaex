@@ -230,8 +230,12 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     };
 
     const renderBaseCurrencies = (item: Wallet, index) => {
+        const classname = classnames('cr-quick-exchange__slider', {
+            'cr-quick-exchange__slider--alone': baseCurrencies.length <= 1,
+        });
+
         return (
-            <div key={index} className="cr-quick-exchange__slider">
+            <div key={index} className={classname}>
                 <CurrencyIcon icon={item.iconUrl} currency={item.currency}/>
             </div>
         );
@@ -307,17 +311,16 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     );
 
     const renderBody = useMemo(() => {
+        const firstCardText = props.side === 'buy' ? translate('page.body.quick.exchange.spend') : translate('page.body.quick.exchange.receive');
+        const SecondCardText = props.side === 'sell' ? translate('page.body.quick.exchange.spend') : translate('page.body.quick.exchange.receive');
+
         return (
             <React.Fragment>
-                {props.side === 'buy' ? renderCard(receive.amount, receive.wallet?.currency, receive.wallet?.iconUrl, receive.wallet?.fixed, translate('page.body.quick.exchange.spend'))
-                    : renderCard(exchange.amount, exchange.wallet?.currency, exchange.wallet?.iconUrl, exchange.wallet?.fixed, translate('page.body.quick.exchange.receive'))
-                }
+                {renderCard(receive.amount, receive.wallet?.currency, receive.wallet?.iconUrl, receive.wallet?.fixed, firstCardText)}
                 <div className="cr-modal_body-image">
                     <ArrowDown />
                 </div>
-                {props.side === 'buy' ? renderCard(exchange.amount, exchange.wallet?.currency, exchange.wallet?.iconUrl, exchange.wallet?.fixed, translate('page.body.quick.exchange.receive'))
-                    : renderCard(receive.amount, receive.wallet?.currency, receive.wallet?.iconUrl, receive.wallet?.fixed, translate('page.body.quick.exchange.spend'))
-                }
+                {renderCard(exchange.amount, exchange.wallet?.currency, exchange.wallet?.iconUrl, exchange.wallet?.fixed, SecondCardText}
             </React.Fragment>
         );
     }, [receive, exchange]);
@@ -325,9 +328,9 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     return (
         <React.Fragment>
             <Slider
-                loop={true}
+                loop={baseCurrencies.length > 1}
                 selected={0}
-                showArrows={true}
+                showArrows={baseCurrencies.length > 1}
                 onChanged={handleUpdateSlider}
             >{baseCurrencies.map(renderBaseCurrencies)}</Slider>
             <div className="cr-quick-exchange__currency">{exchange.wallet?.name} ({exchange.wallet?.currency?.toUpperCase()})</div>
