@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import {
     useCurrenciesFetch,
+    useRangerConnectFetch,
 } from '../../../hooks';
 import {
     marketsFetch,
@@ -86,6 +87,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     const updateTimer = useSelector(selectMarketPriceFetchSuccess);
 
     useCurrenciesFetch();
+    useRangerConnectFetch();
 
     const updatemarketPrices = () => {
         if (exchange.wallet?.currency && receive.wallet?.currency) {
@@ -369,7 +371,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
                     variant="primary"
                     disabled={!receive.amount || !exchange.amount}
                 >
-                        {translate('page.body.quick.exchange.preview')}
+                    {translate('page.body.quick.exchange.preview')}
                 </Button>
             </div>
             <Modal
