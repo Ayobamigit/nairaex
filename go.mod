@@ -3,7 +3,9 @@ module baseapp
 go 1.15
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/foolin/goview v0.3.0
+	github.com/frankban/quicktest v1.11.3 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/protobuf v1.4.3 // indirect
@@ -23,7 +25,7 @@ require (
 	github.com/openware/pkg/jwt v0.0.0-20210204083929-709d949cb0ff
 	github.com/openware/pkg/kli v0.0.0-20210110002944-50c944a5e00d
 	github.com/openware/pkg/utils v0.0.0-20210204083929-709d949cb0ff
-	github.com/openware/sonic v0.0.0-20210219120221-2c220ea19081
+	github.com/openware/sonic v0.0.0-20210319134118-8a39d7ae4ec2
 	github.com/pierrec/lz4 v2.6.0+incompatible // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/ugorji/go v1.2.3 // indirect
