@@ -40,7 +40,7 @@ export const MarketsComponent = () => {
             price_change_percent: '+0.00%',
         };
 
-        return marketsData.map((market: Market) =>
+        return marketsData?.map((market: Market) =>
             ([
                 market.name,
                 Decimal.format(Number((marketTickers[market.id] || defaultTicker).last), market.amount_precision, ','),
