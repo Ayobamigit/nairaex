@@ -10,6 +10,7 @@ export const QuickExchange: React.FC = () => {
     const dispatch = useDispatch();
 
     const [index, setIndex] = useState(0);
+    const [sliderItemIndex, setSliderItemIndex] = useState(0);
 
     useEffect(() => {
         setDocumentTitle('Quick Exchange');
@@ -32,6 +33,8 @@ export const QuickExchange: React.FC = () => {
                 <QuickExchangeContainer
                     side={side}
                     sideIndex={index}
+                    sliderItemIndex={sliderItemIndex}
+                    handleChangeSliderItemIndex={value => setSliderItemIndex(value)}
                 />
             ),
             label: preLabel || label,

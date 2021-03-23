@@ -70,6 +70,8 @@ const sides = ['buy', 'sell'];
 interface QuickExchangeContainerProps {
     side: string;
     sideIndex: number;
+    sliderItemIndex: number;
+    handleChangeSliderItemIndex: (value: number) => void;
 }
 
 export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
@@ -112,7 +114,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     }, []);
 
     useEffect(() => {
-        handleUpdateSlider(0);
+        handleUpdateSlider(props.sliderItemIndex);
     }, [wallets, markets]);
 
     useEffect(() => {
@@ -193,6 +195,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
             wallet: nknWallet,
         }
 
+        props.handleChangeSliderItemIndex(index);
         setExchange(updatedExchange);
         setReceive(updatedReceive);
     };
@@ -331,7 +334,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
         <React.Fragment>
             <Slider
                 loop={baseCurrencies.length > 1}
-                selected={0}
+                selected={props.sliderItemIndex}
                 showArrows={baseCurrencies.length > 1}
                 onChanged={handleUpdateSlider}
             >{baseCurrencies.map(renderBaseCurrencies)}</Slider>
