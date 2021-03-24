@@ -18,6 +18,7 @@ import { RecentTradesState, rootRecentTradesSaga } from './public/recentTrades';
 import { ApiKeysState } from './user/apiKeys';
 import { rootApiKeysSaga } from './user/apiKeys/sagas';
 import { AuthState, rootAuthSaga } from './user/auth';
+import { AbilitiesState, rootAbilitiesSaga } from './user/abilities';
 import { BeneficiariesState, rootBeneficiariesSaga } from './user/beneficiaries';
 import { GeetestCaptchaState, rootGeetestCaptchaSaga } from './user/captcha';
 import { DocumentationState, rootDocumentationSaga } from './user/documentation';
@@ -72,6 +73,7 @@ export * from './user/userActivity';
 export * from './user/wallets';
 export * from './user/withdrawLimit';
 export * from './user/quickExchange';
+export * from './user/abilities';
 
 export interface RootState {
     public: {
@@ -92,6 +94,7 @@ export interface RootState {
         rgl: GridLayoutState;
     };
     user: {
+        abilities: AbilitiesState;
         addresses: AddressesState;
         apiKeys: ApiKeysState;
         auth: AuthState;
@@ -131,6 +134,7 @@ export const rootReducer = combineReducers({
 export function* rootSaga() {
     yield all([
         call(rootQuickExchangeSaga),
+        call(rootAbilitiesSaga),
         call(rootApiKeysSaga),
         call(rootAuthSaga),
         call(rootBeneficiariesSaga),

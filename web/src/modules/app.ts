@@ -14,6 +14,7 @@ import { depthReducer, incrementDepthReducer, orderBookReducer } from './public/
 import { rangerReducer  } from './public/ranger/reducer';
 import { recentTradesReducer  } from './public/recentTrades';
 import { apiKeysReducer } from './user/apiKeys';
+import { abilitiesReducer } from './user/abilities';
 import { authReducer  } from './user/auth';
 import { beneficiariesReducer } from './user/beneficiaries';
 import { getGeetestCaptchaReducer } from './user/captcha';
@@ -80,7 +81,8 @@ export const userReducer = combineReducers({
     wallets: walletsReducer,
     withdrawLimit: withdrawLimitReducer,
     internalTransfers: internalTransfersReducer,
-    quickExchange: quickExchangeReducer, 
+    quickExchange: quickExchangeReducer,
+    abilities: abilitiesReducer,
 });
 
 export const adminReducer = combineReducers({
