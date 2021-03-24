@@ -133,7 +133,7 @@ export const Markets = (props: MarketsProps) => {
                 data={getTableData}
                 rowKeyIndex={rowKeyIndex}
                 selectedKey={selectedKey}
-                filters={getFilters()}
+                filters={props.filters ? getFilters() : []}
                 header={headers || DEFAULT_MARKET_HEADERS}
                 onSelect={props.onSelect}
                 titleComponent={title || 'Markets'}
