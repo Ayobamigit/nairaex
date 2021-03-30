@@ -27,7 +27,7 @@ import visa from 'src/assets/images/landing/nairaex/payment/mastercard.svg';
 import visaElectron from 'src/assets/images/landing/nairaex/payment/maestro.svg';
 
 import TwitterIcon from 'src/assets/images/landing/nairaex/socials/Twitter.svg';
-import YouTubeIcon from 'src/assets/images/landing/nairaex/socials/YouTube.svg';
+import YouTubeIcon from 'src/assets/images/landing/nairaex/socials/Youtube.svg';
 import InstagramIcon from 'src/assets/images/landing/nairaex/socials/Instagram.svg';
 import FacebookIcon from 'src/assets/images/landing/nairaex/socials/Facebook.svg';
 

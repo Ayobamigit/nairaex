@@ -1,5 +1,6 @@
-import React, { FC, ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import React, { FC, ReactElement, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Decimal } from '../../components';
 import {
     useMarketsFetch,
@@ -9,6 +10,8 @@ import {
 import {
     selectMarkets,
     selectMarketTickers,
+    setCurrentMarket,
+    Market,
 } from '../../modules';
 import Ticker from "react-ticker";
 
@@ -23,6 +26,8 @@ const defaultTicker = {
 };
 
 export const MarketSlideShow: FC = (): ReactElement => {
+    const history = useHistory();
+    const dispatch = useDispatch();
     useMarketsFetch();
     useMarketsTickersFetch();
     useRangerConnectFetch();
@@ -47,6 +52,32 @@ export const MarketSlideShow: FC = (): ReactElement => {
         }),
     );
 
+    const handleRedirectToTrading = (id: string) => {
+        const currentMarket: Market | undefined = markets.find(item => item.id === id);
+
+        if (currentMarket) {
+            dispatch(setCurrentMarket(currentMarket));
+            history.push(`/trading/${currentMarket.id}`);
+        }
+    };
+
+    const renderMarketCards = useMemo(() => {
+        return marketsWithTicker.map((market, marketIndex) => {
+            const marketChangeColor = +(market.change || 0) < 0 ? 'negative' : 'positive';
+
+            return (
+                <span onClick={() => handleRedirectToTrading(market.id)} key={marketIndex}>
+                    <div className="carousel__slider-slide-card">
+                        <div className="carousel__slider-slide-card-block">
+                            <h3>{market.base_unit?.toUpperCase()}/<span>{market.quote_unit?.toUpperCase()}</span></h3>
+                            <span className={marketChangeColor}>{market.change}</span>
+                        </div>
+                        <span className="carousel__slider-slide-card-price">{market.last} {market.quote_unit?.toUpperCase()}</span>
+                    </div>
+                </span>)}
+            );
+    }, [marketTickers, markets]);
+
     return (
         <div className="ticker">
             {
@@ -54,23 +85,7 @@ export const MarketSlideShow: FC = (): ReactElement => {
                     <Ticker>
                         {({ index }) => (
                             <span className="ticker_content">
-                                <div style={{display: 'flex'}}>
-                                    {marketsWithTicker.map((market, marketIndex) => {
-                                        const marketChangeColor = +(market.change || 0) < 0 ? 'negative' : 'positive';
-
-                                        return (
-                                            <span key={marketIndex}>
-                                                <div className="carousel__slider-slide-card">
-                                                    <div className="carousel__slider-slide-card-block">
-                                                        <h3>{market.base_unit?.toUpperCase()}/<span>{market.quote_unit?.toUpperCase()}</span></h3>
-                                                        <span className={marketChangeColor}>{market.change}</span>
-                                                    </div>
-                                                    <span className="carousel__slider-slide-card-price">{market.last} {market.quote_unit?.toUpperCase()}</span>
-                                                </div>
-                                            </span>)}
-                                        )
-                                    }
-                                </div>
+                                <div style={{display: 'flex'}}>{renderMarketCards}</div>
                             </span>
                         )}
                     </Ticker>

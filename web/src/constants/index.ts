@@ -1,6 +1,6 @@
 import { DropdownElem } from '../components/Order';
 
-export const PG_TITLE_PREFIX = 'Cryptobase';
+export const PG_TITLE_PREFIX = 'Nairaex';
 
 export const pgRoutes = (isLoggedIn: boolean, CanCan: boolean, isLight?: boolean): string[][] => {
     const routes = [
