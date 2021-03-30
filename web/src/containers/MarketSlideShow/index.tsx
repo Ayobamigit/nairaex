@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useMemo } from 'react';
+import React, { FC, ReactElement, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Decimal } from '../../components';
@@ -33,6 +33,7 @@ export const MarketSlideShow: FC = (): ReactElement => {
     useRangerConnectFetch();
     const markets = useSelector(selectMarkets);
     const marketTickers = useSelector(selectMarketTickers);
+    const [stopLine, setStopLine] = useState(false);
 
     const marketsWithTicker = markets.map(market =>
         ({
@@ -40,9 +41,6 @@ export const MarketSlideShow: FC = (): ReactElement => {
             last: Decimal.format(Number((marketTickers[market.id] || defaultTicker).last), market.amount_precision),
             open: Decimal.format(Number((marketTickers[market.id] || defaultTicker).open), market.price_precision),
             price_change_percent: String((marketTickers[market.id] || defaultTicker).price_change_percent),
-            high: Decimal.format(Number((marketTickers[market.id] || defaultTicker).high), market.amount_precision),
-            low: Decimal.format(Number((marketTickers[market.id] || defaultTicker).low), market.amount_precision),
-            volume: Decimal.format(Number((marketTickers[market.id] || defaultTicker).volume), market.amount_precision),
         }),
     ).map(market =>
         ({
@@ -62,35 +60,37 @@ export const MarketSlideShow: FC = (): ReactElement => {
     };
 
     const renderMarketCards = useMemo(() => {
-        return marketsWithTicker.map((market, marketIndex) => {
-            const marketChangeColor = +(market.change || 0) < 0 ? 'negative' : 'positive';
+        return (
+            <Ticker speed={20} move={!stopLine}>
+                {({ index }) => (
+                    <span className="ticker_content">
+                        <div style={{display: 'flex'}}>
+                            {
+                                marketsWithTicker.map((market, marketIndex) => {
+                                    const marketChangeColor = +(market.change || 0) < 0 ? 'negative' : 'positive';
 
-            return (
-                <span onClick={() => handleRedirectToTrading(market.id)} key={marketIndex}>
-                    <div className="carousel__slider-slide-card">
-                        <div className="carousel__slider-slide-card-block">
-                            <h3>{market.base_unit?.toUpperCase()}/<span>{market.quote_unit?.toUpperCase()}</span></h3>
-                            <span className={marketChangeColor}>{market.change}</span>
+                                    return (
+                                        <span onMouseEnter={() => setStopLine(true)} onMouseLeave={() => setStopLine(false)} onClick={() => handleRedirectToTrading(market.id)} key={marketIndex}>
+                                            <div className="carousel__slider-slide-card">
+                                                <div className="carousel__slider-slide-card-block">
+                                                    <h3>{market.base_unit?.toUpperCase()}/<span>{market.quote_unit?.toUpperCase()}</span></h3>
+                                                    <span className={marketChangeColor}>{market.change}</span>
+                                                </div>
+                                                <span className="carousel__slider-slide-card-price">{market.last} {market.quote_unit?.toUpperCase()}</span>
+                                            </div>
+                                        </span>
+                                    )
+                                })
+                            }
                         </div>
-                        <span className="carousel__slider-slide-card-price">{market.last} {market.quote_unit?.toUpperCase()}</span>
-                    </div>
-                </span>)}
-            );
-    }, [marketTickers, markets]);
+                    </span>
+                )}
+            </Ticker>
+    )}, [marketTickers, markets, marketsWithTicker]);
 
     return (
         <div className="ticker">
-            {
-                marketsWithTicker.length ?
-                    <Ticker>
-                        {({ index }) => (
-                            <span className="ticker_content">
-                                <div style={{display: 'flex'}}>{renderMarketCards}</div>
-                            </span>
-                        )}
-                    </Ticker>
-                : <div>Markets not exist</div>
-            }
+            {marketsWithTicker.length ? renderMarketCards : <div>Markets not exist</div>}
         </div>
     );
 };
