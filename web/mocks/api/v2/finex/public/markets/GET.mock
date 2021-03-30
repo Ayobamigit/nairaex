@@ -24,6 +24,132 @@ Access-Control-Allow-Credentials: true
       }
     ]
   },
+    {
+    "id":"erctrc",
+    "name":"ERC/TRC",
+    "base_unit":"erc",
+    "quote_unit":"trc",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
+    {
+    "id":"nknbtc",
+    "name":"NKN/BTC",
+    "base_unit":"nkn",
+    "quote_unit":"btc",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
+    {
+    "id":"dashqwe",
+    "name":"DASH/QWE",
+    "base_unit":"dash",
+    "quote_unit":"qwe",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
+    {
+    "id":"dashasd",
+    "name":"DASH/ASD",
+    "base_unit":"dash",
+    "quote_unit":"asd",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
+    {
+    "id":"dashqaz",
+    "name":"DASH/QAZ",
+    "base_unit":"dash",
+    "quote_unit":"qaz",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
+    {
+    "id":"dashfds",
+    "name":"DASH/FDS",
+    "base_unit":"dash",
+    "quote_unit":"fds",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
+    {
+    "id":"dashbtc",
+    "name":"DASH/BTC",
+    "base_unit":"dash",
+    "quote_unit":"btc",
+    "state":"enabled",
+    "amount_precision":3,
+    "price_precision":6,
+    "min_price":"0.000001",
+    "max_price":"0",
+    "min_amount":"0.001",
+    "filters": [
+      {
+        "digits":5,
+        "type":"significant_digits"
+      }
+    ]
+  },
   {
     "id":"ethbtc",
     "name":"ETH/BTC",

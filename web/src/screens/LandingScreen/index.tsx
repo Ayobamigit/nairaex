@@ -7,30 +7,35 @@ import { compose } from 'redux';
 
 import { IntlProps } from '../../';
 import { Logo } from '../../components';
-import { MarketsTable } from '../../containers';
 import { toggleColorTheme } from '../../helpers';
 import {
     RootState,
     selectCurrentColorTheme,
     selectUserLoggedIn,
 } from '../../modules';
-import { CustomizationSettingsInterface, LogoInterface } from '../../themes';
+import { HowItWorks } from './HowItWorks';
+import { MarketSlideShow } from '../../containers';
 
-import FeaturesExchangeIcon from 'src/assets/images/landing/features/Exchange.svg';
-import FeaturesTypesIcon from 'src/assets/images/landing/features/Types.svg';
-import FeaturesCustomizeIcon from 'src/assets/images/landing/features/Customize.svg';
-import FeaturesSecurityIcon from 'src/assets/images/landing/features/Security.svg';
-import FeaturesCommunityIcon from 'src/assets/images/landing/features/Community.svg';
-import FeaturesAPIIcon from 'src/assets/images/landing/features/API.svg';
+import transferMoney from 'src/assets/images/landing/nairaex/transferMoney.png';
+import quickExchange from 'src/assets/images/landing/nairaex/quickExchange.png';
+import mobTrading from 'src/assets/images/landing/nairaex/mobTrading.png';
+import withdraw from 'src/assets/images/landing/nairaex/withdraw.png';
 
-import TelegramIcon from 'src/assets/images/landing/social/Telegram.svg';
-import LinkedInIcon from 'src/assets/images/landing/social/LinkedIn.svg';
-import TwitterIcon from 'src/assets/images/landing/social/Twitter.svg';
-import YouTubeIcon from 'src/assets/images/landing/social/YouTube.svg';
-import RedditIcon from 'src/assets/images/landing/social/Reddit.svg';
-import FacebookIcon from 'src/assets/images/landing/social/Facebook.svg';
-import MediumIcon from 'src/assets/images/landing/social/Medium.svg';
-import CoinMarketIcon from 'src/assets/images/landing/social/CoinMarket.svg';
+import maestro from 'src/assets/images/landing/nairaex/payment/visa.svg';
+import mastercard from 'src/assets/images/landing/nairaex/payment/viseElectron.svg';
+import visa from 'src/assets/images/landing/nairaex/payment/mastercard.svg';
+import visaElectron from 'src/assets/images/landing/nairaex/payment/maestro.svg';
+
+import TwitterIcon from 'src/assets/images/landing/nairaex/socials/Twitter.svg';
+import YouTubeIcon from 'src/assets/images/landing/nairaex/socials/YouTube.svg';
+import InstagramIcon from 'src/assets/images/landing/nairaex/socials/Instagram.svg';
+import FacebookIcon from 'src/assets/images/landing/nairaex/socials/Facebook.svg';
+
+import topImage from 'src/assets/images/landing/nairaex/topImage.png';
+
+import footerLogo from 'src/assets/images/landing/nairaex/footerLogo.svg';
+
+const withdrawMethodIcons = [visa, visaElectron, mastercard, maestro];
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -41,14 +46,14 @@ type Props = ReduxProps & RouteProps & IntlProps;
 
 class Landing extends React.Component<Props> {
     public componentDidMount() {
-        if (this.props.colorTheme === 'light') {
-            toggleColorTheme('dark');
+        if (this.props.colorTheme === 'dark') {
+            toggleColorTheme('light');
         }
     }
 
     public componentWillReceiveProps(next: Props) {
-        if (next.colorTheme === 'light') {
-            toggleColorTheme('dark');
+        if (next.colorTheme === 'dark') {
+            toggleColorTheme('light');
         }
     }
 
@@ -58,13 +63,64 @@ class Landing extends React.Component<Props> {
         }
     }
 
+    public learnMoreList = [
+        {
+            title: 'What is bitcoin?',
+            description: 'A quick start guide on how to buy Bitcoin and the basics of trading cryptocurrencies.',
+            link: '/',
+            buttonName: 'Learn',
+        },
+        {
+            title: 'What is bitcoin?',
+            description: 'A quick start guide on how to buy Bitcoin and the basics of trading cryptocurrencies.',
+            link: '/',
+            buttonName: 'Learn',
+        },
+        {
+            title: 'What is bitcoin?',
+            description: 'A quick start guide on how to buy Bitcoin and the basics of trading cryptocurrencies.',
+            link: '/',
+            buttonName: 'Learn',
+        }
+    ]
+
+    public renderNavbarItems = [
+        {name: 'About', link: '/'},
+        {name: 'Learn', link: '/'},
+        {name: 'Features', link: '/'},
+        {name: 'Support', link: '/'},
+        {name: 'Blog', link: '/'},
+    ];
+
+    public fotterLinks = [
+        {
+            category: 'Company',
+            links: [{name: 'About us', link: '/'}, {name: 'Jobs', link: '/'}, {name: 'Privacy Policy', link: '/'}, {name: 'Terms of service', link: '/'}]
+        },
+        {
+            category: 'Exchange',
+            links: [{name: 'Simple Buy/Sell', link: '/'}, {name: 'Advanced Buy/Sell', link: '/'}, {name: 'Internal transers', link: '/'}, {name: 'Withdrawal', link: '/'}]
+        },
+        {
+            category: 'Services',
+            links: [{name: 'Mobile Top-up', link: '/'}, {name: 'Electricity bill', link: '/'}, {name: 'Cable TV', link: '/'}, {name: 'Internet', link: '/'}]
+        },
+        {
+            category: 'Learn',
+            links: [{name: 'What is Bitcoin', link: '/'}, {name: 'How to buy Bitcoin', link: '/'}, {name: 'How to sell Bitcoin', link: '/'}, {name: 'FAQs', link: '/'}, {name: 'Blog', link: '/'}]
+        }
+    ]
+
     public render() {
         return (
-            <div className="pg-landing-screen">
-                <div className="pg-landing-screen__header">
+            <main className="pg-landing-screen">
+                <nav className="pg-landing-screen__header">
                     <div className="pg-landing-screen__header__wrap">
                         <div className="pg-landing-screen__header__wrap__left" onClick={(e) => this.handleScrollTop()}>
                             <Logo />
+                        </div>
+                        <div className="pg-landing-screen__header__wrap__left" onClick={(e) => this.handleScrollTop()}>
+                            {this.renderNavbarItems.map(item => (<Link className="pg-landing-screen__header__wrap__center-item" to={item.link}>{item.name}</Link>))}
                         </div>
                         <div className="pg-landing-screen__header__wrap__right">
                             {this.props.isLoggedIn ? (
@@ -83,180 +139,138 @@ class Landing extends React.Component<Props> {
                             )}
                         </div>
                     </div>
-                </div>
-                <LandingBlock className="pg-landing-screen__top" contentClassName="pg-landing-screen__top-content">
-                    <div className="pg-landing-screen__market-info">
-                        <div className="pg-landing-screen__market-info__wrap">
-                            <div className="pg-landing-screen__market-info__wrap__title">
-                                <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
-                                <h1>{this.translate('page.body.landing.marketInfo.title.text2')}</h1>
-                                <Link to="/trading" className="landing-button">
-                                    {this.translate('page.body.landing.marketInfo.title.button')}
-                                </Link>
-                            </div>
-                            <MarketsTable />
-                        </div>
-                    </div>
-                    <div className="pg-landing-screen__platform-info">
-                        <div className="pg-landing-screen__platform-info__wrap">
-                            <div className="pg-landing-screen__platform-info__wrap__item">
-                                <span>{this.translate('page.body.landing.platformInfo.item.first.value')}</span>
-                                <span>{this.translate('page.body.landing.platformInfo.item.first.title')}</span>
-                            </div>
-                            <div className="pg-landing-screen__platform-info__wrap__item">
-                                <span>{this.translate('page.body.landing.platformInfo.item.second.value')}</span>
-                                <span>{this.translate('page.body.landing.platformInfo.item.second.title')}</span>
-                            </div>
-                            <div className="pg-landing-screen__platform-info__wrap__item">
-                                <span>{this.translate('page.body.landing.platformInfo.item.third.value')}</span>
-                                <span>{this.translate('page.body.landing.platformInfo.item.third.title')}</span>
-                            </div>
-                        </div>
-                    </div>
-                </LandingBlock>
-                <LandingBlock
-                    className="pg-landing-screen__register"
-                    contentClassName="pg-landing-screen__register-content">
-                    <div className="pg-landing-screen__register__item">
-                        <h1>{this.translate('page.body.landing.register.item.title')}</h1>
-                        <h2>{this.translate('page.body.landing.register.item.text')}</h2>
-                        <Link to="/signup" className="landing-button">
-                            {this.translate('page.body.landing.register.item.button')}
-                        </Link>
-                    </div>
-                </LandingBlock>
-                <LandingBlock className="pg-landing-screen__features">
-                    <div className="pg-landing-screen__features__wrap">
-                        <h1>{this.translate('page.body.landing.features.title')}</h1>
-                        <div className="pg-landing-screen__features__content">
-                            <div className="pg-landing-screen__features__content__row">
-                                <div className="pg-landing-screen__features__content__row__item">
-                                    <img
-                                        src={FeaturesExchangeIcon}
-                                        alt={this.translate('page.body.landing.features.features.item1.title')}
-                                    />
-                                    <h2>{this.translate('page.body.landing.features.features.item1.title')}</h2>
-                                    <span>{this.translate('page.body.landing.features.features.item1.text')}</span>
+                </nav>
+
+                <section className="pg-landing-screen__top container">
+                    <LandingBlock contentClassName="pg-landing-screen__top-content">
+                        <div className="pg-landing-screen__market-info">
+                            <div className="pg-landing-screen__market-info__wrap">
+                                <div className="pg-landing-screen__market-info__wrap__title">
+                                    <h1>{this.translate('page.body.landing.marketInfo.title.text1')}</h1>
+                                    <h3>{this.translate('page.body.landing.marketInfo.title.text2')}</h3>
+                                    <Link to="/singup" className="landing-button">
+                                        {this.translate('page.body.landing.marketInfo.title.button')}
+                                    </Link>
                                 </div>
-                                <div className="pg-landing-screen__features__content__row__item">
-                                    <img
-                                        src={FeaturesTypesIcon}
-                                        alt={this.translate('page.body.landing.features.features.item2.title')}
-                                    />
-                                    <h2>{this.translate('page.body.landing.features.features.item2.title')}</h2>
-                                    <span>{this.translate('page.body.landing.features.features.item2.text')}</span>
-                                </div>
-                            </div>
-                            <div className="pg-landing-screen__features__content__row">
-                                <div className="pg-landing-screen__features__content__row__item">
-                                    <img
-                                        src={FeaturesCustomizeIcon}
-                                        alt={this.translate('page.body.landing.features.features.item3.title')}
-                                    />
-                                    <h2>{this.translate('page.body.landing.features.features.item3.title')}</h2>
-                                    <span>{this.translate('page.body.landing.features.features.item3.text')}</span>
-                                </div>
-                                <div className="pg-landing-screen__features__content__row__item">
-                                    <img
-                                        src={FeaturesSecurityIcon}
-                                        alt={this.translate('page.body.landing.features.features.item4.title')}
-                                    />
-                                    <h2>{this.translate('page.body.landing.features.features.item4.title')}</h2>
-                                    <span>{this.translate('page.body.landing.features.features.item4.text')}</span>
-                                </div>
-                            </div>
-                            <div className="pg-landing-screen__features__content__row">
-                                <div className="pg-landing-screen__features__content__row__item">
-                                    <img
-                                        src={FeaturesCommunityIcon}
-                                        alt={this.translate('page.body.landing.features.features.item5.title')}
-                                    />
-                                    <h2>{this.translate('page.body.landing.features.features.item5.title')}</h2>
-                                    <span>{this.translate('page.body.landing.features.features.item5.text')}</span>
-                                </div>
-                                <div className="pg-landing-screen__features__content__row__item">
-                                    <img
-                                        src={FeaturesAPIIcon}
-                                        alt={this.translate('page.body.landing.features.features.item6.title')}
-                                    />
-                                    <h2>{this.translate('page.body.landing.features.features.item6.title')}</h2>
-                                    <span>{this.translate('page.body.landing.features.features.item6.text')}</span>
+                                <div>
+                                    <img src={topImage} alt="nigerias_premier_crypto_exchange" />
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </LandingBlock>
-                <LandingBlock
-                    className="pg-landing-screen__trade-on-the-go"
-                    contentClassName="pg-landing-screen__trade-on-the-go-content">
-                    <div className="pg-landing-screen__trade-on-the-go__wrap">
-                        <div className="pg-landing-screen__trade-on-the-go__wrap__image" />
-                        <div className="pg-landing-screen__trade-on-the-go__wrap__content">
-                            <h1>{this.translate('page.body.landing.tradeOnTheGo.item.title')}</h1>
-                            <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text1')}</h2>
-                            <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text2')}</h2>
-                            <h2>{this.translate('page.body.landing.tradeOnTheGo.item.text3')}</h2>
-                            <Link to="/trading/" className="landing-button">
-                                {this.translate('page.body.landing.tradeOnTheGo.item.button')}
+                    </LandingBlock>
+                </section>
+
+                <section>
+                    <div className="pg-landing-screen__slider"><MarketSlideShow /></div> 
+                </section>
+
+                <section className="pg-landing-screen__how_it_works">
+                    <LandingBlock contentClassName="pg-landing-screen__how_it_works-content">
+                        <div className="pg-landing-screen__how_it_works__item">
+                            <h1>{this.translate('page.body.landing.how_it_works.item.title')}</h1>
+                            <h2>{this.translate('page.body.landing.how_it_works.item.text')}</h2>
+                        </div>
+                        <div className="pg-landing-screen__how_it_works__block">
+                            <HowItWorks />
+                        </div>
+                    </LandingBlock>
+                </section>
+
+                <section className="pg-landing-screen__blocks background-image">
+                    <LandingBlock contentClassName="pg-landing-screen__blocks">
+                        <div className="pg-landing-screen__blocks-info">
+                            <h1>{this.translate('page.body.landing.simple.exchange.title')}</h1>
+                            <h3>{this.translate('page.body.landing.simple.exchange.subtitle')}</h3>
+                            <p>{this.translate('page.body.landing.simple.exchange.description')}</p>
+                            <Link to="/trading" className="landing-button">
+                                {this.translate('page.body.landing.simple.exchange.button')}
                             </Link>
                         </div>
-                    </div>
-                </LandingBlock>
-                <div className="pg-landing-screen__start-trading">
-                    <div className="pg-landing-screen__start-trading__wrap">
-                        <h1>{this.translate('page.body.landing.startTrading.title')}</h1>
-                        <div className="pg-landing-screen__start-trading__wrap__content">
-                            <Link to="/signup" className="landing-button">
-                                {this.translate('page.body.landing.startTrading.button1')}
+                        <img src={quickExchange} alt="" />
+                    </LandingBlock>
+                </section>
+
+                <section className="pg-landing-screen__blocks container pg-landing-screen__blocks-reverse">
+                    <LandingBlock contentClassName="pg-landing-screen__blocks">
+                        <div className="pg-landing-screen__blocks-info">
+                            <h1>{this.translate('page.body.landing.trade.title')}</h1>
+                            <h3>{this.translate('page.body.landing.trade.subtitle')}</h3>
+                            <p>{this.translate('page.body.landing.trade.description')}</p>
+                            <Link to="/singup" className="landing-button">
+                                {this.translate('page.body.landing.trade.button')}
                             </Link>
-                            <Link to="/trading/" className="landing-button landing-button--secondary">
-                                {this.translate('page.body.landing.startTrading.button2')}
+                        </div>
+                        <img src={mobTrading} alt="" />
+                    </LandingBlock>
+                </section>
+
+                <section className="pg-landing-screen__blocks background-image">
+                    <LandingBlock contentClassName="pg-landing-screen__blocks">
+                        <div className="pg-landing-screen__blocks-info">
+                            <h1>{this.translate('page.body.landing.withdraw.title')}</h1>
+                            <h3>{this.translate('page.body.landing.withdraw.subtitle')}</h3>
+                            <p>{this.translate('page.body.landing.withdraw.description')}</p>
+                            {withdrawMethodIcons.map(item => <img src={item} />)}
+                        </div>
+                        <img src={withdraw} alt="" />
+                    </LandingBlock>
+                </section>
+
+                <section className="pg-landing-screen__blocks container">
+                    <LandingBlock contentClassName="pg-landing-screen__blocks">
+                        <div className="pg-landing-screen__blocks-info">
+                            <h1>{this.translate('page.body.landing.transfers.title')}</h1>
+                            <h3>{this.translate('page.body.landing.transfers.subtitle')}</h3>
+                            <p>{this.translate('page.body.landing.transfers.description')}</p>
+                            <Link to="/singup" className="landing-button">
+                                {this.translate('page.body.landing.transfers.button')}
                             </Link>
                         </div>
+                        <img src={transferMoney} className="pg-landing-screen__blocks-image" alt="" />
+                    </LandingBlock>
+                </section>
+
+                <section className="pg-landing-screen__learn_more background-image">
+                    <LandingBlock contentClassName="pg-landing-screen__learn-more-content">
+                        <div className="pg-landing-screen__learn-more__item">
+                            <h1>{this.translate('page.body.landing.learn-more.title')}</h1>
+                        </div>
+                        <div className="pg-landing-screen__learn-more__block">
+                            {this.learnMoreList.map(item => (
+                                <div className="pg-landing-screen__learn-more__block-card">
+                                    <h3>{item.title}</h3>
+                                    <p>{item.description}</p>
+                                    <Link to={item.link} className="landing-button">{item.buttonName}</Link>
+                                </div>
+                            ))}
+                        </div>
+                    </LandingBlock>
+                </section>
+
+                <footer className="pg-landing-screen__footer">
+                    <div className="pg-landing-screen__footer-links container">
+                        {this.fotterLinks.map((item, index) => (
+                            <div className="pg-landing-screen__footer-links-item" key={index}>
+                                <h3>{item.category}</h3>
+                                <div className="pg-landing-screen__footer-links-item-link">{item.links.map(e => <Link to={e.link}>{e.name}</Link>)}</div>
+                            </div>
+                        ))}
                     </div>
-                </div>
-                <div className="pg-landing-screen__footer">
-                    <div className="pg-landing-screen__footer__wrap">
-                        <div className="pg-landing-screen__footer__wrap__left" onClick={(e) => this.handleScrollTop()}>
-                            <Logo />
+                    <div className="pg-landing-screen__footer-block container">
+                        <div className="pg-landing-screen__footer-block-logo" onClick={(e) => this.handleScrollTop()}>
+                            <img src={footerLogo} alt="nairaex"/>
                         </div>
-                        <div className="pg-landing-screen__footer__wrap__navigation">
-                            <div className="pg-landing-screen__footer__wrap__navigation__col">
-                                <Link to="/trading/">{this.translate('page.body.landing.footer.exchange')}</Link>
-                                <Link to="/wallets">{this.translate('page.body.landing.footer.wallets')}</Link>
-                                <Link to="/">{this.translate('page.body.landing.footer.fees')}</Link>
-                            </div>
-                            <div className="pg-landing-screen__footer__wrap__navigation__col">
-                                <Link to="/">{this.translate('page.body.landing.footer.faq')}</Link>
-                                <Link to="/">{this.translate('page.body.landing.footer.support')}</Link>
-                                <Link to="/">{this.translate('page.body.landing.footer.privacy')}</Link>
-                            </div>
-                            <div className="pg-landing-screen__footer__wrap__navigation__col">
-                                <Link to="/">{this.translate('page.body.landing.footer.about')}</Link>
-                                <Link to="/">{this.translate('page.body.landing.footer.community')}</Link>
-                                <Link to="/">{this.translate('page.body.landing.footer.info')}</Link>
-                            </div>
-                        </div>
-                        <div className="pg-landing-screen__footer__wrap__social">
-                            <div className="pg-landing-screen__footer__wrap__social__row">
-                                <img src={TelegramIcon} alt="Telegram" />
-                                <img src={LinkedInIcon} alt="LinkedIn" />
-                                <img src={TwitterIcon} alt="Twitter" />
-                                <img src={YouTubeIcon} alt="YouTube" />
-                            </div>
-                            <div className="pg-landing-screen__footer__wrap__social__row">
-                                <img src={RedditIcon} alt="Reddit" />
-                                <img src={FacebookIcon} alt="Facebook" />
-                                <img src={MediumIcon} alt="MediumIcon" />
-                                <img src={CoinMarketIcon} alt="CoinMarket" />
+                        <div className="pg-landing-screen__footer-block-socials">
+                            <div className="pg-landing-screen__footer-block-socials__row">
+                                <Link to='/'><img src={YouTubeIcon} alt="Youtube" /></Link>
+                                <Link to='/'><img src={FacebookIcon} alt="Facebook" /></Link>
+                                <Link to='/'><img src={InstagramIcon} alt="Instagram" /></Link>
+                                <Link to='/'><img src={TwitterIcon} alt="Twitter" /></Link>
                             </div>
                         </div>
                     </div>
-                    <span className="pg-landing-screen__footer__rights">
-                        {this.translate('page.body.landing.footer.rights')}
-                    </span>
-                </div>
-            </div>
+                </footer>
+            </main>
         );
     }
 

@@ -30,3 +30,4 @@ export * from './TradingChart';
 export * from './WalletsFetch';
 export * from './Withdraw';
 export * from './CanCan';
+export * from './MarketSlideShow';

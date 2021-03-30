@@ -94,12 +94,43 @@ export const en = {
 
     /* Landing */
     'page.body.landing.header.button1': 'profile',
-    'page.body.landing.header.button2': 'log in',
+    'page.body.landing.header.button2': 'login',
     'page.body.landing.header.button3': 'register',
 
-    'page.body.landing.marketInfo.title.text1': 'Welcome to Baseapp.',
-    'page.body.landing.marketInfo.title.text2': 'Buy, sell and trade digital currency.',
-    'page.body.landing.marketInfo.title.button': 'start trading',
+    'page.body.landing.marketInfo.title.text1': 'Buy and sell bitcoin easily',
+    'page.body.landing.marketInfo.title.text2': 'Join Nigerias Premier Crypto Exchange',
+    'page.body.landing.marketInfo.title.button': 'Get started now',
+
+    'page.body.landing.how_it_works.item.title': 'How does it work?',
+    'page.body.landing.how_it_works.item.text': 'How to Buy or Sell Bitcoins in Nigeria',
+
+    'page.body.landing.how_it_works.card.title.first': '1. Register And Verify Your ID',
+    'page.body.landing.how_it_works.card.description.first': 'Sign up and go through a very simple and interactive identity verification process and start trading immidiately!',
+    'page.body.landing.how_it_works.card.title.second': '2. Create Order',
+    'page.body.landing.how_it_works.card.description.second': 'Login to your NairaEx account, click on create new order. Select Buy or Sell order and fill the amount.',
+    'page.body.landing.how_it_works.card.title.third': '3. Get Funded!',
+    'page.body.landing.how_it_works.card.description.third': 'Processing time is instant and automated 24/7. Once our system confirms your transaction, it will be marked as “completed” and money sent immediately. ',
+
+    'page.body.landing.simple.exchange.title': 'Simple exchange',
+    'page.body.landing.simple.exchange.subtitle': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris',
+    'page.body.landing.simple.exchange.description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris. Lorem magna nullam id dolor dolor quis a, venenatis mauris. Augue tellus praesent ut ultrices faucibus scelerisque vitae, nullam. Pulvinar egestas justo nisi convallis tellus integer iaculis lacus.',
+    'page.body.landing.simple.exchange.button': 'Exchange now',
+
+    'page.body.landing.trade.title': 'Trade like a pro',
+    'page.body.landing.trade.subtitle': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris',
+    'page.body.landing.trade.description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris. Lorem magna nullam id dolor dolor quis a, venenatis mauris. Augue tellus praesent ut ultrices faucibus scelerisque vitae, nullam. Pulvinar egestas justo nisi convallis tellus integer iaculis lacus.',
+    'page.body.landing.trade.button': 'Get started',
+
+    'page.body.landing.withdraw.title': 'Withdrawal easily',
+    'page.body.landing.withdraw.subtitle': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris',
+    'page.body.landing.withdraw.description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris. Lorem magna nullam id dolor dolor quis a, venenatis mauris. Augue tellus praesent ut ultrices faucibus scelerisque vitae, nullam. Pulvinar egestas justo nisi convallis tellus integer iaculis lacus.',
+
+    'page.body.landing.transfers.title': 'Quick transfers',
+    'page.body.landing.transfers.subtitle': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris',
+    'page.body.landing.transfers.description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis, id aliquam mauris mauris. Lorem magna nullam id dolor dolor quis a, venenatis mauris. Augue tellus praesent ut ultrices faucibus scelerisque vitae, nullam. Pulvinar egestas justo nisi convallis tellus integer iaculis lacus.',
+    'page.body.landing.transfers.button': 'Get started now',
+
+    'page.body.landing.learn-more.title': 'Learn more',
 
     'page.body.landing.platformInfo.item.first.value': '30M+',
     'page.body.landing.platformInfo.item.first.title': 'Customers served',
