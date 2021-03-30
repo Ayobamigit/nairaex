@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"baseapp/daemons"
 	"log"
 	"net/http"
 	"os"
@@ -9,11 +10,12 @@ import (
 	"strings"
 	"sync"
 	"time"
-	"baseapp/daemons"
 
+	"baseapp/daemons"
 	"github.com/foolin/goview/supports/ginview"
 	"github.com/gin-gonic/gin"
 	"github.com/openware/kaigara/pkg/vault"
+	"github.com/openware/pkg/mngapi/peatio"
 	"github.com/openware/pkg/utils"
 	"github.com/openware/sonic"
 )
@@ -31,6 +33,11 @@ var (
 	BarongPublicKey string
 )
 
+// SonicContext stores requires client services used in handlers
+type SonicContext struct {
+	PeatioClient *peatio.Client
+}
+
 // Initialize scope which goroutine will fetch every 30 seconds
 const scope = "public"
 
@@ -44,6 +51,13 @@ func Setup(app *sonic.Runtime) {
 	BarongPublicKey = utils.GetEnv("BARONG_PUBLIC_KEY", "")
 	vaultConfig := app.Conf.Vault
 	opendaxConfig := app.Conf.Opendax
+	mngapiConfig := app.Conf.MngAPI
+
+	peatioClient, err := peatio.New(mngapiConfig.PeatioURL, mngapiConfig.JWTIssuer, mngapiConfig.JWTAlgo, mngapiConfig.JWTPrivateKey)
+	if err != nil {
+		log.Printf("Can't create peatio client: " + err.Error())
+		return
+	}
 
 	log.Println("DeploymentID in config:", DeploymentID)
 
@@ -75,6 +89,10 @@ func Setup(app *sonic.Runtime) {
 	adminAPI.Use(OpendaxConfigMiddleware(&opendaxConfig))
 	adminAPI.Use(AuthMiddleware())
 	adminAPI.Use(RBACMiddleware([]string{"superadmin"}))
+	adminAPI.Use(SonicContextMiddleware(&SonicContext{
+		PeatioClient: peatioClient,
+	}))
+
 	adminAPI.GET("/secrets", GetSecrets)
 	adminAPI.PUT(":component/secret", SetSecret)
 	adminAPI.POST("/platforms/new", CreatePlatform)
@@ -116,7 +134,7 @@ func index(ctx *gin.Context) {
 	}
 
 	ctx.HTML(http.StatusOK, "index", gin.H{
-		"title":    "BaseAPP",
+		"title":    "BaseApp",
 		"cssFiles": cssFiles,
 		"jsFiles":  jsFiles,
 		"rootID":   "root",
