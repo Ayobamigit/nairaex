@@ -61,7 +61,7 @@ export const MarketSlideShow: FC = (): ReactElement => {
 
     const renderMarketCards = useMemo(() => {
         return (
-            <Ticker speed={20} move={!stopLine}>
+            <Ticker speed={10} move={!stopLine}>
                 {({ index }) => (
                     <span className="ticker_content">
                         <div style={{display: 'flex'}}>
