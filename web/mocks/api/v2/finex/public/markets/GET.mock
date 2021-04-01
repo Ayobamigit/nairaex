@@ -132,30 +132,12 @@ Access-Control-Allow-Credentials: true
       }
     ]
   },
-    {
-    "id":"dashbtc",
-    "name":"DASH/BTC",
-    "base_unit":"dash",
-    "quote_unit":"btc",
-    "state":"enabled",
-    "amount_precision":3,
-    "price_precision":6,
-    "min_price":"0.000001",
-    "max_price":"0",
-    "min_amount":"0.001",
-    "filters": [
-      {
-        "digits":5,
-        "type":"significant_digits"
-      }
-    ]
-  },
   {
     "id":"ethbtc",
     "name":"ETH/BTC",
     "base_unit":"eth",
     "quote_unit":"btc",
-    "state":"enabled",
+    "state":"hidden",
     "amount_precision":5,
     "price_precision":7,
     "min_price":"0.0000001",
