@@ -15,7 +15,7 @@ const marketPriceRequestOptions: RequestOptions = {
 export function* marketPriceSaga(action: MarketPriceFetch) {
     try {
         const payload = buildQueryString(action.payload);
-        const price = yield call(API.get(marketPriceRequestOptions), `/public/qe/prices?${payload}`);
+        const price = yield call(API.get(marketPriceRequestOptions), `/qe/prices?${payload}`);
 
         yield put(marketPriceData(price));
     } catch (error) {
