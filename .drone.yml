@@ -20,10 +20,9 @@ steps:
         from_secret: quay_username
       password:
         from_secret: quay_password
-      repo:
-        from_secret: quay_repo
+      repo: quay.io/openware/odax-customer-frontend
+      tags: nairaex-${DRONE_COMMIT:0:7}
       registry: quay.io
-      tags: ${DRONE_COMMIT:0:7}
 
   - name: "Update image tag at odc-deployments"
     image: quay.io/openware/goci:0.0.6
