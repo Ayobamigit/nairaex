@@ -167,7 +167,7 @@ class ModalWithdraw extends React.Component<Props, State> {
     };
 
     private handleEnterClick = e => {
-        if (e.key === 'Enter' && this.props.otpCode.length >= 6) {
+        if (e.key === 'Enter' && this.props.otpCode?.length >= 6) {
             e.preventDefault();
             this.props.onSubmit();
         }
@@ -199,7 +199,7 @@ class ModalWithdraw extends React.Component<Props, State> {
                         <Button
                             className="modal-footer__withdraw-confirm-form-button"
                             block={true}
-                            disabled={otpCode.length < 6}
+                            disabled={otpCode?.length < 6}
                             onClick={this.props.onSubmit}
                             size="lg"
                             variant="primary"

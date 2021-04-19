@@ -28,18 +28,24 @@ import {
     Beneficiary,
     currenciesFetch,
     Currency,
+    Market,
+    marketsFetch,
+    marketsTickersFetch,
     RootState,
     selectBeneficiariesActivateSuccess,
     selectBeneficiariesCreateSuccess,
     selectBeneficiariesDeleteSuccess,
     selectCurrencies,
     selectHistory,
+    selectMarkets,
+    selectMarketTickers,
     selectMobileWalletUi,
     selectUserInfo,
     selectWallets,
     selectWalletsLoading,
     selectWithdrawSuccess,
     setMobileWalletUi,
+    Ticker,
     User,
     Wallet,
     WalletHistoryList,
@@ -61,9 +67,15 @@ interface ReduxProps {
     beneficiariesDeleteSuccess: boolean;
     beneficiariesAddSuccess: boolean;
     currencies: Currency[];
+    markets: Market[];
+    tickers: {
+        [key: string]: Ticker,
+    };
 }
 
 interface DispatchProps {
+    fetchMarkets: typeof marketsFetch;
+    fetchTickers: typeof marketsTickersFetch;
     fetchBeneficiaries: typeof beneficiariesFetch;
     fetchAddress: typeof walletsAddressFetch;
     fetchWallets: typeof walletsFetch;
@@ -156,6 +168,14 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             wallets[0]?.currency && this.props.fetchBeneficiaries({ currency_id: wallets[0].currency.toLowerCase() });
         }
 
+        if (!this.props.markets.length) {
+            this.props.fetchMarkets();
+        }
+
+        if (!this.props.tickers.length) {
+            this.props.fetchTickers();
+        }
+
         if (!this.props.currencies.length) {
             this.props.currenciesFetch();
         }
@@ -194,7 +214,15 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     }
 
     public render() {
-        const { wallets, historyList, mobileWalletChosen, walletsLoading } = this.props;
+        const {
+            wallets,
+            currencies,
+            markets,
+            tickers,
+            historyList,
+            mobileWalletChosen,
+            walletsLoading,
+        } = this.props;
         const {
             beneficiary,
             total,
@@ -236,6 +264,9 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
                                 walletItems={filteredWallets || formattedWallets}
                                 activeIndex={this.state.activeIndex}
                                 onActiveIndexChange={this.onActiveIndexChange}
+                                currencies={currencies}
+                                markets={markets}
+                                tickers={tickers}
                             />
                         </div>
                         <div className={`pg-wallet__tabs col-md-7 col-sm-12 col-12 ${!mobileWalletChosen && 'd-none d-md-block'}`}>
@@ -496,6 +527,8 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
 }
 
 const mapStateToProps = (state: RootState): ReduxProps => ({
+    markets: selectMarkets(state),
+    tickers: selectMarketTickers(state),
     user: selectUserInfo(state),
     wallets: selectWallets(state),
     walletsLoading: selectWalletsLoading(state),
@@ -509,6 +542,8 @@ const mapStateToProps = (state: RootState): ReduxProps => ({
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = dispatch => ({
+    fetchMarkets: () => dispatch(marketsFetch()),
+    fetchTickers: () => dispatch(marketsTickersFetch()),
     fetchBeneficiaries: params => dispatch(beneficiariesFetch(params)),
     fetchWallets: () => dispatch(walletsFetch()),
     fetchAddress: ({ currency }) => dispatch(walletsAddressFetch({ currency })),
