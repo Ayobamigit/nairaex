@@ -1,3 +1,4 @@
+import cr from 'classnames';
 import { History } from 'history';
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
@@ -13,7 +14,9 @@ import { isUsernameEnabled } from '../../api';
 import { CloseIcon } from '../../assets/images/CloseIcon';
 import { ChangePassword, CustomInput, Modal } from '../../components';
 import {
+    entropyPasswordFetch,
     RootState,
+    selectCurrentPasswordEntropy,
     selectUserInfo,
     User,
 } from '../../modules';
@@ -27,6 +30,7 @@ import {
 interface ReduxProps {
     user: User;
     passwordChangeSuccess?: boolean;
+    currentPasswordEntropy: number;
 }
 
 interface RouterProps {
@@ -43,6 +47,7 @@ interface DispatchProps {
     changePassword: typeof changePasswordFetch;
     clearPasswordChangeError: () => void;
     toggle2fa: typeof toggle2faFetch;
+    fetchCurrentPasswordEntropy: typeof entropyPasswordFetch;
 }
 
 interface ProfileProps {
@@ -79,6 +84,7 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
     public render() {
         const {
             user,
+            currentPasswordEntropy,
         } = this.props;
 
         const modal = this.state.showChangeModal ? (
@@ -273,12 +279,14 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
 const mapStateToProps = (state: RootState): ReduxProps => ({
     user: selectUserInfo(state),
     passwordChangeSuccess: selectChangePasswordSuccess(state),
+    currentPasswordEntropy: selectCurrentPasswordEntropy(state),
 });
 
 const mapDispatchToProps = dispatch => ({
     changePassword: ({ old_password, new_password, confirm_password }) =>
-        dispatch(changePasswordFetch({ old_password, new_password, confirm_password })),
+    dispatch(changePasswordFetch({ old_password, new_password, confirm_password })),
     toggle2fa: ({ code, enable }) => dispatch(toggle2faFetch({ code, enable })),
+    fetchCurrentPasswordEntropy: payload => dispatch(entropyPasswordFetch(payload)),
 });
 
 const ProfileAuthDetailsConnected = injectIntl(connect(mapStateToProps, mapDispatchToProps)(ProfileAuthDetailsComponent));
