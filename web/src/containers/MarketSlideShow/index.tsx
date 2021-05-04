@@ -5,7 +5,6 @@ import { Decimal } from '../../components';
 import {
     useMarketsFetch,
     useMarketsTickersFetch,
-    useRangerConnectFetch,
 } from '../../hooks';
 import {
     selectMarkets,
@@ -30,7 +29,6 @@ export const MarketSlideShow: FC = (): ReactElement => {
     const dispatch = useDispatch();
     useMarketsFetch();
     useMarketsTickersFetch();
-    useRangerConnectFetch();
     const markets = useSelector(selectMarkets);
     const marketTickers = useSelector(selectMarketTickers);
     const [stopLine, setStopLine] = useState(false);

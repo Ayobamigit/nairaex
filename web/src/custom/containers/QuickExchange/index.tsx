@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import {
     useCurrenciesFetch,
-    useRangerConnectFetch,
 } from '../../../hooks';
 import {
     marketsFetch,
@@ -44,6 +43,7 @@ const DEFAULT_WALLET: Wallet = {
     type: 'coin',
     fixed: 0,
     fee: 0,
+    account_type: 'spot',
 };
 
 
@@ -89,7 +89,6 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     const updateTimer = useSelector(selectMarketPriceFetchSuccess);
 
     useCurrenciesFetch();
-    useRangerConnectFetch();
 
     const updatemarketPrices = () => {
         if (exchange.wallet?.currency && receive.wallet?.currency) {
@@ -325,7 +324,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
                 <div className="cr-modal_body-image">
                     <ArrowDown />
                 </div>
-                {renderCard(exchange.amount, exchange.wallet?.currency, exchange.wallet?.iconUrl, exchange.wallet?.fixed, SecondCardText}
+                {renderCard(exchange.amount, exchange.wallet?.currency, exchange.wallet?.iconUrl, exchange.wallet?.fixed, SecondCardText)}
             </React.Fragment>
         );
     }, [receive, exchange]);

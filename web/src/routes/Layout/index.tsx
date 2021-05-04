@@ -10,6 +10,7 @@ import { IntlProps } from '../../';
 import { minutesUntilAutoLogout, sessionCheckInterval, showLanding, wizardStep } from '../../api';
 import { ExpiredSessionModal } from '../../components';
 import { WalletsFetch, CanCan } from '../../containers';
+import { P2PTradesHistory } from '../../containers/P2P/TradesHistory';
 import { applyCustomizationSettings, toggleColorTheme } from '../../helpers';
 import {
     ChangeForgottenPasswordMobileScreen,
@@ -73,6 +74,10 @@ import {
     VerificationScreen,
     WalletsScreen,
     SetupScreen,
+    P2POffersScreen,
+    P2PUserOffersScreen,
+    CreateP2POfferScreen,
+    P2POrderScreen,
 } from '../../screens';
 import { QuickExchange } from '../../custom/screens';
 
@@ -339,12 +344,23 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/orders" component={OrdersTabScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/history" component={HistoryScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/confirm" component={ConfirmScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/profile/:routeTab" component={ProfileScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/profile" component={ProfileScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets/:routeTab/:currency/:action" component={WalletsScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets/:routeTab/:currency" component={WalletsScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets/:routeTab" component={WalletsScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets" component={WalletsScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/security/2fa" component={ProfileTwoFactorAuthScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/api" component={DocumentationScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/internal-transfer" component={InternalTransfer} />
-                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/quick-exchange" component={QuickExchange} checkAbility={true} abilities={this.props.abilities} action="read" target="QuickExchange" />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/quick-exchange" component={QuickExchange} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/create-offer" component={CreateP2POfferScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/p2p/offers" component={P2PUserOffersScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/p2p/offer/:id" component={P2PUserOffersScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/p2p/history" component={P2PTradesHistory} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/p2p/order/:id" component={P2POrderScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/p2p/:currency" component={P2POffersScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/p2p" component={P2POffersScreen} />
                     <Route path="**"><Redirect to="/trading/" /></Route>
                 </Switch>
                 {isLoggedIn && <WalletsFetch/>}

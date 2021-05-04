@@ -41,6 +41,12 @@ import { rootWalletsSaga, WalletsState } from './user/wallets';
 import { rootWithdrawLimitSaga, WithdrawLimitState } from './user/withdrawLimit';
 import { MarketsAdminState, rootMarketsAdminSaga } from './admin/markets';
 import { PlatformCreateState, rootPlatformCreateSaga } from './admin/platform';
+import { P2PState, rootP2PSaga } from './public/p2p';
+import { PaymentMethodState, rootPaymentMethodSaga } from './user/paymentMethod';
+import { P2POffersState, rootP2POffersSaga } from './user/p2pOffers';
+import { P2PTransfersState, rootP2PTransfersSaga } from './user/p2pTransfers';
+import { P2POrdersState, rootP2POrdersSaga } from './user/p2pOrders';
+import { P2PDisputeState, rootP2PDisputeSaga } from './user/p2pDispute';
 
 export * from './admin/config';
 export * from './admin/markets';
@@ -56,6 +62,7 @@ export * from './public/markets';
 export * from './public/memberLevels';
 export * from './public/orderBook';
 export * from './public/recentTrades';
+export * from './public/p2p';
 export * from './user/apiKeys';
 export * from './user/auth';
 export * from './user/beneficiaries';
@@ -75,6 +82,11 @@ export * from './user/wallets';
 export * from './user/withdrawLimit';
 export * from './user/quickExchange';
 export * from './user/abilities';
+export * from './user/paymentMethod';
+export * from './user/p2pOffers';
+export * from './user/p2pOrders';
+export * from './user/p2pTransfers';
+export * from './user/p2pDispute';
 
 export interface RootState {
     public: {
@@ -93,6 +105,7 @@ export interface RootState {
         ranger: RangerState;
         recentTrades: RecentTradesState;
         rgl: GridLayoutState;
+        p2p: P2PState;
     };
     user: {
         abilities: AbilitiesState;
@@ -118,6 +131,11 @@ export interface RootState {
         wallets: WalletsState;
         withdrawLimit: WithdrawLimitState;
         quickExchange: QuickExchangeState;
+        paymentMethod: PaymentMethodState;
+        p2pOffers: P2POffersState;
+        p2pTransfers: P2PTransfersState;
+        p2pOrders: P2POrdersState;
+        p2pDispute: P2PDisputeState;
     };
     admin: {
         configUpdate: ConfigUpdateState;
@@ -157,6 +175,7 @@ export function* rootSaga() {
         call(rootOpenOrdersSaga),
         call(rootOrderBookSaga),
         call(rootOrdersHistorySaga),
+        call(rootP2PSaga),
         call(rootOrdersSaga),
         call(rootPasswordSaga),
         call(rootPlatformCreateSaga),
@@ -169,5 +188,10 @@ export function* rootSaga() {
         call(rootUserActivitySaga),
         call(rootWalletsSaga),
         call(rootWithdrawLimitSaga),
+        call(rootPaymentMethodSaga),
+        call(rootP2POffersSaga),
+        call(rootP2POrdersSaga),
+        call(rootP2PTransfersSaga),
+        call(rootP2PDisputeSaga),
     ]);
 }
