@@ -24,18 +24,18 @@ steps:
       tags: nairaex-3-0-${DRONE_COMMIT:0:7}
       registry: quay.io
 
-  - name: "Update image tag at odc-deployments"
-    image: quay.io/openware/goci:0.0.6
-    environment:
-      GIT_TOKEN:
-        from_secret: kite_bot_key
-      GIT_URL:
-        from_secret: odc_repo_url
-    commands:
-      - export tag=$${DRONE_COMMIT:0:7}
-      - /app/goci -component=frontend -path=nairaex-uat-ci-disabled/versions.yml -tag=$tag versions
-    depends_on:
-      - "Build Docker image"
+#   - name: "Update image tag at odc-deployments"
+#     image: quay.io/openware/goci:0.0.6
+#     environment:
+#       GIT_TOKEN:
+#         from_secret: kite_bot_key
+#       GIT_URL:
+#         from_secret: odc_repo_url
+#     commands:
+#       - export tag=$${DRONE_COMMIT:0:7}
+#       - /app/goci -component=frontend -path=nairaex-uat-ci-disabled/versions.yml -tag=$tag versions
+#     depends_on:
+#       - "Build Docker image"
 
 trigger:
   branch:
@@ -43,6 +43,7 @@ trigger:
     - "2-*-stable"
     - "integration/*"
     - "hotfix/*"
+    - customer/nairaex-v3
   event:
     - push
 
