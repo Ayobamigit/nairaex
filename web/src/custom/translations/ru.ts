@@ -1216,6 +1216,7 @@ export const ru: LangType = {
     'page.body.p2p.order_history.back': 'Back to P2P',
     'page.body.p2p.order_history.date': 'Date',
     'page.body.p2p.order_history.side': 'Side',
+    'page.body.p2p.order_history.asset': 'Asset/Fiat',
     'page.body.p2p.order_history.price': 'Price',
     'page.body.p2p.order_history.quantity': 'Quantity',
     'page.body.p2p.order_history.counterparty': 'Counterparty',
@@ -1310,6 +1311,7 @@ export const ru: LangType = {
     'success.payment_method.deleted': 'Payment Method: successfully deleted',
     'success.payment_method.created': 'Payment Method: successfully created',
     'success.payment_method.updated': 'Payment Method: successfully updated',
+    'success.p2p.dispute.submit': 'Dispute has been successfully submitted',
 
     ...nationalitiesNames,
     ...mobileTranslationsRu,
