@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { Button, Spinner, Form } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { injectIntl } from 'react-intl';
 import { connect, MapDispatchToProps } from 'react-redux';
 import { RouterProps } from 'react-router';
@@ -12,7 +12,6 @@ import {
     CurrencyInfo,
     DepositCrypto,
     DepositFiat,
-    FilterInput,
     TabPanel,
     WalletList,
 } from 'src/components';
@@ -285,11 +284,12 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
 
         if (wallets[selectedWalletIndex]) {
             selectedWalletPrecision = wallets[selectedWalletIndex].fixed;
-            confirmationAddress = wallets[selectedWalletIndex].type === 'fiat' ? (
-                beneficiary.name
-            ) : (
-                beneficiary.data ? (beneficiary.data.address as string) : ''
-            );
+
+            if (wallets[selectedWalletIndex].type === 'fiat') {
+                confirmationAddress = beneficiary.name;
+            } else if (beneficiary.data) {
+                confirmationAddress = beneficiary.data.address as string;
+            }
         }
 
         return (

@@ -144,7 +144,7 @@ class Trading extends React.Component<Props, StateProps> {
 
     public componentDidMount() {
         setDocumentTitle('Trading');
-        const { markets, currentMarket, userLoggedIn } = this.props;
+        const { markets, currentMarket } = this.props;
 
         if (markets.length < 1) {
             this.props.marketsFetch();
