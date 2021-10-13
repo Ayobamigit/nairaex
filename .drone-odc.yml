@@ -1,0 +1,62 @@
+---
+kind: pipeline
+name: CAT Deployment
+
+concurrency:
+  limit: 1
+
+steps:
+  - name: "Save Git SHA"
+    image: alpine:3
+    commands:
+      - echo nairaex-${DRONE_COMMIT:0:7} > .tags
+
+  - name: "Build Docker image"
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: quay_username
+      password:
+        from_secret: quay_password
+      repo: quay.io/openware/odax-customer-frontend
+      registry: quay.io
+
+  - name: "Redeploy on UAT"
+    image: quay.io/openware/goci:0.0.13
+    environment:
+      GIT_TOKEN:
+        from_secret: kite_bot_key
+      GIT_URL:
+        from_secret: deployment_repo_url
+      CLONE_BRANCH: "deploy/3-1"
+    commands:
+      - export tag=$(cat .tags)
+      - /app/goci -component=sonic -path=nairaex-uat/versions.yml -tag=$tag versions
+    depends_on:
+      - "Build Docker image"
+    when:
+      branch:
+        - master
+
+          #- name: "Deploy Prod"
+          #  image: alpine/k8s:1.19.8
+          #  environment:
+          #    KUBECONF:
+          #      from_secret: kubeconfig_b64
+          #    KUBECONFIG: /root/.kubeconfig
+          #    DOCKER_REPO:
+          #      from_secret: quay_repo
+          #  commands:
+          #    - echo $KUBECONF | base64 -d > $KUBECONFIG
+          #    - chmod 0600 $KUBECONFIG
+          #    - kubectl set image deployment sonic sonic=quay.io/openware/odax-customer-frontend:$(cat .tags) -n nairaex-prod
+          #  when:
+          #    branch:
+          #      - stable
+
+trigger:
+  branch:
+    - master
+    - stable
+  event:
+    - push
