@@ -1,4 +1,4 @@
-import { RootState } from '../../';
+import { RootState, WithdrawAllowData } from '../../';
 import { Wallet } from './types';
 
 export const selectWallets = (state: RootState): Wallet[] =>
@@ -30,3 +30,6 @@ export const selectShouldFetchP2PWallets = (state: RootState): boolean =>
 
 export const selectP2PWallets = (state: RootState): Wallet[] =>
     state.user.wallets.p2pWallets.list;
+
+export const selectWithdrawAllow = (state: RootState): WithdrawAllowData['payload'] =>
+    state.user.wallets.withdrawAllow;

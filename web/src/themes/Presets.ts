@@ -69,7 +69,7 @@ export const AVAILABLE_THEME_PRESETS: ThemePresetInterface[] = [
     },
     {
         theme_id: 6,
-        title: 'Default nairaex',
+        title: 'page.body.customization.themes.theme.defaultNairaex.title',
         theme_colors: {
             light: NairaexThemeLight,
             dark: NairaexThemeDark,

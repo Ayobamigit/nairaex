@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
 import { configUpdateReducer } from './admin/config';
 import { alertReducer  } from './public/alert';
+import { banksReducer } from './public/banks';
 import { blocklistAccessReducer } from './public/blocklistAccess';
 import { currenciesReducer } from './public/currencies';
 import { errorHandlerReducer } from './public/errorHandler';
 import { changeColorThemeReducer  } from './public/globalSettings';
 import { gridLayoutReducer } from './public/gridLayout';
 import { changeLanguageReducer  } from './public/i18n';
+import { integrationReducer } from './public/integration';
 import { klineReducer  } from './public/kline';
+import { lookupReducer } from './public/lookup';
 import { marketsReducer } from './public/markets';
 import { memberLevelsReducer } from './public/memberLevels';
 import { depthReducer, incrementDepthReducer, orderBookReducer } from './public/orderBook';
@@ -46,21 +49,25 @@ import { p2pOffersReducer } from './user/p2pOffers';
 import { p2pTransfersReducer } from './user/p2pTransfers';
 import { p2pOrdersReducer } from './user/p2pOrders';
 import { p2pDisputeReducer } from './user/p2pDispute';
+import { withdrawReducer } from './user/withdraw';
 
 export const publicReducer = combineReducers({
     alerts: alertReducer,
+    banks: banksReducer,
     blocklistAccess: blocklistAccessReducer,
     colorTheme: changeColorThemeReducer,
     currencies: currenciesReducer,
     errorHandler: errorHandlerReducer,
     rgl: gridLayoutReducer,
     i18n: changeLanguageReducer,
+    lookup: lookupReducer,
     kline: klineReducer,
     markets: marketsReducer,
     memberLevels: memberLevelsReducer,
     orderBook: orderBookReducer,
     depth: depthReducer,
     incrementDepth: incrementDepthReducer,
+    integration: integrationReducer,
     ranger: rangerReducer,
     recentTrades: recentTradesReducer,
     p2p: p2pReducer,
@@ -95,6 +102,7 @@ export const userReducer = combineReducers({
     p2pTransfers: p2pTransfersReducer,
     p2pOrders: p2pOrdersReducer,
     p2pDispute: p2pDisputeReducer,
+    withdraw: withdrawReducer,
 });
 
 export const adminReducer = combineReducers({

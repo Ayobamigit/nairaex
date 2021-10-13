@@ -72,7 +72,6 @@ import {
     SignUpScreen,
     TradingScreen,
     VerificationScreen,
-    WalletsScreen,
     SetupScreen,
     P2POffersScreen,
     P2PUserOffersScreen,
@@ -80,6 +79,7 @@ import {
     P2POrderScreen,
 } from '../../screens';
 import { QuickExchange } from '../../custom/screens';
+import { WalletsScreen } from '../../custom/screens/WalletsScreen';
 
 interface ReduxProps {
     colorTheme: string;

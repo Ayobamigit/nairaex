@@ -1,0 +1,117 @@
+.cr-withdraw {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.select__right,
+.item__right {
+  min-width: 50px;
+}
+
+.pg-beneficiaries__dropdown__tip.confirm {
+  background-color: transparent;
+  box-shadow: none;
+  flex-direction: column;
+  max-width: none;
+  position: static;
+  width: auto !important;
+
+  .tip__content {
+    max-width: 500px;
+
+    &__block__value {
+      font-size: 16px;
+      font-weight: normal;
+      opacity: 1;
+    }
+  }
+
+  .cr-confirmation-modal__button-wrapper {
+    button {
+      min-width: 330px;
+    }
+
+    button:first-child {
+      margin-right: 10px;
+      min-width: 160px;
+    }
+  }
+}
+
+.pg-beneficiaries__modal.cr-modal {
+  h3 {
+    margin: 3rem 0 2rem;
+  }
+}
+
+.cr-email-form__button-wrapper.confirm {
+  margin-top: 2rem;
+  min-width: 496px;
+
+  .cr-warning-message {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
+}
+
+.cr-email-form__group.with-button {
+  display: flex;
+
+  button {
+    background-color: white;
+    border: 1px solid var(--secondary-contrast-cta-color);
+    border-radius: 4px;
+    color: var(--secondary-contrast-cta-color);
+    margin: 0 0 0 1rem;
+  }
+}
+
+.cr-email-form__form-warning {
+  margin-top: 130px;
+
+  &-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 455px;
+
+    & > *:not(svg) {
+      margin-bottom: 2rem;
+    }
+
+    .cr-warning-modal__button-wrapper {
+      align-items: stretch;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      button {
+        min-width: 220px;
+      }
+    }
+  }
+}
+
+.tip__content__block__value.with-input {
+  .custom-input {
+    margin: 0;
+  }
+
+  .cr-email-form__group {
+    margin: 0;
+  }
+}
+
+.cr-modal .cr-warning-message {
+  margin: 0;
+}
+
+.beneficiaries-add-address-modal--fiat .dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.pg-beneficiaries__dropdown__tip.confirm .modal-footer__withdraw-confirm-form-input {
+  margin: 0;
+}

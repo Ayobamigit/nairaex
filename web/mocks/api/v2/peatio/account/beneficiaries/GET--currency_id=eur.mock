@@ -1,0 +1,45 @@
+HTTP/2 200
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Credentials: true
+
+[
+   {
+     "id": 8,
+     "currency": "eur",
+     "name": "My local bank",
+     "description": null,
+     "data": {
+       "bank_name": "ABC Bank",
+       "full_name": "John Smith",
+       "account_number": "123456789"
+     },
+     "state": "active"
+   },
+   {
+     "id": 8,
+     "currency": "eur",
+     "name": "My local bank2",
+     "description": null,
+     "data": {
+       "bank_name": "ABC Bank",
+       "full_name": "John Smith",
+       "account_number": "123456789"
+     },
+     "state": "active"
+   },
+   {
+     "id": 8,
+     "currency": "eur",
+     "name": "My local bank3",
+     "description": null,
+     "data": {
+       "bank_name": "ABC Bank",
+       "full_name": "John Smith",
+       "account_number": "123456789"
+     },
+     "state": "active"
+   }
+ ]

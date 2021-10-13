@@ -3,16 +3,19 @@ import { all, call } from 'redux-saga/effects';
 import { adminReducer, publicReducer, userReducer } from './app';
 import { ConfigUpdateState, rootConfigUpdateSaga } from './admin/config';
 import { AlertState, rootHandleAlertSaga } from './public/alert';
+import { BanksState, rootBanksSaga } from './public/banks';
 import { BlocklistAccessState, rootBlocklistAccessSaga } from './public/blocklistAccess';
 import { CurrenciesState, rootCurrenciesSaga } from './public/currencies';
 import { ErrorHandlerState, rootErrorHandlerSaga } from './public/errorHandler';
 import { ColorThemeState } from './public/globalSettings';
 import { GridLayoutState } from './public/gridLayout';
 import { LanguageState } from './public/i18n';
+import { LookupState, rootLookupSaga } from './public/lookup';
 import { KlineState, rootKlineFetchSaga } from './public/kline';
 import { MarketsState, rootMarketsSaga } from './public/markets';
 import { MemberLevelsState, rootMemberLevelsSaga } from './public/memberLevels';
 import { DepthIncrementState, DepthState, OrderBookState, rootOrderBookSaga } from './public/orderBook';
+import { IntegrationState, rootIntegrationSaga } from './public/integration';
 import { RangerState } from './public/ranger/reducer';
 import { RecentTradesState, rootRecentTradesSaga } from './public/recentTrades';
 import { ApiKeysState } from './user/apiKeys';
@@ -47,16 +50,20 @@ import { P2POffersState, rootP2POffersSaga } from './user/p2pOffers';
 import { P2PTransfersState, rootP2PTransfersSaga } from './user/p2pTransfers';
 import { P2POrdersState, rootP2POrdersSaga } from './user/p2pOrders';
 import { P2PDisputeState, rootP2PDisputeSaga } from './user/p2pDispute';
+import { WithdrawState, rootWithdrawSaga } from './user/withdraw';
 
 export * from './admin/config';
 export * from './admin/markets';
 export * from './admin/platform';
 export * from './public/alert';
+export * from './public/banks';
 export * from './public/blocklistAccess';
 export * from './public/currencies';
 export * from './public/errorHandler';
 export * from './public/globalSettings';
 export * from './public/i18n';
+export * from './public/integration';
+export * from './public/lookup';
 export * from './public/kline';
 export * from './public/markets';
 export * from './public/memberLevels';
@@ -87,16 +94,20 @@ export * from './user/p2pOffers';
 export * from './user/p2pOrders';
 export * from './user/p2pTransfers';
 export * from './user/p2pDispute';
+export * from './user/withdraw';
 
 export interface RootState {
     public: {
         alerts: AlertState;
+        banks: BanksState;
         blocklistAccess: BlocklistAccessState;
         colorTheme: ColorThemeState;
         currencies: CurrenciesState;
         depth: DepthState;
         errorHandler: ErrorHandlerState;
         i18n: LanguageState;
+        integration: IntegrationState;
+        lookup: LookupState;
         incrementDepth: DepthIncrementState;
         kline: KlineState;
         markets: MarketsState;
@@ -136,6 +147,7 @@ export interface RootState {
         p2pTransfers: P2PTransfersState;
         p2pOrders: P2POrdersState;
         p2pDispute: P2PDisputeState;
+        withdraw: WithdrawState;
     };
     admin: {
         configUpdate: ConfigUpdateState;
@@ -193,5 +205,9 @@ export function* rootSaga() {
         call(rootP2POrdersSaga),
         call(rootP2PTransfersSaga),
         call(rootP2PDisputeSaga),
+        call(rootBanksSaga),
+        call(rootIntegrationSaga),
+        call(rootLookupSaga),
+        call(rootWithdrawSaga),
     ]);
 }

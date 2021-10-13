@@ -25,5 +25,10 @@ Access-Control-Allow-Credentials: true
     "id": "usd",
     "type": "fiat",
     "enabled": true
+  },
+  {
+    "id": "eur",
+    "type": "fiat",
+    "enabled": false
   }
 ]

@@ -3,9 +3,9 @@ export interface BeneficiaryCrypto {
 }
 
 export interface BeneficiaryBank {
-    address?: string;
+    bank_code?: string;
     country?: string;
-    full_name: string;
+    full_name?: string;
     account_number?: string;
     account_type?: string;
     bank_name?: string;
@@ -18,11 +18,15 @@ export interface BeneficiaryBank {
     intermediary_bank_swift_code?: string;
 }
 
+export interface BeneficiaryData extends BeneficiaryCrypto, BeneficiaryBank {}
+
 export interface Beneficiary {
     id: number;
     currency: string;
     name: string;
+    blockchain_key?: string;
+    blockchain_name?: string;
     state: string;
     description?: string;
-    data: BeneficiaryCrypto | BeneficiaryBank;
+    data: BeneficiaryData;
 }

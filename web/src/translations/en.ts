@@ -711,6 +711,7 @@ export const en = {
     'page.body.customization.themes.theme.red.title': 'Red',
     'page.body.customization.themes.theme.green.title': 'Green',
     'page.body.customization.themes.theme.violet.title': 'Violet',
+    'page.body.customization.themes.theme.defaultNairaex.title': 'Default Nairaex',
 
     'page.body.customization.images.field.width.label': 'Image width',
     'page.body.customization.images.field.width.placeholder': 'Only number (px)',

@@ -232,9 +232,15 @@ export const ru: LangType = {
     'page.body.wallets.tabs.withdraw.modal.message': 'Enter 2fa code from the Google Authenticator app',
     'page.body.wallets.tabs.withdraw.modal.button.cancel': 'Отменить',
     'page.body.wallets.tabs.withdraw.modal.button.withdraw': 'Вывести',
+    'page.body.wallets.tabs.withdraw.modal.verification': 'Проверка',
 
     'page.body.wallets.tabs.withdraw.content.enable2fa': 'Вам нужно активировать 2FA, чтобы получить возможность выводить Ваши валюты!',
     'page.body.wallets.tabs.withdraw.content.enable2faButton': 'Активировать 2FA',
+
+    'page.body.wallets.beneficiaries.warningModal.header': 'The bank account does not match your name.',
+    'page.body.wallets.beneficiaries.warningModal.body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+    'page.body.wallets.beneficiaries.warningModal.cancel': 'cancel',
+    'page.body.wallets.beneficiaries.warningModal.continue': 'continue',
 
     'success.beneficiaries.created': 'Beneficiaries: successfully created',
     'success.beneficiaries.activated': 'Beneficiaries: successfully activated',
@@ -255,6 +261,10 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.dropdown.fiat.description': 'Description',
     'page.body.wallets.beneficiaries.dropdown.fiat.name': 'Name',
     'page.body.wallets.beneficiaries.dropdown.fiat.fullName': 'Full Name',
+    'page.body.wallets.beneficiaries.dropdown.fiat.accountNumber': 'Account number',
+    'page.body.wallets.beneficiaries.dropdown.fiat.bankCode': 'Bank code',
+    'page.body.wallets.beneficiaries.dropdown.fiat.confirm.title': 'Enter a pin',
+    'page.body.wallets.beneficiaries.dropdown.fiat.confirm.message': 'Enter the pin from your email',
 
     'page.body.wallets.beneficiaries.addAddress': 'Add Address',
     'page.body.wallets.beneficiaries.addAddressModal.header': 'Add new withdrawal address',
@@ -272,6 +282,8 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.addAddressModal.body.fiatBankSwiftCode': 'Bank Swift Code (optional)',
     'page.body.wallets.beneficiaries.addAddressModal.body.fiatIntermediaryBankName': 'Intermediary Bank Name (optional)',
     'page.body.wallets.beneficiaries.addAddressModal.body.fiatIntermediaryBankSwiftCode': 'Intermediary Bank Swift Code (optional)',
+    'page.body.wallets.beneficiaries.addAddressModal.body.fiatDescription': 'Description (optional)',
+    'page.body.wallets.beneficiaries.addAddressModal.body.selectBank': 'Select bank',
 
     'page.body.wallets.beneficiaries.addAddressModal.body.button': 'Submit for confirmation',
 
@@ -280,6 +292,10 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.confirmationModal.body.confirmationModalCode': 'Pin code',
     'page.body.wallets.beneficiaries.confirmationModal.body.resendButton': 'Resend pin',
     'page.body.wallets.beneficiaries.confirmationModal.body.button': 'Confirm',
+    'page.body.wallets.beneficiaries.confirmationModal.title': 'Add a new bank account',
+    'page.body.wallets.beneficiaries.confirmationModal.body.button.submit': 'Подтвердить',
+    'page.body.wallets.beneficiaries.confirmationModal.body.button.back': 'Назад',
+    'page.body.wallets.beneficiaries.confirmationModal.body.fullName': 'Полное имя',
 
     'page.body.wallets.beneficiaries.tipAddress': 'Address',
     'page.body.wallets.beneficiaries.tipName': 'Name',
@@ -288,6 +304,16 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.failAddModal.header': 'Warning',
     'page.body.wallets.beneficiaries.failAddModal.content': 'You need to confirm your account to add a beneficiary',
     'page.body.wallets.beneficiaries.failAddModal.button': 'Confirm phone',
+
+    'page.body.wallets.warning.banks.wrongData': 'Server error',
+    'page.body.wallets.warning.withdraw.no.banks': 'You have to add a bank account before you can withdraw',
+    'page.body.wallets.warning.withdraw.no.banks.hint': 'You have to add a bank account before you can withdraw',
+    'page.body.wallets.warning.withdraw.bank.name.hint': 'The bank account does not match your name',
+    'page.body.wallets.warning.withdraw.limits.min': 'Min. withdraw:',
+    'page.body.wallets.warning.withdraw.limits.max': 'Max. withdraw:',
+    'page.body.wallets.warning.withdraw.limits.hint': 'Increased or decreased withdrawal limit',
+    'error.beneficiaries.addAddressModal.banks.wrongData': 'Server error',
+
 
     'page.body.openOrders.tab.all': 'Все',
     'page.body.openOrders.tab.open': 'Открытые',
@@ -721,6 +747,7 @@ export const ru: LangType = {
     'page.body.customization.themes.theme.red.title': 'Red',
     'page.body.customization.themes.theme.green.title': 'Green',
     'page.body.customization.themes.theme.violet.title': 'Violet',
+    'page.body.customization.themes.theme.defaultNairaex.title': 'Default Nairaex',
 
     'page.body.customization.images.field.width.label': 'Ширина изображения',
     'page.body.customization.images.field.width.placeholder': 'Только цифры (px)',
@@ -1305,6 +1332,17 @@ export const ru: LangType = {
     'page.body.wallets.transfers.form.confirm': 'Confirm',
     'page.body.wallets.transfers.note': 'Note',
     'page.body.wallets.transfers.note.message': 'Internal transfers are free and instant. You can use them to manage your funds between different accounts on the platform',
+    'page.body.wallets.warning.withdraw.disabled': 'Withdrawal disabled: ',
+    'page.body.wallets.warning.withdraw.no.networks': 'No network configured for withdrawals',
+    'page.body.wallets.warning.withdraw.verification': 'Withdraw are allowed after passing KYC verification',
+    'page.body.wallets.warning.withdraw.no.networks.hint': 'Currently, that currency can’t be withdrawed as no blockchain network was configured or enabled. Please, use another currency to make a withdraw.',
+    'page.body.wallets.warning.withdraw.verification.hint': `Your current verification level doesn't allow you to make a withdraw. Please, submit the required KYC information to get withdraw permission.`,
+    'page.body.wallets.warning.withdraw.otp.hint': 'Please, enable 2FA to get withdraw permission.',
+    'page.body.wallets.warning.withdraw.verification.button': 'Verify Your Account',
+    'page.body.wallets.tabs.withdraw.ccy.tip': 'You are going to withdraw using selected network. To withdraw on a different network, create or use an existing beneficiary with a needed network.',
+    'page.body.wallets.tabs.withdraw.min.amount.tip': 'To create a withdrawal request the amount should be ≥ the minimum withdrawal amount',
+    'page.body.wallets.tabs.withdraw.modal.name' : 'Withdraw to',
+
 
     // p2p success messages
     'success.p2p.transfer.created': 'Transfer was created',
@@ -1312,6 +1350,11 @@ export const ru: LangType = {
     'success.payment_method.created': 'Payment Method: successfully created',
     'success.payment_method.updated': 'Payment Method: successfully updated',
     'success.p2p.dispute.submit': 'Dispute has been successfully submitted',
+
+    //2fa
+    'page.body.2fa.paste': 'Paste',
+    'page.body.2fa.loading': 'Loading...',
+    'page.body.2fa.signIn': 'Sign in',
 
     ...nationalitiesNames,
     ...mobileTranslationsRu,

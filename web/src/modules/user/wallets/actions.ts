@@ -17,8 +17,13 @@ import {
     WALLETS_WITHDRAW_CCY_DATA,
     WALLETS_WITHDRAW_CCY_ERROR,
     WALLETS_WITHDRAW_CCY_FETCH,
+    WITHDRAW_ALLOW_DATA,
+    WITHDRAW_ALLOW_ERROR,
+    WITHDRAW_ALLOW_FETCH,
+    WITHDRAW_ALLOW_CLEAR,
 } from './constants';
 import { Wallet, WalletAddress, WalletWithdrawCCY } from './types';
+import { Beneficiary } from 'src/modules';
 
 export interface WalletsFetch {
     type: typeof WALLETS_FETCH;
@@ -109,6 +114,37 @@ export interface P2PWalletsDataByRanger {
     };
 }
 
+export interface WithdrawAllowFetch {
+    type: typeof WITHDRAW_ALLOW_FETCH,
+    payload: {
+        amount: string;
+        beneficiary: Beneficiary;
+        otpCode: string;
+        total: string;
+        fee: string;
+    };
+}
+
+export interface WithdrawAllowData {
+    type: typeof WITHDRAW_ALLOW_DATA
+    payload:{
+        status: number;
+        amount: string;
+        beneficiary: Beneficiary;
+        otpCode: string;
+        total: string;
+        fee: string;
+    };
+}
+
+export interface WithdrawAllowError {
+    type: typeof WITHDRAW_ALLOW_ERROR
+}
+
+export interface WithdrawAllowClear {
+    type: typeof WITHDRAW_ALLOW_CLEAR
+}
+
 export type WalletsAction = WalletsFetch
     | WalletsData
     | WalletsDataByRanger
@@ -125,7 +161,11 @@ export type WalletsAction = WalletsFetch
     | P2PWalletsFetch
     | P2PWalletsData
     | P2PWalletsError
-    | P2PWalletsDataByRanger;
+    | P2PWalletsDataByRanger
+    | WithdrawAllowFetch
+    | WithdrawAllowData
+    | WithdrawAllowError
+    | WithdrawAllowClear;
 
 export const walletsFetch = (): WalletsFetch => ({
     type: WALLETS_FETCH,
@@ -206,4 +246,22 @@ export const p2pWalletsError = (error: CommonError): P2PWalletsError => ({
 export const updateP2PWalletsDataByRanger = (payload: P2PWalletsDataByRanger['payload']): P2PWalletsDataByRanger => ({
     type: P2P_WALLETS_DATA_WS,
     payload,
+});
+
+export const withdrawAllowFetch = (payload: WithdrawAllowFetch['payload']): WithdrawAllowFetch => ({
+    type: WITHDRAW_ALLOW_FETCH,
+    payload,
+});
+
+export const withdrawAllowData = (payload: WithdrawAllowData['payload']): WithdrawAllowData => ({
+    type: WITHDRAW_ALLOW_DATA,
+    payload,
+});
+
+export const withdrawAllowError = (): WithdrawAllowError => ({
+    type: WITHDRAW_ALLOW_ERROR,
+});
+
+export const withdrawAllowClear = (): WithdrawAllowClear => ({
+    type: WITHDRAW_ALLOW_CLEAR,
 });

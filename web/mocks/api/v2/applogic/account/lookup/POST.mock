@@ -1,0 +1,12 @@
+HTTP/2 200
+access-control-allow-origin: *
+access-control-allow-methods: GET, POST, PUT, PATCH, DELETE
+access-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept, Authorization
+
+{
+    "first_name": "JOHN",
+    "surname": "DOE",
+    "bank_code": "1234567890",
+    "bank_name": "TEST BANK",
+    "account_no": "1234567890"
+}
