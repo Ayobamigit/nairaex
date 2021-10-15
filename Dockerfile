@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine AS go-builder
+FROM golang:1.15.12-alpine AS go-builder
 
 WORKDIR /build
 ENV CGO_ENABLED=1 \
@@ -14,7 +14,7 @@ COPY . .
 
 RUN make all
 
-ARG KAIGARA_VERSION=0.1.17
+ARG KAIGARA_VERSION=0.1.29
 # Install Kaigara
 RUN curl -Lo /usr/bin/kaigara  https://github.com/openware/kaigara/releases/download/${KAIGARA_VERSION}/kaigara \
   && chmod +x /usr/bin/kaigara
