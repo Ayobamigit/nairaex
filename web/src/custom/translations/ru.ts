@@ -296,6 +296,8 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.confirmationModal.body.button.submit': 'Подтвердить',
     'page.body.wallets.beneficiaries.confirmationModal.body.button.back': 'Назад',
     'page.body.wallets.beneficiaries.confirmationModal.body.fullName': 'Полное имя',
+    'page.body.wallets.beneficiaries.confirmationModal.body.warning.fiat.fullName': 'Invalid full name',
+
 
     'page.body.wallets.beneficiaries.tipAddress': 'Address',
     'page.body.wallets.beneficiaries.tipName': 'Name',

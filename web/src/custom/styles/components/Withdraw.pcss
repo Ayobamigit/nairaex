@@ -1,132 +1,128 @@
 .cr-withdraw {
-    margin: 48px 15px;
-    margin-bottom: 0;
+  margin: 48px 15px;
+  margin-bottom: 0;
 }
 
 .cr-withdraw-column {
-    width: 50%;
+  width: 50%;
 }
 
-.pg-wallet .cr-withdraw__group__amount, .pg-wallet .cr-withdraw__group__code {
-    width: 100%;
-
-}
-
-.cr-withdraw__group__amount {
-
-    label {
-        background-color: transparent!important;
-    }
-
-    .custom-input {
-
-        .input-group {
-            background-color: var(--beneficiaries-primary-0-06)!important;
-        }
-        
-        input {
-            border: 0;
-        }
-    }
-}
-    
-.pg-wallet__tabs {
-    flex: auto;
-    max-width: 75%
-}
-
-.modal-body__withdraw-confirm-title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
-    text-align: center;
-    margin:  24px 0;
-    color: var(--primary-text-color);
-}
-
-.modal-body__withdraw-confirm-block {
-    background-color: var(--dropdown-background-color)!important;
-}
-
-.cr-modal .cr-modal__container {
-    width: 456px;
-}
-
-.modal-footer__withdraw-confirm-verification {
-    text-align: left;
-    color: var(--primary-text-color);
-    font-size: 18px;
-    margin-bottom: 24px;
-    font-weight: 500;
-}
-
-.cr-warning-message {
-    transition: all 1s linear;
-}
-
-.modal-body__withdraw-confirm .bold-text {
-    font-weight: 500;
-}
-
-@media screen and (max-width: 1125px) {
-
-    .cr-wallets-header {
-        flex-direction: column;
-
-        .cr-wallets-header__search {
-            width: 100%;
-
-            .cr-search {
-                width: 100%
-            }
-        }
-
-        .cr-wallets-header__checkbox {
-            margin: 15px 0 0 0;
-            align-self: start;
-        }
-    }
-}
-
-.select__left__address {
-    max-width: 120px;
-}
-
-.pg-beneficiaries__dropdown {
-    background-color: var(--dropdown-background-color);
-}
-
-.pg-beneficiaries__dropdown--open {
-    background-color: var(--primary-cta-color)!important;
+.pg-wallet .cr-withdraw__group__amount,
+.pg-wallet .cr-withdraw__group__code {
+  width: 100%;
 }
 
 .cr-withdraw__group__amount {
-    .cr-email-form__group--focused {
-        background-color: var(--dropdown-background-color)!important;
-    }
+  label {
+    background-color: transparent !important;
+  }
 
-    .custom-input label {
-        background-color: var(--dropdown-background-color)!important;
+  .custom-input {
+    .input-group {
+      background-color: var(--beneficiaries-primary-0-06) !important;
     }
 
     input {
-        background-color: var(--dropdown-background-color)!important;
-        border: none;
-        min-height: 38px;
-        font-family: var(--font-family);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 28px;
-        letter-spacing: 0.25px;
-
-        &::placeholder {
-            font-weight: 400;
-            font-size: 1em;
-        }
-
-        &:focus {
-            background-color: var(--dropdown-background-color)!important;
-        }
+      border: 0;
     }
+  }
+}
+
+.pg-wallet__tabs {
+  flex: auto;
+  max-width: 75%;
+}
+
+.modal-body__withdraw-confirm-title {
+  color: var(--primary-text-color);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.modal-body__withdraw-confirm-block {
+  background-color: var(--dropdown-background-color) !important;
+}
+
+.cr-modal .cr-modal__container {
+  width: 456px;
+}
+
+.modal-footer__withdraw-confirm-verification {
+  color: var(--primary-text-color);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.cr-warning-message {
+  transition: all 1s linear;
+}
+
+.modal-body__withdraw-confirm .bold-text {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1125px) {
+  .cr-wallets-header {
+    flex-direction: column;
+
+    .cr-wallets-header__search {
+
+      .cr-search {
+        width: 100%;
+      }
+    }
+
+    .cr-wallets-header__checkbox {
+      align-self: start;
+      margin: 15px 0 0 0;
+    }
+  }
+}
+
+.select__left__address {
+  max-width: 120px;
+}
+
+.pg-beneficiaries__dropdown {
+  background-color: var(--dropdown-background-color);
+}
+
+.pg-beneficiaries__dropdown--open {
+  background-color: var(--primary-cta-color) !important;
+}
+
+.cr-withdraw__group__amount {
+  .cr-email-form__group--focused {
+    background-color: var(--dropdown-background-color) !important;
+  }
+
+  .custom-input label {
+    background-color: var(--dropdown-background-color) !important;
+  }
+
+  input {
+    background-color: var(--dropdown-background-color) !important;
+    border: none;
+    font-family: var(--font-family);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    line-height: 28px;
+    min-height: 38px;
+
+    &::placeholder {
+      font-size: 1em;
+      font-weight: 400;
+    }
+
+    &:focus {
+      background-color: var(--dropdown-background-color) !important;
+    }
+  }
 }
