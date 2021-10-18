@@ -42,6 +42,7 @@ export const en = {
     'page.body.wallets.warning.withdraw.verification.button': 'Verify Your Account',
     'page.body.wallets.tabs.withdraw.ccy.tip': 'You are going to withdraw using selected network. To withdraw on a different network, create or use an existing beneficiary with a needed network.',
     'page.body.wallets.tabs.withdraw.min.amount.tip': 'To create a withdrawal request the amount should be ≥ the minimum withdrawal amount',
+    'page.body.wallets.beneficiaries.confirmationModal.body.warning.fiat.fullName': 'Invalid full name',
 
   };
   

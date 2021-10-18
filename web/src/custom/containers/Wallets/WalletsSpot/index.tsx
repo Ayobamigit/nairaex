@@ -259,7 +259,6 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             this.props.fetchBanks();
         }
 
-        this.props.fetchIntegration({currency: currency});
     }
 
     public componentWillReceiveProps(next: Props) {
@@ -274,6 +273,10 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         } = this.props;
         const { selectedWalletIndex, currentTabIndex } = this.state;
 
+        if (currency !== next.currency && next.wallets[selectedWalletIndex]?.type === 'fiat') {
+            this.props.fetchIntegration({currency: next.currency});
+        }
+
         if (!wallets.length && next.wallets.length && selectedWalletIndex === -1) {
             const walletToSet = next.wallets.find(i => i.currency?.toLowerCase() === currency?.toLowerCase()) || next.wallets[0];
 
@@ -283,6 +286,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
                 filteredWallets: next.wallets,
             });
 
+            this.props.fetchIntegration({currency: currency});
 
             walletToSet?.currency && this.props.fetchBeneficiaries({ currency_id: walletToSet.currency?.toLowerCase() });
 
