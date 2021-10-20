@@ -307,6 +307,9 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.failAddModal.content': 'You need to confirm your account to add a beneficiary',
     'page.body.wallets.beneficiaries.failAddModal.button': 'Confirm phone',
 
+    'page.body.wallets.beneficiaries.deleteModal.title': 'Enter a verification code',
+    'page.body.wallets.beneficiaries.deleteModal.body': 'Enter 2fa code from the Google Authenticator app',
+
     'page.body.wallets.warning.banks.wrongData': 'Server error',
     'page.body.wallets.warning.withdraw.no.banks': 'You have to add a bank account before you can withdraw',
     'page.body.wallets.warning.withdraw.no.banks.hint': 'You have to add a bank account before you can withdraw',

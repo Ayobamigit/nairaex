@@ -33,6 +33,9 @@ export const en = {
     'page.body.wallets.tabs.withdraw.modal.name' : 'Withdraw to',
     'page.body.wallets.tabs.withdraw.modal.verification': 'Verification',
 
+    'page.body.wallets.beneficiaries.deleteModal.title': 'Enter a verification code',
+    'page.body.wallets.beneficiaries.deleteModal.body': 'Enter 2fa code from the Google Authenticator app',
+
     'page.body.wallets.warning.withdraw.disabled': 'Withdrawal disabled: ',
     'page.body.wallets.warning.withdraw.no.networks': 'No network configured for withdrawals',
     'page.body.wallets.warning.withdraw.verification': 'Withdraw are allowed after passing KYC verification',

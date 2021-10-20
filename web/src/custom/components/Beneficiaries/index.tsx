@@ -28,6 +28,7 @@ import { TrashBin } from 'src/assets/images/TrashBin';
 import { BeneficiariesActivateModal } from './BeneficiariesActivateModal';
 import { BeneficiariesAddModal } from './BeneficiariesAddModal';
 import { BeneficiariesFailAddModal } from './BeneficiariesFailAddModal';
+import { BeneficiariesDeleteModal } from './BeneficiariesDeleteModal';
 
 interface OwnProps {
     currency: string;
@@ -53,8 +54,11 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
     const [isOpenAddressModal, setAddressModalState] = React.useState<boolean>(false);
     const [isOpenConfirmationModal, setConfirmationModalState] = React.useState<boolean>(false);
     const [isOpenFailModal, setFailModalState] = React.useState<boolean>(false);
+    const [isOpenDeleteModal, setDeleteModalState] = React.useState<boolean>(false);
     const [isOpenTip, setTipState] = React.useState<boolean>(false);
     const [isOpenDropdown, setDropdownState] = React.useState<boolean>(false);
+    const [beneficiaryId, setBeneficiaryId] = React.useState<number | null>(null);
+
 
     const dispatch = useDispatch();
 
@@ -87,6 +91,8 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
     React.useEffect(() => {
         if (currency || beneficiariesDeleteSuccess) {
             dispatch(beneficiariesResetState());
+            setDeleteModalState(false);
+            setBeneficiaryId(null);
         }
     }, [currency, beneficiariesDeleteSuccess]);
 
@@ -104,10 +110,14 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
             setConfirmationModalState(false);
             dispatch(beneficiariesResetState());
         }
-    }, [beneficiaries, beneficiariesAddSuccess, beneficiariesActivateSuccess]);
+
+        if(beneficiaryId) {
+            setDeleteModalState(true);
+        }
+    }, [beneficiaries, beneficiariesAddSuccess, beneficiariesActivateSuccess, beneficiaryId]);
 
     const handleDeleteAddress = React.useCallback((item: Beneficiary) => {
-        dispatch(beneficiariesDelete({ id: item.id }));
+        setBeneficiaryId(item.id);
     }, []);
 
     const handleClickSelectAddress = React.useCallback((item: Beneficiary) => {
@@ -416,6 +426,11 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
         );
     }, [isOpenDropdown, isOpenTip, currentWithdrawalBeneficiary, type]);
 
+    const handleToggleDeleteModal = React.useCallback(() => {
+        setDeleteModalState(false);
+        setBeneficiaryId(null);
+    }, [beneficiaryId, isOpenDeleteModal])
+
     const renderBeneficiariesAddModal = React.useMemo(() => {
         if (isOpenAddressModal) {
             return (
@@ -446,6 +461,15 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
         );
     }, [isMobileDevice]);
 
+    const renderDeleteModal = React.useMemo(() => {
+        return (
+            <BeneficiariesDeleteModal
+                beneficiaryId={beneficiaryId}
+                handleToggleDeleteModal={handleToggleDeleteModal}
+            />
+        );
+    }, [isMobileDevice, beneficiaryId]);
+    
     const filtredBeneficiaries = React.useMemo(() => handleFilterByState(beneficiaries, ['active', 'pending']), [beneficiaries]);
 
     return (
@@ -454,6 +478,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
             {renderBeneficiariesAddModal}
             {isOpenConfirmationModal && renderActivateModal}
             {isOpenFailModal && renderFailModal}
+            {isOpenDeleteModal && renderDeleteModal}
         </div>
     );
 }
