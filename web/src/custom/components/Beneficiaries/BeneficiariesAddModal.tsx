@@ -296,14 +296,10 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
         return <FormattedMessage id="page.body.wallets.warning.banks.wrongData" />
     }, []);
 
-    const renderWarnings = React.useMemo(() => {
-        return (
-            <div>
-                <WarningMessage children={renderWarningNames} hint={'page.body.wallets.warning.banks.wrongData'}/>
-            </div>
-        );
+    const renderWarningBanks = React.useMemo(() => {
+        return <FormattedMessage id="page.body.wallets.beneficiaries.addAddressModal.body.invalidBanks"/>
     }, []);
-
+    
     const selectedBankItem = React.useMemo(() => {
         if (!Array.isArray(banks)) {
             return null;
@@ -313,10 +309,20 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
         return 0;
     }, [banks]);
 
+    const renderWarnings = React.useMemo(() => {
+        return (
+            <div>
+                {selectedBankItem === null && <WarningMessage children={renderWarningNames} hint={'page.body.wallets.warning.banks.wrongData'}/>}
+                {!banks.length && <WarningMessage children={renderWarningBanks} hint={'page.body.wallets.warning.banks.wrongData'}/>}
+            </div>
+        );
+    }, [selectedBankItem, banks]);
+
+
     const renderDropdown  = React.useMemo(() => {
         const bank = banks[selectedBank]?.bank_name;
 
-        if (selectedBankItem === null) return  renderWarnings;
+        if (selectedBankItem === null || !banks.length) return  renderWarnings;
 
         return (
             <DropdownComponent 
@@ -324,12 +330,13 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 list={mapBanksToDropdown}
                 onSelect={handleSelectBank}
                 selectedValue={bank}
+                placeholder={translate('page.body.wallets.beneficiaries.addAddressModal.body.dropdown.placeholder')}
             />
         )
-    }, [banks, selectedBankItem])
+    }, [banks, selectedBankItem]);
 
     const renderAddAddressModalFiatBody = React.useMemo(() => {
-        const isDisabled = !fiatAccountNumber || selectedBankItem === null; 
+        const isDisabled = !fiatAccountNumber || selectedBankItem === null || !banks.length; 
 
         return (
             <div className="cr-email-form__form-content">
