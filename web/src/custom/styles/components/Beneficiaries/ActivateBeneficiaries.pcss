@@ -1,29 +1,32 @@
 .beneficiaries-activate-modal {
+  .cr-email-form {
+    margin: 0 !important;
+    min-height: 0;
 
-    .cr-email-form {
-        margin: 0!important;
-        min-height: 0;
-
-        &__option {
-            border: none;
-        }
-
+    &__option {
+      border: none;
     }
+  }
 
-    .cr-email-form__header {
-        width: 100%!important;
-        margin-bottom: 20px!important;
+  .cr-email-form__header {
+    margin-bottom: 20px !important;
+    width: 100% !important;
+  }
+
+  .pg-confirm__content__body {
+    display: flex;
+    flex-direction: column;
+
+    .resend-pin {
+      margin: auto;
+      text-align: center;
+      width: 100px;
     }
+  }
+}
 
-    .pg-confirm__content__body {
-        display: flex;
-        flex-direction: column;
-
-        .resend-pin {
-            width: 100px;
-            text-align: center;
-            margin: auto;
-        }
-    }
-
+.cr-email-form__group .with-button {
+  .paste-btn {
+    background-color: var(--contrast-cta-color);
+  }
 }
