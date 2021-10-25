@@ -164,8 +164,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
     const validateFullName = React.useCallback(() =>  fullName.length > 40 || fullName.match(/^(?:[\u00c0-\u01ffa-zA-Z'-]){2,}(?:\s[\u00c0-\u01ffa-zA-Z'-]{2,})+$/i) === null, [fullName]);
 
     const renderConfirmAddressModalBody = React.useMemo(() => {
-        console.log(validateFullName());
-        const isDisabled = otpCode.length < 6 || !fullName || validateFullName(); 
+        const isDisabled = otpCode.length < 6 || !fullName || validateFullName() || isWarningName; 
 
         return (
             <div className="pg-beneficiaries__dropdown__tip confirm">

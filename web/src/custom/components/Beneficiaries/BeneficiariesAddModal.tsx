@@ -150,7 +150,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     }, [currency]);
 
     const validateFiatAccountNumber = React.useCallback((value: string) => {
-        if (value.length <= 10) {
+        if (value.length <= 10 && value.match(/[0-9]$/)) {
             setFiatAccountNumber(value);
         }
     }, []);
