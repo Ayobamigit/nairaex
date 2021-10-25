@@ -391,6 +391,12 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     }, [type, isMobileDevice, getState]);
 
     const renderConfirmationContent = React.useMemo( () => {
+        if (isOpenConfirmationModal) {
+            setFiatAccountNumber('');
+            setFiatDescription('');
+            setSelectedBank(null);
+        };
+
         const bank: BeneficiaryBank = banks[selectedBank];
         const data: BeneficiaryBank = {
             account_number: fiatAccountNumber,
@@ -411,7 +417,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 handleToggleConfirmationModal={() => {setConfirmationModal(false);}}
             />
         );
-    }, [fiatAccountNumber, fiatDescription, selectedBank]);
+    }, [fiatAccountNumber, fiatDescription, selectedBank, isOpenConfirmationModal]);
 
     if ( isMobileDevice ) {
         return (
