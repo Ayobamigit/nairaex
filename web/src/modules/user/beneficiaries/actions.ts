@@ -103,7 +103,7 @@ export interface BeneficiariesDelete {
     type: typeof BENEFICIARIES_DELETE;
     payload: {
         id: number;
-        otp: number;
+        otp: string;
     };
 }
 
