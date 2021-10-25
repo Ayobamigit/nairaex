@@ -150,7 +150,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     }, [currency]);
 
     const validateFiatAccountNumber = React.useCallback((value: string) => {
-        if (value.length <= 10 && value.match(/[0-9]$/)) {
+        if (value.length <= 10 && (value.match(/[0-9]$/) || !value)) {
             setFiatAccountNumber(value);
         }
     }, []);
@@ -336,7 +336,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     }, [banks, selectedBankItem]);
 
     const renderAddAddressModalFiatBody = React.useMemo(() => {
-        const isDisabled = !fiatAccountNumber || selectedBankItem === null || !banks.length; 
+        const isDisabled = fiatAccountNumber.length !== 10 || selectedBankItem === null || !banks.length; 
 
         return (
             <div className="cr-email-form__form-content">
