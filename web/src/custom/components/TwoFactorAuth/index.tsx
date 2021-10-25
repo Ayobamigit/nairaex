@@ -81,7 +81,7 @@ export const TwoFactorAuthComponent: React.FC<TwoFactorAuthProps> = (props) => {
                                   isMobile={isMobile}
                                 />
                             {showPasteButton &&
-                                <Button onClick={handlerPasteFromClipboard}>
+                                <Button className="paste-btn" onClick={handlerPasteFromClipboard}>
                                     {translate('page.body.2fa.paste').toUpperCase()}
                                 </Button>
                             }

@@ -9,7 +9,7 @@ Access-Control-Allow-Credentials: true
    {
      "id": 8,
      "currency": "eur",
-     "name": "My local bank",
+     "name": "NARGATA MICROFINANCE ASDASDASD BANK",
      "description": null,
      "data": {
        "bank_name": "ABC Bank",

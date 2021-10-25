@@ -17,7 +17,7 @@ export function* withdrawAllowSaga(action: WithdrawAllowFetch) {
         }
 
         const status = yield call(API.post(withdrawAllowOptions(getCsrfToken())), '/management/withdraws/check_amount', payload);
-        yield put(withdrawAllowData({...action.payload, ...status}));
+        yield put(withdrawAllowData({...action.payload, status}));
     } catch (error) {
         yield put(sendError({
             error,

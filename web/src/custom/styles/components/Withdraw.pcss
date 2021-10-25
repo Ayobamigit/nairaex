@@ -71,6 +71,7 @@
     flex-direction: column;
 
     .cr-wallets-header__search {
+      width: 100%;
 
       .cr-search {
         width: 100%;
@@ -124,5 +125,17 @@
     &:focus {
       background-color: var(--dropdown-background-color) !important;
     }
+  }
+}
+
+.pg-beneficiaries__dropdown__body .item__left__address {
+  max-width: 150px;
+
+  @media screen and (max-width: 1300px) {
+    max-width: 120px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    max-width: 100px;
   }
 }

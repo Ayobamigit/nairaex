@@ -10,7 +10,7 @@ import { walletsAddressSaga } from './walletsAddressSaga';
 import { walletsSaga } from './walletsSaga';
 import { walletsWithdrawCcySaga } from './walletsWithdrawSaga';
 import { p2pWalletsSaga } from './p2pWalletsSaga';
-import { withdrawAllowSaga } from './withdrawSaga';
+import { withdrawAllowSaga } from './walletsWithdrawAllowSaga';
 
 
 export function* rootWalletsSaga() {
