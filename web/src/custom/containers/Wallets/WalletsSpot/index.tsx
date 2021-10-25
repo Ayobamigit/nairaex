@@ -810,7 +810,8 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         this.props.fetchBeneficiaries({ currency_id: value.currency.toLowerCase() });
         this.props.history.push(`/wallets/spot/${value.currency.toLowerCase()}/${this.tabMapping[currentTabIndex]}`);
         this.props.setMobileWalletUi(wallets[nextWalletIndex].name);
-        if(wallets[nextWalletIndex]?.type === 'fiat') {
+
+        if (wallets[nextWalletIndex]?.type === 'fiat') {
             this.props.fetchIntegration({ currency: value.currency.toLowerCase() });
         }
     };
