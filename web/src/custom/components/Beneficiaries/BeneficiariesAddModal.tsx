@@ -72,8 +72,14 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
         setFiatDescriptionFocused(false);
         setFiatAccountNumber('');
         setFiatDescription('');
-        setSelectedBank(0);
+        setSelectedBank(null);
     }, []);
+
+    const clearInputs = React.useCallback(() => {
+        setFiatAccountNumber('');
+        setFiatDescription('');
+        setSelectedBank(null);
+    }, [fiatAccountNumber, fiatDescription, selectedBank])
 
     React.useEffect(() => {
         if (beneficiariesAddError && beneficiariesAddError.message) {
@@ -304,7 +310,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
         if (!Array.isArray(banks)) {
             return null;
         }
-        setSelectedBank(0);
+        setSelectedBank(null);
 
         return 0;
     }, [banks]);
@@ -317,7 +323,6 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
             </div>
         );
     }, [selectedBankItem, banks]);
-
 
     const renderDropdown  = React.useMemo(() => {
         const bank = banks[selectedBank]?.bank_name;
@@ -333,10 +338,10 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 placeholder={translate('page.body.wallets.beneficiaries.addAddressModal.body.dropdown.placeholder')}
             />
         )
-    }, [banks, selectedBankItem]);
+    }, [banks, selectedBankItem, selectedBank]);
 
     const renderAddAddressModalFiatBody = React.useMemo(() => {
-        const isDisabled = fiatAccountNumber.length !== 10 || selectedBankItem === null || !banks.length; 
+        const isDisabled = fiatAccountNumber.length !== 10 || !Number.isInteger(selectedBank) || !banks.length;
 
         return (
             <div className="cr-email-form__form-content">
@@ -388,15 +393,14 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 </div>
             </div>
         );
-    }, [type, isMobileDevice, getState]);
+    }, [type, isMobileDevice, getState, renderAddAddressModalFiatBody, renderAddAddressModalCryptoBody]);
+
+    const handleToggleConfirmationModal = React.useCallback(() => {
+        setConfirmationModal(false);
+        clearInputs();
+    }, [clearInputs, isOpenConfirmationModal])
 
     const renderConfirmationContent = React.useMemo( () => {
-        if (isOpenConfirmationModal) {
-            setFiatAccountNumber('');
-            setFiatDescription('');
-            setSelectedBank(null);
-        };
-
         const bank: BeneficiaryBank = banks[selectedBank];
         const data: BeneficiaryBank = {
             account_number: fiatAccountNumber,
@@ -414,7 +418,8 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
             <BeneficiariesConfirmModal
                 description={fiatDescription}
                 beneficiary={beneficiary}
-                handleToggleConfirmationModal={() => {setConfirmationModal(false);}}
+                handleToggleConfirmationModal={handleToggleConfirmationModal}
+                clearInputs={clearInputs}
             />
         );
     }, [fiatAccountNumber, fiatDescription, selectedBank, isOpenConfirmationModal]);

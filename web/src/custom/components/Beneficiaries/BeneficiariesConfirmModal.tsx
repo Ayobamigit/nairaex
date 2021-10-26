@@ -25,9 +25,10 @@ interface Props {
     };
     description?: string;
     handleToggleConfirmationModal: () => void;
+    clearInputs: () => void;
 }
 
-const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ description, beneficiary, handleToggleConfirmationModal }: Props) => {
+const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ description, beneficiary, handleToggleConfirmationModal, clearInputs }: Props) => {
     const [fullName, setFullName] = React.useState<string>('');
     const [fullNameFocused, setFullNameFocused] = React.useState<boolean>(false);
     const [isOpenWarningModal, setWarningModal] = React.useState<boolean>(false);
@@ -243,6 +244,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
     const handleRejectWarningModal = React.useCallback(() => {
         setWarningModal(true);
         handleToggleConfirmationModal();
+        clearInputs();
     }, [isOpenWarningModal]);
 
     const handleCloseWarningModal = React.useCallback(() => {
