@@ -49,7 +49,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
     React.useEffect(() => {
         const payload = {
             bank_code: beneficiary.data.bank_code,
-            account_no: beneficiary.data.account_number,
+            account_no: beneficiary.data.account_no,
         };
 
         dispatch(lookupFetch(payload));
@@ -162,17 +162,21 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
         );
     }, [otpCode]);
 
-    const validateFullName = React.useCallback(() =>  fullName.length > 40 || fullName.match(/^(?:[\u00c0-\u01ffa-zA-Z'-]){2,}(?:\s[\u00c0-\u01ffa-zA-Z'-]{2,})+$/i) === null, [fullName]);
+    const validateFullName = React.useMemo(() =>  fullName.length > 40 || fullName.match(/^(?:[\u00c0-\u01ffa-zA-Z'-]){2,}(?:\s[\u00c0-\u01ffa-zA-Z'-]{2,})+$/i) === null, [fullName]);
+
+    const fullNameClasses = React.useMemo(() => classnames('tip__content__block', {
+        'tip__content__block--warning': validateFullName,
+    }), [validateFullName]);
 
     const renderConfirmAddressModalBody = React.useMemo(() => {
-        const isDisabled = otpCode.length < 6 || !fullName || validateFullName() || isWarningName; 
+        const isDisabled = otpCode.length < 6 || !fullName || validateFullName || isWarningName; 
 
         return (
             <div className="pg-beneficiaries__dropdown__tip confirm">
                 <div className="tip__content">
-                    <div className="tip__content__block">
+                    <div className={fullNameClasses}>
                         <span className="tip__content__block__label">
-                            {validateFullName() ? 
+                            {validateFullName ? 
                                 <FormattedMessage id="page.body.wallets.beneficiaries.confirmationModal.body.warning.fiat.fullName" /> : 
                                 <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.fullName" />
                             }
@@ -194,7 +198,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
                             <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.accountNumber" />
                         </span>
                         <span className="tip__content__block__value">
-                            {beneficiary.data.account_number}
+                            {beneficiary.data.account_no}
                         </span>
                     </div>
                     <div className="tip__content__block">

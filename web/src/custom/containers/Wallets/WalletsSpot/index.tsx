@@ -538,7 +538,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             currency: currency.toLowerCase(),
             otp: otpCode,
             amount,
-            account_no: beneficiary.data.account_number,
+            account_no: beneficiary.data.account_no,
             bank_code: beneficiary.data.bank_code,
         };
 

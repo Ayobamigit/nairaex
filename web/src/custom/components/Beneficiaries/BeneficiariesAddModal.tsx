@@ -403,7 +403,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     const renderConfirmationContent = React.useMemo( () => {
         const bank: BeneficiaryBank = banks[selectedBank];
         const data: BeneficiaryBank = {
-            account_number: fiatAccountNumber,
+            account_no: fiatAccountNumber,
             ...bank,
             ...(fiatDescription && { fiatDescription: fiatDescription }),
         };

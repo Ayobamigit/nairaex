@@ -347,7 +347,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = (props: Props) => {
     const handleSubmitAddAddressFiatModal = React.useCallback(() => {
         const data: BeneficiaryBank = {
             full_name: fiatFullName,
-            account_number: fiatAccountNumber,
+            account_no: fiatAccountNumber,
             bank_name: fiatBankName,
             ...(fiatBankSwiftCode && { bank_swift_code: fiatBankSwiftCode }),
             ...(fiatIntermediaryBankName && { intermediary_bank_name: fiatIntermediaryBankName }),

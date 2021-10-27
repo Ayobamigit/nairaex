@@ -145,7 +145,7 @@ class ModalWithdraw extends React.Component<Props, State> {
                 {currentWithdrawalBeneficiary.description && this.renderDropdownTipFiatDescription(currentWithdrawalBeneficiary.description)}
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">{this.translate('page.body.wallets.beneficiaries.dropdown.fiat.account')}</span>
-                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).account_number}</span>
+                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).account_no}</span>
                 </div>
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">{this.translate('page.body.wallets.beneficiaries.dropdown.fiat.bankOfBeneficiary')}</span>

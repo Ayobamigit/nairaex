@@ -43,7 +43,7 @@ describe('Beneficiaries Fetch', () => {
                 address: 'Somestreet 42, City',
                 country: 'Wakanda',
                 full_name: 'Some name',
-                account_number: '1234512345',
+                account_no: '1234512345',
                 account_type: 'Account type',
                 bank_name: 'First bank',
                 bank_address: 'Anotherstreet 13',

@@ -6,7 +6,7 @@ export interface BeneficiaryBank {
     bank_code?: string;
     country?: string;
     full_name?: string;
-    account_number?: string;
+    account_no?: string;
     account_type?: string;
     bank_name?: string;
     bank_address?: string;
