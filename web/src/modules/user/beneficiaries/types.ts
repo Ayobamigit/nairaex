@@ -12,6 +12,7 @@ export interface BeneficiaryBank {
     bank_address?: string;
     bank_country?: string;
     bank_swift_code?: string;
+    fiatDescription?: string;
     intermediary_bank_name?: string;
     intermediary_bank_address?: string;
     intermediary_bank_country?: string;

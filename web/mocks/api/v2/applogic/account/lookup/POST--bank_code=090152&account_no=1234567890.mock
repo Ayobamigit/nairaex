@@ -4,8 +4,8 @@ access-control-allow-methods: GET, POST, PUT, PATCH, DELETE
 access-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept, Authorization
 
 {
-    "first_name": "Antoinette",
-    "surname": "Ferguson",
+    "first_name": "null",
+    "surname": "null",
     "bank_code": "090152",
     "bank_name": "NARGATA MICROFINANCE BANK",
     "account_no": "1234567890"

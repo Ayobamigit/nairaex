@@ -138,24 +138,31 @@ class ModalWithdraw extends React.Component<Props, State> {
     private renderDropdownTipFiat = (currentWithdrawalBeneficiary: Beneficiary) => currentWithdrawalBeneficiary ?
         <div className="modal-body__withdraw-confirm__tip fiat-tip">
             <div className="tip__content">
-                <div className="tip__content__block">
-                    <span className="tip__content__block__label">
-                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.name" />
-                    </span>
-                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.name}</span>
-                </div>
                 {currentWithdrawalBeneficiary.description && this.renderDropdownTipFiatDescription(currentWithdrawalBeneficiary.description)}
+                {currentWithdrawalBeneficiary.data.fiatDescription && this.renderDropdownTipFiatDescription((currentWithdrawalBeneficiary.data as BeneficiaryBank).fiatDescription)}
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">
-                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.account" />
+                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.fullName" />
+                    </span>
+                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.data.full_name}</span>
+                </div>
+                <div className="tip__content__block">
+                    <span className="tip__content__block__label">
+                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.accountNumber" />
                     </span>
                     <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).account_no}</span>
                 </div>
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">
-                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankOfBeneficiary" />
+                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankName" />
                     </span>
-                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).bank_name}</span>
+                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.name}</span>
+                </div>
+                <div className="tip__content__block">
+                    <span className="tip__content__block__label">
+                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankCode" />
+                    </span>
+                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).bank_code}</span>
                 </div>
             </div>
         </div> : null;

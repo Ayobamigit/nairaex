@@ -7,39 +7,49 @@ Access-Control-Allow-Credentials: true
 
 [
    {
-     "id": 8,
-     "currency": "eur",
-     "name": "NARGATA MICROFINANCE ASDASDASD BANK",
-     "description": null,
-     "data": {
-       "bank_name": "ABC Bank",
-       "full_name": "John Smith",
-       "account_no": "123456789"
-     },
-     "state": "active"
+      "id":8,
+      "currency":"eur",
+      "name":"NARGATA MICROFINANCE ASDASDASD BANK",
+      "description":null,
+      "data":{
+         "bank_name":"ABC Bank",
+         "full_name":"John Smith",
+         "account_no":"123456789"
+      },
+      "state":"active"
    },
    {
-     "id": 9,
-     "currency": "eur",
-     "name": "My local bank2",
-     "description": null,
-     "data": {
-       "bank_name": "ABC Bank",
-       "full_name": "John Smith",
-       "account_no": "123456789"
-     },
-     "state": "active"
+      "id":9,
+      "currency":"eur",
+      "name":"My local bank2",
+      "description":null,
+      "data":{
+         "bank_name":"ABC Bank",
+         "full_name":"John Smith",
+         "account_no":"123456789"
+      },
+      "state":"active"
    },
    {
-     "id": 10,
-     "currency": "eur",
-     "name": "My local bank3",
-     "description": null,
-     "data": {
-       "bank_name": "ABC Bank",
-       "full_name": "John Smith",
-       "account_no": "123456789"
-     },
-     "state": "active"
+      "id":20,
+      "blockchain_key":null,
+      "currency":"eur",
+      "uid":"ID6639B9E388",
+      "name":"POLARIS BANK",
+      "description":null,
+      "data":{
+         "account_no":"123456789",
+         "bank_name":"POLARIS BANK",
+         "bank_code":"000008",
+         "bank_type":"Commercial",
+         "bank_logo":"https://api.live.redbiller.com/logos/bank/polaris.png",
+         "country_code":"NG",
+         "currency_code":"NGN",
+         "fiatDescription":"Test",
+         "full_name":"Emmanuel Sunday"
+      },
+      "state":"active",
+      "withdrawals":0,
+      "sent_at":"2021-10-26T19:12:42Z"
    }
- ]
+]

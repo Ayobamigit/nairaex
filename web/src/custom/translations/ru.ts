@@ -263,6 +263,7 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.dropdown.fiat.fullName': 'Full Name',
     'page.body.wallets.beneficiaries.dropdown.fiat.accountNumber': 'Account number',
     'page.body.wallets.beneficiaries.dropdown.fiat.bankCode': 'Bank code',
+    'page.body.wallets.beneficiaries.dropdown.fiat.bankName': 'Bank name',
     'page.body.wallets.beneficiaries.dropdown.fiat.confirm.title': 'Enter a pin',
     'page.body.wallets.beneficiaries.dropdown.fiat.confirm.message': 'Enter the pin from your email',
 

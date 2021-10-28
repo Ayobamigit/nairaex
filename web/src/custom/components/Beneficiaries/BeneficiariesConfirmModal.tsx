@@ -89,7 +89,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
 
     const verifiedProfile = React.useMemo(() => handleFilterByState(user.profiles, ['verified']), [user]);
 
-    const isWarningName = React.useMemo(() => (fullName.toLowerCase() !== `${lookup?.first_name} ${lookup?.surname}`.toLowerCase()), [lookup, fullName]);
+    const isWarningName = React.useMemo(() => (fullName.toLowerCase() !== `${lookup?.first_name} ${lookup?.surname}`.toLowerCase() || !lookup?.first_name ||  !lookup?.surname), [lookup, fullName]);
 
     const isCorrectName = React.useMemo(() => (`${verifiedProfile?.first_name}${verifiedProfile?.last_name}`.toLowerCase() !== `${lookup?.first_name}${lookup?.surname}`.toLowerCase()), [lookup, verifiedProfile]);
 
@@ -162,7 +162,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
         );
     }, [otpCode]);
 
-    const validateFullName = React.useMemo(() =>  fullName.length > 40 || fullName.match(/^(?:[\u00c0-\u01ffa-zA-Z'-]){2,}(?:\s[\u00c0-\u01ffa-zA-Z'-]{2,})+$/i) === null, [fullName]);
+    const validateFullName = React.useMemo(() => fullName.length > 40 || fullName.match(/^(?:[\u00c0-\u01ffa-zA-Z'-]){2,}(?:\s[\u00c0-\u01ffa-zA-Z'-]{2,})+$/i) === null, [fullName]);
 
     const fullNameClasses = React.useMemo(() => classnames('tip__content__block', {
         'tip__content__block--warning': validateFullName,
