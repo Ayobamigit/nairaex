@@ -234,14 +234,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
             return (
                 <div className="pg-beneficiaries__dropdown__tip tip">
                     <div className="tip__content">
-                        <div className="tip__content__block">
-                            <span className="tip__content__block__label">
-                                <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.name" />
-                            </span>
-                            <span className="tip__content__block__value">
-                                {currentWithdrawalBeneficiary.name}
-                            </span>
-                        </div>
+                        {currentWithdrawalBeneficiary.description && renderDropdownTipFiatDescription}
                         <div className="tip__content__block">
                             <span className="tip__content__block__label">
                                 <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.fullName" />
@@ -250,10 +243,9 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
                                 {(currentWithdrawalBeneficiary.data as BeneficiaryBank).full_name}
                             </span>
                         </div>
-                        {currentWithdrawalBeneficiary.description && renderDropdownTipFiatDescription}
                         <div className="tip__content__block">
                             <span className="tip__content__block__label">
-                                <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.account" />
+                                <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.accountNumber" />
                             </span>
                             <span className="tip__content__block__value">
                                 {(currentWithdrawalBeneficiary.data as BeneficiaryBank).account_no}
@@ -261,10 +253,18 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
                         </div>
                         <div className="tip__content__block">
                               <span className="tip__content__block__label">
-                                  <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankOfBeneficiary" />
+                                  <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankName" />
                               </span>
                             <span className="tip__content__block__value">
-                                {(currentWithdrawalBeneficiary.data as BeneficiaryBank).bank_name}
+                                {currentWithdrawalBeneficiary.name}
+                            </span>
+                        </div>
+                        <div className="tip__content__block">
+                            <span className="tip__content__block__label">
+                                <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankCode" />
+                            </span>
+                            <span className="tip__content__block__value">
+                                {banks.filter(el => el.bank_name == currentWithdrawalBeneficiary.name)[0]?.bank_code}
                             </span>
                         </div>
                     </div>
@@ -273,7 +273,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
         }
 
         return null;
-    }, [isOpenDropdown, currentWithdrawalBeneficiary]);
+    }, [isOpenDropdown, currentWithdrawalBeneficiary, banks]);
 
     const renderDropdownItem = React.useCallback((item: Beneficiary, index: number, type: OwnProps['type']) => {
         const isPending = item.state && item.state.toLowerCase() === 'pending';

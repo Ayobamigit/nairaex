@@ -82,7 +82,7 @@ Access-Control-Allow-Credentials: true
       "automated_payout":false,
       "bank_code":"090152",
       "bank_logo":"https://api.live.redbiller.com/logos/bank/default.png",
-      "bank_name":"NARGATA MICROFINANCE BANK",
+      "bank_name":"NARGATA MICROFINANCE ASDASDASD BANK",
       "bank_type":"Microfinance",
       "country_code":"NG",
       "created_at":"2021-08-20T05:45:44.000Z",
