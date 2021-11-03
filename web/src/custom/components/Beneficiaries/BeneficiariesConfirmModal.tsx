@@ -109,7 +109,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
 
     const renderFullNameInput = React.useMemo(() => {
         return (
-            <div key={fullName} className={focusedClass}>
+            <div key={"fullName"} className={focusedClass}>
                 <CustomInput
                     type="text"
                     label={''}
@@ -256,7 +256,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
     }, [isOpenWarningModal]);
 
     return (
-          <>
+        <>
             <div className="cr-modal beneficiaries-modal">
                 <div className="pg-container pg-confirm">
                     <div className="pg-confirm__logo">
@@ -273,7 +273,7 @@ const BeneficiariesConfirmModalContentComponent: React.FC<Props> = ({ descriptio
                 </div>
             </div>
             {(isCorrectName && !isOpenWarningModal) && <BeneficiariesWarningModal handleRejectWarningModal={handleRejectWarningModal} handleCloseWarningModal={handleCloseWarningModal} />}
-          </>
+        </>
     );
 };
 
