@@ -49,5 +49,21 @@ export const en = {
     'page.body.wallets.beneficiaries.confirmationModal.body.warning.fiat.fullName': 'Invalid full name',
     'page.body.wallets.beneficiaries.addAddressModal.body.invalidBanks': 'Server error!!!',
     'page.body.wallets.beneficiaries.addAddressModal.body.dropdown.placeholder': 'Select bank',
+
+    'page.body.history.withdraw.header.fullName': 'Full Name',
+    'page.body.history.deposit.header.fullName': ' ',
+
+    'page.body.wallets.table.succeed': 'Succeed',
+    'page.body.wallets.table.failed': 'Failed',
+    'page.body.wallets.table.accepted': 'Accepted',
+    'page.body.wallets.table.collected': 'Collected',
+    'page.body.wallets.table.canceled': 'Canceled',
+    'page.body.wallets.table.processing': 'Processing',
+    'page.body.wallets.table.prepared': 'Prepared',
+    'page.body.wallets.table.submitted': 'Submitted',
+    'page.body.wallets.table.skipped': 'Skipped',
+
+
+
   };
   

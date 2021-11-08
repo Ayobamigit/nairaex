@@ -20,7 +20,7 @@ import { Withdraw, WithdrawProps } from 'src/custom/containers';
 import { ModalWithdrawConfirmation } from 'src/custom/containers/ModalWithdrawConfirmation';
 import { ModalWithdrawSubmit } from 'src/containers/ModalWithdrawSubmit';
 import { WalletsHeader } from 'src/components/WalletsHeader';
-import { WalletHistory } from 'src/containers/Wallets/History';
+import { WalletHistory } from '../History';
 import {
     alertPush,
     banksFetch,

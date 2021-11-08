@@ -132,6 +132,60 @@
   overflow: scroll;
 }
 
+.pg-history-elem__wallet .pg-history-elem__label {
+  font-weight: 500;
+}
+
+.cr-table {
+
+  &__head {
+    
+    &-row {
+      th:nth-child(2) {
+        text-align: left!important;
+      }
+
+    }
+
+  }
+
+  &__body {
+
+    tr {
+      border-bottom: 1px solid var(--table-border-color)!important;
+      
+      td:nth-child(2) {
+        text-align: left!important;
+      }
+    }
+
+    &-status {
+
+      &--success, &--fail, &--pending {
+        display: flex;
+        justify-content: flex-end;
+
+        svg {
+          margin-left: 5px;
+        }
+      }
+
+      &--success {
+        color: var(--system-green);
+      }
+
+      &--fail {
+        color: var(--system-red);
+      }
+
+      &--pending {
+        color: var(--system-yellow);
+      }
+    }
+  }
+
+}
+
 .pg-beneficiaries__dropdown__body .item__left__address {
   max-width: 150px;
 

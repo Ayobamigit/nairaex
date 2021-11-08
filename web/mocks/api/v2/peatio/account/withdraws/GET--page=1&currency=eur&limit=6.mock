@@ -1,0 +1,86 @@
+HTTP/2 200
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: total
+Total: 28
+
+[
+    {
+        "id": 37,
+        "currency": "eur",
+        "type": "fiat",
+        "amount": "20.0",
+        "fee": "1.0",
+        "blockchain_txid": null,
+        "rid": "george-david-eur-00000047",
+        "state": "rejected",
+        "note": null,
+        "transfer_type": "fiat",
+        "created_at": "2021-11-08T08:02:07Z",
+        "updated_at": "2021-11-08T08:02:07Z",
+        "done_at": null
+    },
+    {
+        "id": 35,
+        "currency": "eur",
+        "type": "fiat",
+        "amount": "12.0",
+        "fee": "1.0",
+        "blockchain_txid": null,
+        "rid": "george-david-eur-00000044",
+        "state": "under_review",
+        "note": null,
+        "transfer_type": "fiat",
+        "created_at": "2021-11-08T08:02:07Z",
+        "updated_at": "2021-11-08T08:02:07Z",
+        "done_at": null
+    },
+    {
+        "id": 9,
+        "currency": "eur",
+        "type": "fiat",
+        "amount": "12.0",
+        "fee": "1.0",
+        "blockchain_txid": null,
+        "rid": "george-david-eur-00000023",
+        "state": "rejected",
+        "note": null,
+        "transfer_type": "fiat",
+        "created_at": "2021-11-08T08:02:07Z",
+        "updated_at": "2021-11-08T08:02:07Z",
+        "done_at": null
+    },
+    {
+        "id": 35,
+        "currency": "eur",
+        "type": "fiat",
+        "amount": "12.0",
+        "fee": "1.0",
+        "blockchain_txid": null,
+        "rid": "george-david-eur-00000044",
+        "state": "rejected",
+        "note": null,
+        "transfer_type": "fiat",
+        "created_at": "2021-11-08T08:02:07Z",
+        "updated_at": "2021-11-08T08:02:07Z",
+        "done_at": null
+    },
+    {
+        "id": 35,
+        "currency": "eur",
+        "type": "fiat",
+        "amount": "12.0",
+        "fee": "1.0",
+        "blockchain_txid": null,
+        "rid": "george-david-eur-00000044",
+        "state": "accepted",
+        "note": null,
+        "transfer_type": "fiat",
+        "created_at": "2021-11-08T08:02:07Z",
+        "updated_at": "2021-11-08T08:02:07Z",
+        "done_at": null
+    }
+]
