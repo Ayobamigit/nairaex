@@ -14,6 +14,7 @@ export interface WithdrawProps {
     balance: string;
     onClick: (amount: string, total: string, beneficiary: Beneficiary, otpCode: string, fee: string, currency: string) => void;
     fixed: number;
+    beneficiaries: Beneficiary[];
     className?: string;
     type: 'fiat' | 'coin';
     twoFactorAuthRequired?: boolean;
@@ -150,12 +151,17 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
         );
     }
 
+    private handleCheckLimits = () => {
+        const { amount } = this.state;
+        const { balance, min_withdraw, max_withdraw } = this.props;
+        return (Number(amount) >= Number(min_withdraw) && Number(amount) < Number(max_withdraw) && Number(amount) <= Number(balance))
+    }
+
     private handleCheckButtonDisabled = (total: string, beneficiary: Beneficiary, otpCode: string) => {
         const isPending = beneficiary.state && beneficiary.state.toLowerCase() === 'pending';
-        const { amount } = this.state;
-        const { balance, min_withdraw, max_withdraw, type } = this.props;
+        const { type, beneficiaries } = this.props;
         if (type === 'fiat') {
-            return Number(total) <= 0 || !Boolean(beneficiary.id) || isPending || !(Number(amount) >= Number(min_withdraw) && Number(amount) < Number(max_withdraw) && Number(amount) <= Number(balance));
+            return Number(total) <= 0 || !Boolean(beneficiary.id) || isPending || !(this.handleCheckLimits()) || !beneficiaries.length;
         }
 
         return Number(total) <= 0 || !Boolean(beneficiary.id) || isPending

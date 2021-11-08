@@ -506,7 +506,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         }
 
         this.setState((state: WalletsState) => ({
-          withdrawConfirmModal: !state.withdrawConfirmModal,
+            withdrawConfirmModal: !state.withdrawConfirmModal,
         }))
     };
 
@@ -670,7 +670,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         const currency = this.props.wallets[this.state.selectedWalletIndex].currency;
 
         return (
-          <span>
+            <span>
                 <span>
                     {`${this.translate('page.body.wallets.warning.withdraw.limits.min')} ${integration?.min_withdrawal_amount} `}<b>{currency.toUpperCase()}</b>
                     <br/>
@@ -746,6 +746,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             currency,
             fee,
             balance,
+            beneficiaries: this.props.beneficiaries,
             onClick: this.onOpenConfirmationModal,
             twoFactorAuthRequired: this.isTwoFactorAuthRequired(level, otp),
             fixed,

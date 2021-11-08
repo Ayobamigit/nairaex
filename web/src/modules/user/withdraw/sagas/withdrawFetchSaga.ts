@@ -6,7 +6,7 @@ import {
     withdrawData,
     withdrawError,
 } from '../actions';
-import { alertPush, withdrawAllowClear } from 'src/modules';
+import { alertPush, fetchHistory, withdrawAllowClear } from 'src/modules';
 import { getCsrfToken } from 'src/helpers';
 
 const withdrawOptions = (csrfToken?: string): RequestOptions => ({
@@ -19,6 +19,7 @@ export function* withdrawFetchSaga(action: WithdrawFetch) {
         const withdraw = yield call(API.post(withdrawOptions(getCsrfToken())), '/management/withdraws/new', action.payload);
         yield put(withdrawData(withdraw));
         yield put(withdrawAllowClear());
+        yield put(fetchHistory({ page: 0, currency: withdraw.currency, type: 'withdraws', limit: 6 }))
         yield put(alertPush({message: ['success.withdraw.action'], type: 'success'}));
     } catch (error) {
         yield put(sendError({
