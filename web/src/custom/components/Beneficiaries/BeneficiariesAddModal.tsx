@@ -161,6 +161,12 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
         }
     }, []);
 
+    const validateFiatDescription = React.useCallback((value: string) => {
+        if (value.length <= 100) {
+            setFiatDescription(value);
+        }
+    }, []);
+
     const handleChangeFieldValue = React.useCallback((key: string, value: string) => {
         switch (key) {
             case 'coinAddress':
@@ -180,7 +186,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 validateFiatAccountNumber(value);
                 break;
             case 'fiatDescription':
-                setFiatDescription(value);
+                validateFiatDescription(value);
                 break;
             default:
                 break;
