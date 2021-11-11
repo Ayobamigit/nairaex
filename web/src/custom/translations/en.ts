@@ -62,8 +62,9 @@ export const en = {
     'page.body.wallets.table.prepared': 'Prepared',
     'page.body.wallets.table.submitted': 'Submitted',
     'page.body.wallets.table.skipped': 'Skipped',
-
-
+    'page.body.wallets.table.under_review': 'Under review',
+    
+    'page.body.history.withdraw.content.status.under_review': 'Under review',
 
   };
   

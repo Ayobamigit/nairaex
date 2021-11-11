@@ -224,7 +224,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
                 <span className="tip__content__block__label">
                     <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.description" />
                 </span>
-                <span className="tip__content__block__value">{currentWithdrawalBeneficiary.description}</span>
+                <span className="tip__content__block__value">{currentWithdrawalBeneficiary.data.fiatDescription}</span>
             </div>
         );
     }, [currentWithdrawalBeneficiary]);
@@ -234,7 +234,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
             return (
                 <div className="pg-beneficiaries__dropdown__tip tip">
                     <div className="tip__content">
-                        {currentWithdrawalBeneficiary.description && renderDropdownTipFiatDescription}
+                        {(currentWithdrawalBeneficiary.data as BeneficiaryBank).fiatDescription && renderDropdownTipFiatDescription}
                         <div className="tip__content__block">
                             <span className="tip__content__block__label">
                                 <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.fullName" />
@@ -252,9 +252,9 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
                             </span>
                         </div>
                         <div className="tip__content__block">
-                              <span className="tip__content__block__label">
-                                  <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankName" />
-                              </span>
+                            <span className="tip__content__block__label">
+                                <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankName" />
+                            </span>
                             <span className="tip__content__block__value">
                                 {currentWithdrawalBeneficiary.name}
                             </span>

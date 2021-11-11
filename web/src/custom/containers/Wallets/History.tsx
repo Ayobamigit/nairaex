@@ -163,22 +163,26 @@ export class WalletTable extends React.Component<Props> {
     };
 
     private formatTxState = (tx: string, confirmations?: number, minConfirmations?: number) => {
+        const success = 'cr-table__body-status--success';
+        const fail = 'cr-table__body-status--fail';
+        const pending = 'cr-table__body-status--pending';
+
         const statusMapping = {
-            succeed: <span className="cr-table__body-status--success">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.succeed' })} <SuccessIcon /></span>,
-            failed: <span className="cr-table__body-status--fail">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.failed' })} <FailIcon /></span>,
-            accepted: <span className="cr-table__body-status--success">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.accepted' })} <SuccessIcon /></span>,
-            collected: <span className="cr-table__body-status--success">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.collected' })} <SuccessIcon /></span>,
-            canceled: <span className="cr-table__body-status--fail">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.canceled' })} <FailIcon /></span>,
-            rejected: <span className="cr-table__body-status--fail">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.rejected' })} <FailIcon /></span>,
-            processing: <span className="cr-table__body-status--pending">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.processing' })} <PendingIcon/></span>,
-            prepared: <span className="cr-table__body-status--pending">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.prepared' })} <PendingIcon/></span>,
+            succeed: <span className={success}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.succeed' })} <SuccessIcon /></span>,
+            failed: <span className={fail}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.failed' })} <FailIcon /></span>,
+            accepted: <span className={success}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.accepted' })} <SuccessIcon /></span>,
+            collected: <span className={success}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.collected' })} <SuccessIcon /></span>,
+            canceled: <span className={fail}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.canceled' })} <FailIcon /></span>,
+            rejected: <span className={fail}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.rejected' })} <FailIcon /></span>,
+            processing: <span className={pending}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.processing' })} <PendingIcon/></span>,
+            prepared: <span className={pending}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.prepared' })} <PendingIcon/></span>,
             submitted: (confirmations !== undefined && minConfirmations !== undefined) ? (
                 `${confirmations}/${minConfirmations}`
             ) : (
-                <span className="cr-table__body-status--pending">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.pending' })} <PendingIcon/></span>
+                <span className={pending}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.pending' })} <PendingIcon/></span>
             ),
-            skipped: <span className="cr-table__body-status--success">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.skipped' })} <SuccessIcon /></span>,
-            under_review: <span className="cr-table__body-status--pending">{this.props.intl.formatMessage({ id: 'page.body.wallets.table.pending' })} <PendingIcon/></span>,
+            skipped: <span className={success}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.skipped' })} <SuccessIcon /></span>,
+            under_review: <span className={pending}>{this.props.intl.formatMessage({ id: 'page.body.wallets.table.under_review' })} <PendingIcon/></span>,
         };
 
         return statusMapping[tx];

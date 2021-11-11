@@ -218,10 +218,11 @@ export const ru: LangType = {
     'page.body.wallets.table.accepted': 'Принято',
     'page.body.wallets.table.collected': 'Собрано',
     'page.body.wallets.table.canceled': 'Отменено',
-    'page.body.wallets.table.processing': 'Обработка',
+    'page.body.wallets.table.processing': 'Обрабатывается',
     'page.body.wallets.table.prepared': 'Готовится',
     'page.body.wallets.table.submitted': 'Подтверждено',
     'page.body.wallets.table.skipped': 'Пропущено',
+    'page.body.wallets.table.under_review': 'Under review',
     'page.body.wallets.tabs.deposit.fiat.admin': 'Для того, чтобы вывести эту валюту, обратитесь к администратору!',
 
     'page.body.wallets.tabs.withdraw': 'Вывод',
@@ -385,6 +386,7 @@ export const ru: LangType = {
     'page.body.history.withdraw.content.status.failed': 'Неудачный',
     'page.body.history.withdraw.content.status.confirming': 'Подтверждается',
     'page.body.history.withdraw.content.status.errored': 'Ошибка',
+    'page.body.history.withdraw.content.status.under_review': 'На рассмотрении',
 
     'page.body.history.transfer': 'История трансферов',
     'page.body.history.transfer.header.date': 'Дата',
