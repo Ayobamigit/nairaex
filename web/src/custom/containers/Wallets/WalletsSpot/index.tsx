@@ -708,7 +708,12 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         );
     };
 
-    private isLimitedWithdraw = () => (this.state.amount && (Number(this.state.amount) < Number(this.props.integration?.min_withdrawal_amount) || Number(this.state.amount) > Number(this.props.integration?.max_withdrawal_amount)));
+    private isLimitedWithdraw = () => {
+        const { wallets } = this.props;
+        const fee = wallets[this.state.selectedWalletIndex].fee;
+        const total =  Number(this.state.amount) - fee;
+        return (total && (Number(total) < Number(this.props.integration?.min_withdrawal_amount) || Number(total) > Number(this.props.integration?.max_withdrawal_amount)))
+    };
 
     private renderWithdrawWarning = () => {
         const { user: { otp, level }, memberLevels, beneficiaries } = this.props;

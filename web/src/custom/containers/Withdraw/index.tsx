@@ -151,17 +151,16 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
         );
     }
 
-    private handleCheckLimits = () => {
-        const { amount } = this.state;
+    private handleCheckLimits = (total) => {
         const { balance, min_withdraw, max_withdraw } = this.props;
-        return (Number(amount) >= Number(min_withdraw) && Number(amount) < Number(max_withdraw) && Number(amount) <= Number(balance))
+        return (Number(total) >= Number(min_withdraw) && Number(total) < Number(max_withdraw) && Number(total) <= Number(balance))
     }
 
     private handleCheckButtonDisabled = (total: string, beneficiary: Beneficiary, otpCode: string) => {
         const isPending = beneficiary.state && beneficiary.state.toLowerCase() === 'pending';
         const { type, beneficiaries } = this.props;
         if (type === 'fiat') {
-            return Number(total) <= 0 || !Boolean(beneficiary.id) || isPending || !(this.handleCheckLimits()) || !beneficiaries.length;
+            return Number(total) <= 0 || !Boolean(beneficiary.id) || isPending || !(this.handleCheckLimits(total)) || !beneficiaries.length;
         }
 
         return Number(total) <= 0 || !Boolean(beneficiary.id) || isPending
