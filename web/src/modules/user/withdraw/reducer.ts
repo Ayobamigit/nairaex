@@ -3,14 +3,14 @@ import { WithdrawDataPayload } from './types';
 import { WITHDRAW_FETCH, WITHDRAW_DATA, WITHDRAW_ERROR } from './constants';
 
 export interface WithdrawState {
-    data: Array<WithdrawDataPayload>;
+    data: WithdrawDataPayload | null;
     loading: boolean;
     success: boolean;
     error: boolean;
 }
 
 export const initialWithdrawState: WithdrawState = {
-    data: [],
+    data: null,
     loading: false,
     success: false,
     error: false,
@@ -28,7 +28,7 @@ export const withdrawReducer = (state = initialWithdrawState, action: WithdrawAc
         case WITHDRAW_DATA:
             return {
                 ...state,
-                data: [...state.data, action.payload],
+                data: action.payload,
                 success: true,
                 loading: false,
             };
