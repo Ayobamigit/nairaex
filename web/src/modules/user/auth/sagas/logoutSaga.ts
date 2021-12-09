@@ -13,13 +13,21 @@ const requestOptions: RequestOptions = {
 
 export function* logoutSaga(action: LogoutFetch) {
     try {
+        console.log("Inside saga 'LOGOUT'");
         yield call(API.delete(requestOptions), '/identity/sessions');
+        console.log(1);
         yield put(userReset());
+        console.log(2);
         localStorage.removeItem('csrfToken');
+        console.log(3);
         yield put(userOpenOrdersReset());
+        console.log(4);
         yield put(signInRequire2FA({ require2fa: false }));
+        console.log(5);
         yield put(resetHistory());
+        console.log(6);
     } catch (error) {
+        console.log('Error Logout saga', error);
         yield put(sendError({
             error,
             processingType: 'alert',

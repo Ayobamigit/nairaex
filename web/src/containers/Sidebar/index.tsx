@@ -225,7 +225,7 @@ const mapStateToProps = (state: RootState): ReduxProps => ({
 const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> = (dispatch) => ({
     changeLanguage: (payload) => dispatch(changeLanguage(payload)),
     toggleSidebar: (payload) => dispatch(toggleSidebar(payload)),
-    logoutFetch: () => dispatch(logoutFetch()),
+    logoutFetch: () => {console.log("Dispatch logout fetch"); return dispatch(logoutFetch())},
     changeUserDataFetch: (payload) => dispatch(changeUserDataFetch(payload)),
 });
 
