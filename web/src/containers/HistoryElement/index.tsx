@@ -20,6 +20,7 @@ import {
     Currency,
     fetchHistory,
     Market,
+    marketsFetch,
     RootState,
     selectCurrencies,
     selectCurrentPage,
@@ -53,6 +54,7 @@ interface ReduxProps {
 interface DispatchProps {
     fetchCurrencies: typeof currenciesFetch;
     fetchHistory: typeof fetchHistory;
+    fetchMarkets: typeof marketsFetch;
 }
 
 type Props = HistoryProps & ReduxProps & DispatchProps & IntlProps;
@@ -63,7 +65,11 @@ class HistoryComponent extends React.Component<Props> {
         const fetchParams = { page: 0, type, limit: 25 }
 
         if (type === 'quick_exchange') {
+            console.log('test')
             fetchParams['market_type'] = 'qe';
+            this.props.fetchMarkets({type: 'qe'});
+        } else {
+            this.props.fetchMarkets();
         }
 
         this.props.fetchHistory(fetchParams);
@@ -74,7 +80,7 @@ class HistoryComponent extends React.Component<Props> {
     }
 
     public componentWillReceiveProps(nextProps: Props) {
-        const { currencies } = this.props;
+        const { currencies, type } = this.props;
 
         if (!currencies.length && nextProps.currencies.length) {
             this.props.fetchCurrencies();
@@ -338,6 +344,7 @@ export const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProps, {}> =
     dispatch => ({
         fetchCurrencies: () => dispatch(currenciesFetch()),
         fetchHistory: params => dispatch(fetchHistory(params)),
+        fetchMarkets: params => dispatch(marketsFetch(params)),
     });
 
 export const HistoryElement = compose(
