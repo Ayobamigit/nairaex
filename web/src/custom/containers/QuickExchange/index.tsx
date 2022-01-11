@@ -156,7 +156,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
 
             updatedExchange = {
                 ...exchange,
-                amount: String(+value / +marketPrice.price),
+                amount: Decimal.format(String(+value / +marketPrice.price), exchange.wallet?.fixed, ''),
             }
 
             setExchange(updatedExchange);
@@ -166,7 +166,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
         if (formSide === 'exchange') {
             updatedReceive = {
                 ...receive,
-                amount: String(+value * +marketPrice.price),
+                amount: Decimal.format(String(+value * +marketPrice.price), receive.wallet?.fixed, ''),
             }
 
             updatedExchange = {
