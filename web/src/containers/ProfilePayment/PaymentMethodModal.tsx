@@ -100,8 +100,8 @@ export const PaymentMethodModal: FC<PaymentMethodModalProps> = props => {
                 return (
                     <div className={inputClass(option)}>
                         <DropdownComponent
-                            list={option.options.map(i => i?.value)}
-                            onSelect={value => props.handleCustomFieldChange(option.options[value].value, option.key)}
+                            list={option.options}
+                            onSelect={value => props.handleCustomFieldChange(option.options[value], option.key)}
                             placeholder={option.value}
                         />
                         {showError && option.required && !option.value &&
