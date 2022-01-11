@@ -6,71 +6,85 @@ Access-Control-Max-Age: 3600
 Access-Control-Allow-Credentials: true
 
 [
-  {
-    "id": 1,
-    "type": "Bank Transfer",
-    "name": "Yellow Bank",
-    "logo": "iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEYSURBVHgBzZOxS0JRFMZ/9xL0IsFXS1LDC2oqqKE2MWqplhyK2qSpqRpqsC0KnKIhcApapC3qD4iajMYG2zVdopZ6gqKTV+8TnPShzzf4m87hfnx851yOMOKr+zXEjQATb+QF6kIMx9e+Gs00/WFLH0w0psQnfDMa6vQQnQuzNR9u9elchvuPZ3o2WpicpVgpk3x/JDgS4G7vDGs8ROIl1VbvOppdLVH4/+XzO0vy7QnLDNFzIifV1AyxpU2nPo5ss5s692ZkGgGssYlmukqJoDHqzSidzZB4be5kJbfIdfSQ9dvTttquv18v3w3XREeRHWLLG05d+Pvh4OGqo1bfmsIHBu9EZGMum/7JS6nUiS7wiA4ilLqsA3JpQ8llTi7NAAAAAElFTkSuQmCC",
-    "options": {
-      "name": {
-        "description": "Account owner name",
-        "name": "Account owner",
-        "type": "short_answer",
-        "required": true
-      },
-      "bank_name": {
-        "description": "Bank name",
-        "name": "Bank name",
-        "type": "dropdown",
-        "required": true,
-        "options": [
-          {"id": 1, "value": "Kasikon Bank"},
-          {"id": 2, "value": "K-Bank"},
-          {"id": 3, "value": "Monobank"}
-        ]
-      },
-      "account_number": {
-        "description": "Bank account number",
-        "name": "Account number",
-        "type": "short_answer",
-        "required": true
-      }
+    {
+        "id": 4,
+        "type": "Bank Transfer",
+        "name": "bbbbank",
+        "options": {
+            "test1": {
+                "name": "test1",
+                "type": "dropdown",
+                "options": [
+                    "bank 1",
+                    "bank2",
+                    "bank3"
+                ],
+                "required": true,
+                "description": "tes1"
+            }
+        },
+        "enabled": true,
+        "created_at": "2021-12-24T13:30:28.903Z",
+        "updated_at": "2021-12-24T13:30:28.903Z"
+    },
+    {
+        "id": 3,
+        "type": "Debit/Credit Card",
+        "name": "card",
+        "options": {
+            "bank?": {
+                "name": "Bank?",
+                "type": "short_answer",
+                "required": true,
+                "description": "what bank?"
+            },
+            "number_of_account": {
+                "name": "Number of account",
+                "type": "short_answer",
+                "required": true,
+                "description": "account?"
+            }
+        },
+        "enabled": true,
+        "created_at": "2021-12-24T12:32:10.416Z",
+        "updated_at": "2021-12-24T12:32:10.416Z"
+    },
+    {
+        "id": 2,
+        "type": "Digital Currencies",
+        "name": "Test 123",
+        "options": {
+            "how_to_deposit": {
+                "name": "How to deposit",
+                "type": "short_answer",
+                "required": true,
+                "description": "address"
+            },
+            "name_your_currency": {
+                "name": "Name your currency",
+                "type": "short_answer",
+                "required": true,
+                "description": "You currency name"
+            }
+        },
+        "enabled": true,
+        "created_at": "2021-12-24T10:27:55.569Z",
+        "updated_at": "2021-12-24T10:28:30.176Z"
+    },
+    {
+        "id": 1,
+        "type": "Debit/Credit Card",
+        "name": "Monobank",
+        "options": {
+            "monobank": {
+                "name": "Monobank",
+                "type": "short_answer",
+                "required": true,
+                "description": "Card number"
+            }
+        },
+        "enabled": true,
+        "created_at": "2021-10-18T14:59:23.397Z",
+        "updated_at": "2021-12-24T07:59:44.104Z"
     }
-  },
-  {
-    "id": 2,
-    "type": "Debit/Credit Card",
-    "name": "Card",
-    "logo": "iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEYSURBVHgBzZOxS0JRFMZ/9xL0IsFXS1LDC2oqqKE2MWqplhyK2qSpqRpqsC0KnKIhcApapC3qD4iajMYG2zVdopZ6gqKTV+8TnPShzzf4m87hfnx851yOMOKr+zXEjQATb+QF6kIMx9e+Gs00/WFLH0w0psQnfDMa6vQQnQuzNR9u9elchvuPZ3o2WpicpVgpk3x/JDgS4G7vDGs8ROIl1VbvOppdLVH4/+XzO0vy7QnLDNFzIifV1AyxpU2nPo5ss5s692ZkGgGssYlmukqJoDHqzSidzZB4be5kJbfIdfSQ9dvTttquv18v3w3XREeRHWLLG05d+Pvh4OGqo1bfmsIHBu9EZGMum/7JS6nUiS7wiA4ilLqsA3JpQ8llTi7NAAAAAElFTkSuQmCC",
-    "options": {
-      "expiry": {
-        "description": "Card expiry MMYY",
-        "name": "MMYY",
-        "type": "short_answer",
-        "required": true
-      },
-      "card_company": {
-        "description": "Card company",
-        "name": "Card company",
-        "type": "dropdown",
-        "required": true,
-        "options": [
-          {"id": 12, "value": "Visa"},
-          {"id": 13, "value": "Master"}
-        ]
-      },
-      "holder_name": {
-        "description": "Card holder name",
-        "name": "Holder name",
-        "type": "short_answer",
-        "required": true
-      },
-      "card_number": {
-        "description": "Your card number",
-        "name": "Card number",
-        "type": "short_answer",
-        "required": true
-      }
-    }
-  }
 ]
