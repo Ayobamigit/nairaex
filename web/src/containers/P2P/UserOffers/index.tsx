@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DEFAULT_CCY_PRECISION, DEFAULT_FIAT_PRECISION, DEFAULT_TABLE_PAGE_LIMIT } from 'src/constants';
 import { localeDate, setOfferStatusColor } from 'src/helpers';
 import { Decimal, Pagination, Table, TabPanel } from '../../../components';
-import { useCurrenciesFetch, useP2PUserOffersFetch, useWalletsFetch } from '../../../hooks';
+import { useCurrenciesFetch, useWalletsFetch } from '../../../hooks';
 import {
     userOffersFetch,
     cancelOffer,
@@ -41,10 +41,10 @@ const P2PUserOffers: FC = (): ReactElement => {
 
     useWalletsFetch();
     useCurrenciesFetch();
-    useP2PUserOffersFetch({ limit: DEFAULT_TABLE_PAGE_LIMIT, page, state: tab });
 
     useEffect(() => {
         setTab(tabMapping[0]);
+        dispatch(userOffersFetch({ page: 0, limit: DEFAULT_TABLE_PAGE_LIMIT, state: tabMapping[0] }));
     }, []);
 
     const headerTitles = useCallback(() => [
