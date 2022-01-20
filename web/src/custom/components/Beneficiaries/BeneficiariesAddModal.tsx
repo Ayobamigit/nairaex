@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { HugeCloseIcon } from 'src/assets/images/CloseIcon';
 import { LogoIcon } from 'src/assets/images/LogoIcon';
-import { DropdownComponent } from 'src/components';
+import { CodeVerification, DropdownComponent } from 'src/components';
 import { WarningMessage } from 'src/custom/components/WarningMessage';
 import { CustomInput } from 'src/components/CustomInput';
 import { BeneficiariesConfirmModal } from 'src/custom/components/Beneficiaries/BeneficiariesConfirmModal';
@@ -18,6 +18,7 @@ import {
     selectBanks,
     selectBeneficiariesCreateError,
     selectMobileDeviceState,
+    selectSignInRequire2FA,
 } from 'src/modules';
 
 interface Props {
@@ -30,6 +31,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     const [coinAddress, setCoinAddress] = React.useState<string>('');
     const [coinBeneficiaryName, setCoinBeneficiaryName] = React.useState<string>('');
     const [coinDescription, setCoinDescription] = React.useState<string>('');
+    const [otpCode, setOtpCode] = React.useState<string>('');
     const [coinDestinationTag, setCoinDestinationTag] = React.useState<string>('');
     const [coinAddressValid, setCoinAddressValid] = React.useState<boolean>(false);
     const [coinTestnetAddressValid, setCoinTestnetAddressValid] = React.useState<boolean>(false);
@@ -54,6 +56,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     const banks = useSelector(selectBanks);
     const beneficiariesAddError = useSelector(selectBeneficiariesCreateError);
     const isMobileDevice = useSelector(selectMobileDeviceState);
+    const require2FA = useSelector(selectSignInRequire2FA);
     const isRipple = React.useMemo(() => currency === 'xrp', [currency]);
 
     const handleClearModalsInputs = React.useCallback(() => {
@@ -97,11 +100,12 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 address: (isRipple && coinDestinationTag ? `${coinAddress}?dt=${coinDestinationTag}` : coinAddress),
             }),
             ...(coinDescription && { description: coinDescription }),
+            otp: otpCode,
         };
 
         dispatch(beneficiariesCreate(payload));
         handleClearModalsInputs();
-    }, [coinAddress, coinBeneficiaryName, coinDescription, currency, coinDestinationTag, isRipple]);
+    }, [coinAddress, coinBeneficiaryName, coinDescription, currency, coinDestinationTag, isRipple, otpCode]);
 
     const getState = React.useCallback(key => {
         switch (key) {
@@ -265,6 +269,29 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
         );
     }, [coinAddress]);
 
+    const renderOtpCodeInput = React.useMemo(() => {
+        return (
+            <div className="pg-exchange-modal-submit-footer modal-footer__withdraw-confirm">
+                <div className="tip__content__block text-left">
+                    <span className="tip__content__block__value">
+                        <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.message" />
+                    </span>
+                </div>
+                <div className="modal-footer__withdraw-confirm-form">
+                    <CodeVerification
+                        code={otpCode}
+                        onChange={setOtpCode}
+                        codeLength={6}
+                        type="text"
+                        placeholder="X"
+                        inputMode="decimal"
+                        showPaste2FA={true}
+                    />
+                </div>
+            </div>
+        )
+    }, [otpCode])
+
     const renderAddAddressModalCryptoBody = React.useMemo(() => {
         const isDisabled = !coinAddress || !coinBeneficiaryName || (!coinAddressValid && !coinTestnetAddressValid);
 
@@ -276,6 +303,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 {renderAddAddressModalBodyItem('coinBeneficiaryName')}
                 {renderAddAddressModalBodyItem('coinDescription', true)}
                 {isRipple && renderAddAddressModalBodyItem('coinDestinationTag', true)}
+                {require2FA && renderOtpCodeInput}
                 <div className="cr-email-form__button-wrapper">
                     <Button
                         disabled={isDisabled}
@@ -288,7 +316,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 </div>
             </div>
         );
-    }, [coinAddress, coinBeneficiaryName, coinDescription, coinDestinationTag, coinAddressValid, coinTestnetAddressValid]);
+    }, [coinAddress, coinBeneficiaryName, coinDescription, coinDestinationTag, coinAddressValid, coinTestnetAddressValid, renderOtpCodeInput]);
 
     const handleSubmitAddAddressFiatModal = React.useCallback(() => {
         setConfirmationModal(true);

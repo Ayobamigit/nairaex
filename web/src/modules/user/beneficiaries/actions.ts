@@ -86,6 +86,7 @@ export interface BeneficiariesCreate {
         name: string;
         data: string;
         description?: string;
+        otp: string;
     };
 }
 
