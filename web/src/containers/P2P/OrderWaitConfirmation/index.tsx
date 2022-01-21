@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useIntl } from 'react-intl';
 import { getCountdownDate, secondToMinutes } from 'src/helpers';
 import { P2POrder } from 'src/modules';
+import { useHistory } from 'react-router-dom';
 
 interface ParentProps {
     order: P2POrder;
@@ -16,6 +17,7 @@ const OrderWaitConfirmation: FC<Props> = (props: Props): ReactElement => {
 
     const { order, isTaker } = props;
     const { formatMessage } = useIntl();
+    const history = useHistory();
 
     useEffect(() => {
         if (order) {
@@ -51,7 +53,7 @@ const OrderWaitConfirmation: FC<Props> = (props: Props): ReactElement => {
             {((isTaker && order?.state === 'wait') || (!isTaker && order?.side === 'sell')) && (
                 <div className="cr-confirm-order__btn-wrapper__grid">
                     <Button
-                        onClick={() => window.console.log('logDispute')}
+                        onClick={() => history.push({ search: 'createDispute' })}
                         size="lg"
                         variant="primary"
                         disabled={timeLeft !== '00:00:00'}

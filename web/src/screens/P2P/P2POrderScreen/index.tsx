@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, useCallback, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { Decimal } from 'src/components';
 import { Dispute, OrderWaitConfirmation, OrderWaitPayment, P2POrderConfirmModal } from 'src/containers';
 import { localeDate } from 'src/helpers';
@@ -17,6 +17,7 @@ interface ParamType {
 export const P2POrderScreen: FC = (): ReactElement => {
     const { formatMessage } = useIntl();
     const { id } = useParams<ParamType>();
+    const { search } = useLocation();
     const order: P2POrder = useSelector(selectP2PCreatedOrder);
     const createdOrderSuccess = useSelector(selectP2PCreateOrderSuccess);
     const currencies: Currency[] = useSelector(selectCurrencies);
@@ -31,6 +32,10 @@ export const P2POrderScreen: FC = (): ReactElement => {
     useEffect(() => {
         if (['autocancelled', 'cancelled'].includes(order?.state)) {
             history.push('/p2p');
+        }
+
+        return () => {
+            search.includes('createDispute') && history.push({ search: '' })
         }
     }, [order]);
 
@@ -51,6 +56,10 @@ export const P2POrderScreen: FC = (): ReactElement => {
     const content = useCallback(() => {
         if (order) {
             const isTaker = order.user_uid === user.uid;
+
+            if (search.includes('createDispute')) {
+                return <Dispute order={order}/>;
+            }
 
             switch (order.state) {
                 case 'prepared':
@@ -77,7 +86,7 @@ export const P2POrderScreen: FC = (): ReactElement => {
                     return;
             }
         }
-    }, [order, user]);
+    }, [order, user, search]);
 
     const getPrecision = useCallback((cur: string) => (cur && currencies.find(i => i.id === cur.toLowerCase())?.precision), [currencies]);
 
