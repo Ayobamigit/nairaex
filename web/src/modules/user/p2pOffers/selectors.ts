@@ -6,20 +6,11 @@ import { OfferNestedOrders } from './actions';
 export const selectP2PUserOffers = (state: RootState): Offer[] =>
     state.user.p2pOffers.offers.list;
 
-export const selectP2PUserOffersFetchLoading = (state: RootState): boolean =>
-    state.user.p2pOffers.offers.fetching;
-
 export const selectP2PUserOffersFetchSuccess = (state: RootState): boolean =>
     state.user.p2pOffers.offers.success;
 
 export const selectP2PUserOffersFetchError = (state: RootState): CommonError | undefined =>
     state.user.p2pOffers.offers.error;
-
-export const selectP2PUserOffersTimestamp = (state: RootState): number | undefined =>
-    state.user.p2pOffers.offers.timestamp;
-
-export const selectShouldFetchP2PUserOffers = (state: RootState): boolean =>
-    !selectP2PUserOffersTimestamp(state) && !selectP2PUserOffersFetchLoading(state);
 
 export const selectP2PUserOffersTotalNumber = (state: RootState): number =>
     state.user.p2pOffers.offers.total;
