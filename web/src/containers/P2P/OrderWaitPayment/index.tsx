@@ -6,6 +6,7 @@ import { Decimal, TabPanel } from 'src/components';
 import { HOST_URL } from 'src/constants';
 import { getCountdownDate, secondToMinutes, titleCase } from 'src/helpers';
 import { Currency, P2POrder, p2pOrdersUpdateFetch, selectCurrencies, UserPaymentMethod } from 'src/modules';
+import { useHistory } from 'react-router-dom';
 
 interface ParentProps {
     order: P2POrder;
@@ -25,6 +26,7 @@ const OrderWaitPayment: FC<Props> = (props: Props): ReactElement => {
     const { order, isTaker } = props;
     const dispatch = useDispatch();
     const { formatMessage } = useIntl();
+    const history = useHistory();
 
     useEffect(() => {
         if (order) {
@@ -196,7 +198,7 @@ const OrderWaitPayment: FC<Props> = (props: Props): ReactElement => {
                     {translate('page.body.p2p.order.transfer.order.wait.confirm')}
                 </Button>
                 <Button
-                    onClick={() => window.console.log('dispute')}
+                    onClick={() => history.push({ search: 'createDispute' })}
                     size="lg"
                     variant="secondary"
                 >
