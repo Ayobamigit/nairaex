@@ -511,13 +511,21 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
     };
 
     private onOpenConfirmationModal = (amount?: string, total?: string, beneficiary?: Beneficiary, otpCode?: string, fee?: string) => {
-        this.props.fetchWithdrawAllow({
-            amount,
-            beneficiary,
-            otpCode,
-            total,
-            fee,
-        });
+        if (this.props.wallets[this.state.selectedWalletIndex].type === 'coin') {
+            this.setState({
+                withdrawConfirmModal: true,
+            });    
+        }
+
+        if (this.props.wallets[this.state.selectedWalletIndex].type === 'fiat') {
+            this.props.fetchWithdrawAllow({
+                amount,
+                beneficiary,
+                otpCode,
+                total,
+                fee,
+            });
+        }
     };
 
     private handleWithdraw = () => {
