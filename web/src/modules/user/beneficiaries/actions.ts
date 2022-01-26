@@ -86,7 +86,7 @@ export interface BeneficiariesCreate {
         name: string;
         data: string;
         description?: string;
-        otp: string;
+        otp?: string;
     };
 }
 
@@ -104,7 +104,7 @@ export interface BeneficiariesDelete {
     type: typeof BENEFICIARIES_DELETE;
     payload: {
         id: number;
-        otp: string;
+        otp?: string;
     };
 }
 
