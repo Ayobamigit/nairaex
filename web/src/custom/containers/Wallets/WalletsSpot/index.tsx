@@ -94,7 +94,7 @@ interface ReduxProps {
     beneficiaries: Beneficiary[];
     integration: Integration;
     withdrawAllow: WithdrawAllowData['payload'];
-    withdrawData: Array<WithdrawDataPayload>;
+    withdrawData: WithdrawDataPayload;
 }
 
 interface DispatchProps {
@@ -514,7 +514,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         if (this.props.wallets[this.state.selectedWalletIndex].type === 'coin') {
             this.setState({
                 withdrawConfirmModal: true,
-            });    
+            });
         }
 
         if (this.props.wallets[this.state.selectedWalletIndex].type === 'fiat') {
