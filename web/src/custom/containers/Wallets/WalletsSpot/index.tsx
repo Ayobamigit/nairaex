@@ -212,7 +212,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         const { wallets, currency, action, markets, tickers, currencies, memberLevels, banks, isFetchingBanks } = this.props;
         const { currentTabIndex, selectedWalletIndex } = this.state;
 
-        if (this.props.wallets.length === 0) {
+        if (!this.props.wallets.length) {
             this.props.fetchWallets();
         }
 
@@ -314,7 +314,6 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         if (next.withdrawAllow.status !== this.props.withdrawAllow.status) {
             if (next.withdrawAllow.status === 200) {
                 const { amount, beneficiary, otpCode, total, fee } = next.withdrawAllow;
-
                 this.setState((state: WalletsState) => ({
                     amount: amount || '',
                     beneficiary: beneficiary || defaultCryptoBeneficiary,
@@ -350,6 +349,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             currentTabIndex,
             nonZeroSelected,
         } = this.state;
+
         const selectedCurrency = (wallets[selectedWalletIndex] || { currency: '' }).currency;
         const currencyType = (wallets[selectedWalletIndex] || { currency: '' }).type;
         let confirmationAddress = '';
@@ -366,61 +366,59 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         }
 
         return (
-            <React.Fragment>
-                <div className="pg-wallet">
-                    <div className="text-center">
-                        {walletsLoading && <Spinner animation="border" variant="primary" />}
-                    </div>
-                    <div className={`row no-gutters pg-wallet__tabs-content ${!historyList.length && 'pg-wallet__tabs-content-height'}`}>
-                        <div className={`col-md-3 col-sm-12 col-12 ${mobileWalletChosen && 'd-none d-md-block'}`}>
-                            <WalletsHeader
-                                wallets={wallets}
-                                nonZeroSelected={nonZeroSelected}
-                                setFilterValue={this.setFilterValue}
-                                setFilteredWallets={this.handleFilter}
-                                handleClickCheckBox={this.handleToggleCheckbox}
-                            />
-                            <WalletList
-                                onWalletSelectionChange={this.onWalletSelectionChange}
-                                walletItems={this.formattedWallets()}
-                                activeIndex={this.state.activeIndex}
-                                onActiveIndexChange={this.onActiveIndexChange}
-                                currencies={currencies}
-                                markets={markets}
-                                tickers={tickers}
-                            />
-                        </div>
-                        <div className={`pg-wallet__tabs col-md-7 col-sm-12 col-12 ${!mobileWalletChosen && 'd-none d-md-block'}`}>
-                            <TabPanel
-                                panels={this.renderTabs()}
-                                onTabChange={(_, label) => this.onTabChange(label)}
-                                currentTabIndex={currentTabIndex}
-                                onCurrentTabChange={this.onCurrentTabChange}
-                            />
-                        </div>
-                    </div>
-                    <ModalWithdrawSubmit
-                        show={withdrawSubmitModal}
-                        currency={selectedCurrency}
-                        onSubmit={this.toggleSubmitModal}
-                    />
-                    <ModalWithdrawConfirmation
-                        beneficiary={beneficiary}
-                        otpCode={otpCode}
-                        show={withdrawConfirmModal}
-                        type={currencyType}
-                        amount={amount}
-                        fee={fee}
-                        total={total}
-                        currency={selectedCurrency}
-                        rid={confirmationAddress}
-                        onSubmit={this.handleWithdraw}
-                        onDismiss={this.toggleConfirmModal}
-                        handleChangeCodeValue={this.handleChangeCodeValue}
-                        precision={selectedWalletPrecision}
-                    />
+            <div className="pg-wallet">
+                <div className="text-center">
+                    {walletsLoading && <Spinner animation="border" variant="primary" />}
                 </div>
-            </React.Fragment>
+                <div className={`row no-gutters pg-wallet__tabs-content ${!historyList.length && 'pg-wallet__tabs-content-height'}`}>
+                    <div className={`col-md-3 col-sm-12 col-12 ${mobileWalletChosen && 'd-none d-md-block'}`}>
+                        <WalletsHeader
+                            wallets={wallets}
+                            nonZeroSelected={nonZeroSelected}
+                            setFilterValue={this.setFilterValue}
+                            setFilteredWallets={this.handleFilter}
+                            handleClickCheckBox={this.handleToggleCheckbox}
+                        />
+                        <WalletList
+                            onWalletSelectionChange={this.onWalletSelectionChange}
+                            walletItems={this.formattedWallets()}
+                            activeIndex={this.state.activeIndex}
+                            onActiveIndexChange={this.onActiveIndexChange}
+                            currencies={currencies}
+                            markets={markets}
+                            tickers={tickers}
+                        />
+                    </div>
+                    <div className={`pg-wallet__tabs col-md-7 col-sm-12 col-12 ${!mobileWalletChosen && 'd-none d-md-block'}`}>
+                        <TabPanel
+                            panels={this.renderTabs()}
+                            onTabChange={(_, label) => this.onTabChange(label)}
+                            currentTabIndex={currentTabIndex}
+                            onCurrentTabChange={this.onCurrentTabChange}
+                        />
+                    </div>
+                </div>
+                <ModalWithdrawSubmit
+                    show={withdrawSubmitModal}
+                    currency={selectedCurrency}
+                    onSubmit={this.toggleSubmitModal}
+                />
+                <ModalWithdrawConfirmation
+                    beneficiary={beneficiary}
+                    otpCode={otpCode}
+                    show={withdrawConfirmModal}
+                    type={currencyType}
+                    amount={amount}
+                    fee={fee}
+                    total={total}
+                    currency={selectedCurrency}
+                    rid={confirmationAddress}
+                    onSubmit={this.handleWithdraw}
+                    onDismiss={this.toggleConfirmModal}
+                    handleChangeCodeValue={this.handleChangeCodeValue}
+                    precision={selectedWalletPrecision}
+                />
+            </div>
         );
     }
 
@@ -461,7 +459,8 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         const { wallets } = this.props;
 
         this.setState({ currentTabIndex: index });
-        wallets && wallets[selectedWalletIndex] && this.props.history.push(`/wallets/spot/${wallets[selectedWalletIndex].currency?.toLowerCase()}/${this.tabMapping[index]}`)
+        wallets && wallets[selectedWalletIndex] &&
+            this.props.history.push(`/wallets/spot/${wallets[selectedWalletIndex].currency?.toLowerCase()}/${this.tabMapping[index]}`)
     };
 
     private toggleSubmitModal = () => {
@@ -514,6 +513,11 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         if (this.props.wallets[this.state.selectedWalletIndex].type === 'coin') {
             this.setState({
                 withdrawConfirmModal: true,
+                beneficiary,
+                fee,
+                otpCode,
+                total,
+                amount,
             });
         }
 
@@ -777,10 +781,12 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             return this.isOtpDisabled();
         };
 
-        return <>
-                    {this.renderWithdrawWarning()}
-                    <Withdraw {...withdrawProps} />
-                </>;
+        return (
+            <React.Fragment>
+                {this.renderWithdrawWarning()}
+                <Withdraw {...withdrawProps} />
+            </React.Fragment>
+        );
     };
 
 

@@ -65,7 +65,6 @@ class HistoryComponent extends React.Component<Props> {
         const fetchParams = { page: 0, type, limit: 25 }
 
         if (type === 'quick_exchange') {
-            console.log('test')
             fetchParams['market_type'] = 'qe';
             this.props.fetchMarkets({type: 'qe'});
         } else {

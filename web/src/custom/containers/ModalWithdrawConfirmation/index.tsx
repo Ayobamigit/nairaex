@@ -44,7 +44,7 @@ class ModalWithdraw extends React.Component<Props, State> {
     public render() {
         const { show, isMobileDevice } = this.props;
 
-        return isMobileDevice ?
+        return isMobileDevice ? (
             <MobileModal title={this.renderHeader()} onClose={this.props.onDismiss} isOpen={this.props.show}>
                 <div>
                     {this.renderBody()}
@@ -52,15 +52,16 @@ class ModalWithdraw extends React.Component<Props, State> {
                 <div>
                     {this.renderFooter()}
                 </div>
-            </MobileModal> : (
-                <Modal
-                    fullView={true}
-                    show={show}
-                    header={this.renderHeader()}
-                    content={this.renderBody()}
-                    footer={this.renderFooter()}
-                />
-            );
+            </MobileModal>
+        ) : (
+            <Modal
+                fullView={true}
+                show={show}
+                header={this.renderHeader()}
+                content={this.renderBody()}
+                footer={this.renderFooter()}
+            />
+        );
     }
 
     private renderHeader = () => {
@@ -79,6 +80,8 @@ class ModalWithdraw extends React.Component<Props, State> {
     private renderBody = () => {
         const { amount, currency, precision, rid, total, fee, beneficiary } = this.props;
         const { isOpenTip } = this.state;
+
+        // console.log(fee, beneficiary);
 
         const formattedCurrency = currency.toUpperCase();
 
@@ -135,7 +138,7 @@ class ModalWithdraw extends React.Component<Props, State> {
         );
     };
 
-    private renderDropdownTipFiat = (currentWithdrawalBeneficiary: Beneficiary) => currentWithdrawalBeneficiary ?
+    private renderDropdownTipFiat = (currentWithdrawalBeneficiary: Beneficiary) => currentWithdrawalBeneficiary ? (
         <div className="modal-body__withdraw-confirm__tip fiat-tip">
             <div className="tip__content">
                 {currentWithdrawalBeneficiary.description && this.renderDropdownTipFiatDescription(currentWithdrawalBeneficiary.description)}
@@ -165,7 +168,8 @@ class ModalWithdraw extends React.Component<Props, State> {
                     <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).bank_code}</span>
                 </div>
             </div>
-        </div> : null;
+        </div>
+    ) : null;
 
     private handleToggleTip = () => {
         this.setState(prevState => ({
@@ -174,51 +178,51 @@ class ModalWithdraw extends React.Component<Props, State> {
     };
 
     private handleEnterClick = e => {
-        if (e.key === "Enter" && this.props.otpCode.length >= 6) {
+        if (e.key === "Enter" && this.props.otpCode.length === 6) {
             e.preventDefault();
             this.props.onSubmit();
         }
     };
 
     private renderFooter = () => {
-    const { isMobileDevice, otpCode } = this.props;
+        const { isMobileDevice, otpCode } = this.props;
 
-    return (
-        <div className="pg-exchange-modal-submit-footer modal-footer__withdraw-confirm">
-            <div className="modal-footer__withdraw-confirm-verification">
-                <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.verification" />
-            </div>
-            <div className="modal-footer__withdraw-confirm-title">
-                <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.message" />
-            </div>
-            <div className="modal-footer__withdraw-confirm-form">
-                <div className="modal-footer__withdraw-confirm-form-row">
-                    <fieldset className="modal-footer__withdraw-confirm-form-input">
-                        <CodeVerification
-                            code={otpCode}
-                            onChange={e => this.props.handleChangeCodeValue(e)}
-                            onSubmit={e => this.handleEnterClick(e)}
-                            codeLength={6}
-                            type="text"
-                            placeholder="X"
-                            inputMode="decimal"
-                            showPaste2FA={true}
-                            isMobile={isMobileDevice}
-                        />
-                    </fieldset>
-                    <Button
-                        className="modal-footer__withdraw-confirm-form-button"
-                        block={true}
-                        disabled={otpCode.length < 6}
-                        onClick={this.props.onSubmit}
-                        size="lg"
-                        variant="primary"
-                    >
-                        <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.button.withdraw" />
-                    </Button>
+        return (
+            <div className="pg-exchange-modal-submit-footer modal-footer__withdraw-confirm">
+                <div className="modal-footer__withdraw-confirm-verification">
+                    <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.verification" />
+                </div>
+                <div className="modal-footer__withdraw-confirm-title">
+                    <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.message" />
+                </div>
+                <div className="modal-footer__withdraw-confirm-form">
+                    <div className="modal-footer__withdraw-confirm-form-row">
+                        <fieldset className="modal-footer__withdraw-confirm-form-input">
+                            <CodeVerification
+                                code={otpCode}
+                                onChange={e => this.props.handleChangeCodeValue(e)}
+                                onSubmit={e => this.handleEnterClick(e)}
+                                codeLength={6}
+                                type="text"
+                                placeholder="X"
+                                inputMode="decimal"
+                                showPaste2FA={true}
+                                isMobile={isMobileDevice}
+                            />
+                        </fieldset>
+                        <Button
+                            className="modal-footer__withdraw-confirm-form-button"
+                            block={true}
+                            disabled={otpCode.length < 6}
+                            onClick={this.props.onSubmit}
+                            size="lg"
+                            variant="primary"
+                        >
+                            <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.button.withdraw" />
+                        </Button>
+                    </div>
                 </div>
             </div>
-        </div>
         );
     };
 }
