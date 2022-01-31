@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     beneficiariesCreateData,
-    beneficiariesDelete,
     Beneficiary,
     BeneficiaryBank,
     memberLevelsFetch,
@@ -469,7 +468,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
             />
         );
     }, [isMobileDevice, beneficiaryId]);
-    
+
     const filtredBeneficiaries = React.useMemo(() => handleFilterByState(beneficiaries, ['active', 'pending']), [beneficiaries]);
 
     return (
