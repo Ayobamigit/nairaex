@@ -78,11 +78,8 @@ class ModalWithdraw extends React.Component<Props, State> {
     };
 
     private renderBody = () => {
-        const { amount, currency, precision, rid, total, fee, beneficiary } = this.props;
+        const { amount, currency, precision, rid, total, fee, beneficiary, type } = this.props;
         const { isOpenTip } = this.state;
-
-        // console.log(fee, beneficiary);
-
         const formattedCurrency = currency.toUpperCase();
 
         return (
@@ -100,7 +97,7 @@ class ModalWithdraw extends React.Component<Props, State> {
                         <span className="tip-icon" onMouseOver={this.handleToggleTip}onMouseOut={this.handleToggleTip}><TipIcon /></span>
                     </div>
                 </div>
-                {isOpenTip && this.renderDropdownTipFiat(beneficiary)}
+                {isOpenTip && (type === 'fiat' ? this.renderDropdownTipFiat(beneficiary) : this.renderDropdownTipCoin(beneficiary))}
                 <div className="modal-body__withdraw-confirm-inline">
                     <span>
                         <FormattedMessage id="page.body.wallets.tabs.withdraw.modal.amount" />
@@ -127,7 +124,7 @@ class ModalWithdraw extends React.Component<Props, State> {
         );
     };
 
-    private renderDropdownTipFiatDescription = (description: string) => {
+    private renderDropdownTipDescription = (description: string) => {
         return (
             <div className="tip__content__block">
                 <span className="tip__content__block__label">
@@ -138,34 +135,48 @@ class ModalWithdraw extends React.Component<Props, State> {
         );
     };
 
+    private renderDropdownTipCoin = (currentWithdrawalBeneficiary: Beneficiary) => currentWithdrawalBeneficiary ? (
+        <div className="modal-body__withdraw-confirm__tip fiat-tip">
+            <div className="tip__content">
+                {currentWithdrawalBeneficiary.description && this.renderDropdownTipDescription(currentWithdrawalBeneficiary.description)}
+                <div className="tip__content__block">
+                    <span className="tip__content__block__label">
+                        <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.name" />
+                    </span>
+                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.name  || '-'}</span>
+                </div>
+            </div>
+        </div>
+    ) : null;
+
     private renderDropdownTipFiat = (currentWithdrawalBeneficiary: Beneficiary) => currentWithdrawalBeneficiary ? (
         <div className="modal-body__withdraw-confirm__tip fiat-tip">
             <div className="tip__content">
-                {currentWithdrawalBeneficiary.description && this.renderDropdownTipFiatDescription(currentWithdrawalBeneficiary.description)}
-                {currentWithdrawalBeneficiary.data.fiatDescription && this.renderDropdownTipFiatDescription((currentWithdrawalBeneficiary.data as BeneficiaryBank).fiatDescription)}
+                {currentWithdrawalBeneficiary.description && this.renderDropdownTipDescription(currentWithdrawalBeneficiary.description)}
+                {currentWithdrawalBeneficiary.data.fiatDescription && this.renderDropdownTipDescription((currentWithdrawalBeneficiary.data as BeneficiaryBank).fiatDescription)}
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">
                         <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.fullName" />
                     </span>
-                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.data.full_name}</span>
+                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.data.full_name || '-'}</span>
                 </div>
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">
                         <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.accountNumber" />
                     </span>
-                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).account_no}</span>
+                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).account_no  || '-'}</span>
                 </div>
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">
                         <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankName" />
                     </span>
-                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.name}</span>
+                    <span className="tip__content__block__value">{currentWithdrawalBeneficiary.name  || '-'}</span>
                 </div>
                 <div className="tip__content__block">
                     <span className="tip__content__block__label">
                         <FormattedMessage id="page.body.wallets.beneficiaries.dropdown.fiat.bankCode" />
                     </span>
-                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).bank_code}</span>
+                    <span className="tip__content__block__value">{(currentWithdrawalBeneficiary.data as BeneficiaryBank).bank_code  || '-'}</span>
                 </div>
             </div>
         </div>
