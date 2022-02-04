@@ -189,7 +189,7 @@ const BeneficiariesComponent: React.FC<Props> = ({currency, type, onChangeValue}
                 <span className="tip__content__block__value">{currentWithdrawalBeneficiary.description}</span>
             </div>
         );
-    }, []);
+    }, [currentWithdrawalBeneficiary]);
 
     const renderDropdownTipCrypto = React.useMemo(() => {
         if (currentWithdrawalBeneficiary) {

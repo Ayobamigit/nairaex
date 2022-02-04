@@ -313,7 +313,7 @@ export const ru: LangType = {
 
     'page.body.wallets.beneficiaries.tipAddress': 'Address',
     'page.body.wallets.beneficiaries.tipName': 'Name',
-    'page.body.wallets.beneficiaries.tipDescription': 'Note',
+    'page.body.wallets.beneficiaries.tipDescription': 'Description',
 
     'page.body.wallets.beneficiaries.failAddModal.header': 'Warning',
     'page.body.wallets.beneficiaries.failAddModal.content': 'You need to confirm your account to add a beneficiary',
@@ -1279,7 +1279,7 @@ export const ru: LangType = {
     'page.body.p2p.order.transfer.price': 'Price',
     'page.body.p2p.order.transfer.quantity': 'Quantity',
     'page.body.p2p.order.transfer.info.1': '1. Make the payment and notify the seller that you completed the payment.',
-    'page.body.p2p.order.transfer.info.2': '2. Click the "I have paid" button to notify the seller that you made the payment.',    
+    'page.body.p2p.order.transfer.info.2': '2. Click the "I have paid" button to notify the seller that you made the payment.',
     'page.body.p2p.order.transfer.order.wait.timer.prepared': 'Payment to be made',
     'page.body.p2p.order.transfer.order.wait.timer.wait': 'Time to confirm',
     'page.body.p2p.order.transfer.order.wait.warning.prepared': 'Please make a payment within {time} mins, otherwise, the order will be cancelled.',
@@ -1290,7 +1290,7 @@ export const ru: LangType = {
     'page.body.p2p.order.transfer.have.paid': 'I have paid',
     'page.body.p2p.order.transfer.cancel.order': 'Cancel order',
     'page.body.p2p.order.transfer.order.wait.confirm': 'Confirm',
-    'page.body.p2p.order.transfer.order.wait.logDispute': 'Log dispute', 
+    'page.body.p2p.order.transfer.order.wait.logDispute': 'Log dispute',
     'page.body.p2p.order.transfer.order.wait.info': 'Buyer has confirmed the payment',
     'page.body.p2p.order.transfer.tips': 'Tips',
     'page.body.p2p.order.transfer.tips.text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariaturLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...',
