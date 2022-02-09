@@ -227,7 +227,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
 
             walletToSet?.currency && this.props.fetchBeneficiaries({ currency_id: walletToSet.currency?.toLowerCase() });
 
-            this.props.fetchIntegration({currency: walletToSet.currency?.toLowerCase()});
+            wallets[selectedWalletIndex]?.type === 'fiat' && this.props.fetchIntegration({currency: walletToSet.currency?.toLowerCase()});
 
             if (walletToSet?.currency && currency !== walletToSet?.currency) {
                 this.props.history.push(`/wallets/spot/${walletToSet.currency.toLowerCase()}/${this.tabMapping[currentTabIndex]}`);
@@ -284,7 +284,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
                 filteredWallets: next.wallets,
             });
 
-            this.props.fetchIntegration({currency: currency});
+            wallets[selectedWalletIndex]?.type === 'fiat' && this.props.fetchIntegration({currency: currency});
 
             walletToSet?.currency && this.props.fetchBeneficiaries({ currency_id: walletToSet.currency?.toLowerCase() });
 
