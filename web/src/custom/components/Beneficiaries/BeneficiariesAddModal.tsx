@@ -18,7 +18,6 @@ import {
     selectBanks,
     selectBeneficiariesCreateError,
     selectMobileDeviceState,
-    selectSignInRequire2FA,
 } from 'src/modules';
 
 interface Props {
@@ -56,7 +55,6 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
     const banks = useSelector(selectBanks);
     const beneficiariesAddError = useSelector(selectBeneficiariesCreateError);
     const isMobileDevice = useSelector(selectMobileDeviceState);
-    const require2FA = useSelector(selectSignInRequire2FA);
     const isRipple = React.useMemo(() => currency === 'xrp', [currency]);
 
     const handleClearModalsInputs = React.useCallback(() => {
@@ -303,7 +301,7 @@ const BeneficiariesAddModalComponent: React.FC<Props> = ({ type, handleToggleAdd
                 {renderAddAddressModalBodyItem('coinBeneficiaryName')}
                 {renderAddAddressModalBodyItem('coinDescription', true)}
                 {isRipple && renderAddAddressModalBodyItem('coinDestinationTag', true)}
-                {require2FA && renderOtpCodeInput}
+                {renderOtpCodeInput}
                 <div className="cr-email-form__button-wrapper">
                     <Button
                         disabled={isDisabled}
