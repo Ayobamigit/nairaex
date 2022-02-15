@@ -148,6 +148,10 @@ class Trading extends React.Component<Props, StateProps> {
 
         this.props.marketsFetch();
 
+        if (currentMarket) {
+            setCurrentMarket(currentMarket);
+        }
+
         if (currentMarket && !incrementalOrderBook()) {
             this.props.depthFetch(currentMarket);
         }
