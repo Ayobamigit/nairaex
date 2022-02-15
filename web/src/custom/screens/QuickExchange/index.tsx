@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { QuickExchangeContainer } from '../../containers';
 import { setDocumentTitle } from '../../../helpers';
 import { TabPanel } from '../../../components';
-import { setCurrentMarket } from 'src/modules';
 
 export const QuickExchange: React.FC = () => {
     const { formatMessage } = useIntl();
@@ -15,10 +14,6 @@ export const QuickExchange: React.FC = () => {
 
     useEffect(() => {
         setDocumentTitle('Quick Exchange');
-
-        return () => {
-            dispatch(setCurrentMarket(undefined));
-        }
     }, [dispatch]);
 
     const translate = useCallback((id: string) => formatMessage({ id: id }), [formatMessage]);

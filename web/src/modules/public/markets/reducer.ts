@@ -14,11 +14,13 @@ import {
     MARKET_PRICE_FETCH,
     MARKET_PRICE_DATA,
     MARKET_PRICE_ERROR,
+    MARKETS_DATA_QE,
 } from './constants';
 import { Market, Ticker } from './types';
 
 export interface MarketsState extends CommonState {
     list: Market[];
+    list_qe: Market[];
     filters: {
         [marketId: string]: FilterPrice;
     };
@@ -42,6 +44,7 @@ export interface MarketsState extends CommonState {
 
 export const initialMarketsState: MarketsState = {
     list: [],
+    list_qe: [],
     filters: {},
     currentMarket: undefined,
     tickers: {},
@@ -83,6 +86,12 @@ export const marketsReducer = (state = initialMarketsState, action: MarketsActio
                 loading: false,
                 list: action.payload,
                 filters: filters,
+            };
+        case MARKETS_DATA_QE:
+            return {
+                ...state,
+                loading: false,
+                list_qe: action.payload,
             };
         case MARKETS_ERROR:
             return {

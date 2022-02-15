@@ -8,6 +8,9 @@ const selectMarketsState = (state: RootState): MarketsState => state.public.mark
 export const selectMarkets = (state: RootState): Market[] =>
     selectMarketsState(state).list;
 
+export const selectMarketsQE = (state: RootState): Market[] =>
+    selectMarketsState(state).list_qe;
+
 export const selectMarketsLoading = (state: RootState): boolean | undefined =>
     selectMarketsState(state).loading;
 
