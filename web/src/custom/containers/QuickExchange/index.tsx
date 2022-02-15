@@ -8,7 +8,7 @@ import {
 } from '../../../hooks';
 import {
     marketsFetch,
-    selectMarkets,
+    selectMarketsQE,
     selectWallets,
     walletsFetch,
     Market,
@@ -84,7 +84,7 @@ export const QuickExchangeContainer = (props: QuickExchangeContainerProps) => {
     const [show, setShow] = useState(false);
 
     const wallets = useSelector(selectWallets) || [];
-    const markets = useSelector(selectMarkets) || [];
+    const markets = useSelector(selectMarketsQE) || [];
     const marketPrice = useSelector(selectMarketPrice) || DEFAULT_MARKET_PRICE;
     const updateTimer = useSelector(selectMarketPriceFetchSuccess);
 

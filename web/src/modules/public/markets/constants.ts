@@ -1,5 +1,6 @@
 export const MARKETS_FETCH = 'markets/FETCH';
 export const MARKETS_DATA = 'markets/DATA';
+export const MARKETS_DATA_QE = 'market/DATA_QE';
 export const MARKETS_ERROR = 'markets/ERROR';
 export const MARKETS_SET_CURRENT_MARKET = 'markets/SET_CURRENT_MARKET';
 export const MARKETS_SET_CURRENT_MARKET_IFUNSET = 'markets/SET_CURRENT_MARKET_IFUNSET';

@@ -4,6 +4,7 @@ import { API, RequestOptions } from '../../../../api';
 import { getOrderAPI } from '../../../../helpers';
 import {
     marketsData,
+    marketsDataQE,
     marketsError,
     MarketsFetch,
     setCurrentMarketIfUnset,
@@ -24,7 +25,11 @@ export function* marketsFetchSaga(action: MarketsFetch) {
         const request = payload && payload.type ? `/public/markets?type=${payload.type}` : '/public/markets';
 
         const markets = yield call(API.get(payload ? tickersOptions : marketsRequestOptions), request);
-        yield put(marketsData(markets));
+        if (payload && payload.type) {
+            yield put(marketsDataQE(markets));
+        } else {
+            yield put(marketsData(markets));
+        }
         yield put(setCurrentMarketIfUnset(markets[0]));
     } catch (error) {
         yield put(sendError({
