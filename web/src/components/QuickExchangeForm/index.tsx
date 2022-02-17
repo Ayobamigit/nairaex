@@ -50,7 +50,7 @@ export const QuickExchangeForm = (props: QuickExchangeFormProps) => {
                 handleFocusInput={() => setInputFocused(!inputFocused)}
                 classNameLabel="cr-email-form__label"
                 classNameInput="cr-email-form__input"
-                inputSize={inputValue.length > 1 ? inputValue.length / 2 : 2}
+                inputSize={inputValue.length > 1 ? inputValue.length : 2}
             />
         </div>
     );
