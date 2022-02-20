@@ -21,6 +21,7 @@ import {
     fetchHistory,
     Market,
     marketsFetch,
+    selectMarketsQE,
     RootState,
     selectCurrencies,
     selectCurrentPage,
@@ -42,6 +43,7 @@ interface HistoryProps {
 interface ReduxProps {
     currencies: Currency[];
     marketsData: Market[];
+    marketsDataQE: Market[];
     wallets: Wallet[];
     list: WalletHistoryList;
     fetching: boolean;
@@ -191,6 +193,7 @@ class HistoryComponent extends React.Component<Props> {
             intl,
             marketsData,
             wallets,
+            marketsDataQE,
         } = this.props;
         switch (type) {
             case 'deposits': {
@@ -272,7 +275,7 @@ class HistoryComponent extends React.Component<Props> {
                 const { id, created_at, price, side, origin_volume, state, market } = item;
                 const defaultMarket = { market: '', price_precision: 0, amount_precision: 0, quote_unit: '', base_unit: '' };
 
-                const marketToDisplay = marketsData.find(m => m.id === market) || defaultMarket;
+                const marketToDisplay = marketsDataQE.find(m => m.id === market) || defaultMarket;
 
                 let data;
 
@@ -330,6 +333,7 @@ class HistoryComponent extends React.Component<Props> {
 const mapStateToProps = (state: RootState): ReduxProps => ({
     currencies: selectCurrencies(state),
     marketsData: selectMarkets(state),
+    marketsDataQE: selectMarketsQE(state),
     wallets: selectWallets(state),
     list: selectHistory(state),
     fetching: selectHistoryLoading(state),
