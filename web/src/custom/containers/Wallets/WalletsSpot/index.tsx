@@ -166,6 +166,7 @@ interface WalletsState {
     withdrawDone: boolean;
     total: string;
     currentTabIndex: number;
+    isIntegrationFetched: boolean;
 }
 
 interface OwnProps {
@@ -198,6 +199,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             filterValue: '',
             filteredWallets: [],
             nonZeroSelected: false,
+            isIntegrationFetched: false
         };
     }
 
@@ -227,7 +229,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
 
             walletToSet?.currency && this.props.fetchBeneficiaries({ currency_id: walletToSet.currency?.toLowerCase() });
 
-            wallets[selectedWalletIndex]?.type === 'fiat' && this.props.fetchIntegration({currency: walletToSet.currency?.toLowerCase()});
+            wallets[selectedWalletIndex]?.type === 'fiat' && this.handleIntegrationFetching(walletToSet.currency?.toLowerCase())
 
             if (walletToSet?.currency && currency !== walletToSet?.currency) {
                 this.props.history.push(`/wallets/spot/${walletToSet.currency.toLowerCase()}/${this.tabMapping[currentTabIndex]}`);
@@ -273,7 +275,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             currency,
             action,
         } = this.props;
-        const { selectedWalletIndex, currentTabIndex } = this.state;
+        const { selectedWalletIndex, currentTabIndex, isIntegrationFetched } = this.state;
 
         if (!wallets.length && next.wallets.length && selectedWalletIndex === -1) {
             const walletToSet = next.wallets.find(i => i.currency?.toLowerCase() === currency?.toLowerCase()) || next.wallets[0];
@@ -283,8 +285,6 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
                 activeIndex: next.wallets.indexOf(walletToSet),
                 filteredWallets: next.wallets,
             });
-
-            wallets[selectedWalletIndex]?.type === 'fiat' && this.props.fetchIntegration({currency: currency});
 
             walletToSet?.currency && this.props.fetchBeneficiaries({ currency_id: walletToSet.currency?.toLowerCase() });
 
@@ -297,6 +297,10 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
                 this.onTabChange(this.translate(`page.body.wallets.tabs.${action}`))
                 this.onCurrentTabChange(tabIndex);
             }
+        }
+
+        if (wallets.length && selectedWalletIndex !== -1 && !isIntegrationFetched) {
+            wallets[selectedWalletIndex]?.type === 'fiat' && this.handleIntegrationFetching(currency)
         }
 
         if (!withdrawSuccess && next.withdrawSuccess) {
@@ -420,6 +424,13 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
                 />
             </div>
         );
+    }
+
+    private handleIntegrationFetching = (currency: string) => {
+        this.props.fetchIntegration({currency: currency})
+        this.setState({
+            isIntegrationFetched: true
+        })
     }
 
     private formattedWallets = () => {
@@ -831,9 +842,8 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         this.props.history.push(`/wallets/spot/${value.currency.toLowerCase()}/${this.tabMapping[currentTabIndex]}`);
         this.props.setMobileWalletUi(wallets[nextWalletIndex].name);
 
-        if (wallets[nextWalletIndex]?.type === 'fiat') {
-            this.props.fetchIntegration({ currency: value.currency.toLowerCase() });
-        }
+        wallets[nextWalletIndex]?.type === 'fiat' && this.handleIntegrationFetching(value.currency.toLowerCase())
+
     };
 }
 
