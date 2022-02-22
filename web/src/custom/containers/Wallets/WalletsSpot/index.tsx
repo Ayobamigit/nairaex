@@ -280,8 +280,6 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
         if (!wallets.length && next.wallets.length && selectedWalletIndex === -1) {
             const walletToSet = next.wallets.find(i => i.currency?.toLowerCase() === currency?.toLowerCase()) || next.wallets[0];
 
-            wallets[selectedWalletIndex]?.type === 'fiat' && this.handleIntegrationFetching(walletToSet.currency?.toLowerCase())
-
             this.setState({
                 selectedWalletIndex: next.wallets.indexOf(walletToSet),
                 activeIndex: next.wallets.indexOf(walletToSet),
@@ -301,6 +299,7 @@ class WalletsSpotComponent extends React.Component<Props, WalletsState> {
             }
         }
 
+        window.console.log('integration fetch:', isIntegrationFetched)
         if (wallets.length && selectedWalletIndex !== -1 && !isIntegrationFetched) {
             wallets[selectedWalletIndex]?.type === 'fiat' && this.handleIntegrationFetching(currency)
         }
